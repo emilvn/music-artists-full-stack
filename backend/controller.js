@@ -27,3 +27,22 @@ async function addArtistData(req, res){
 	res.json(artists);
 }
 
+async function updateArtistData(req, res){
+	const id = req.params.id;
+	const artists = await getArtists();
+
+	const artistToUpdate = artists.find(artist => artist.id === id);
+	const body = req.body;
+
+	artistToUpdate.name = body.name;
+	artistToUpdate.birthdate = body.birthdate;
+	artistToUpdate.activeSince = body.activeSince;
+	artistToUpdate.genres = body.genres;
+	artistToUpdate.labels = body.labels;
+	artistToUpdate.website = body.website;
+	artistToUpdate.image = body.image;
+	artistToUpdate.shortDescription = body.shortDescription;
+
+	writeArtistsToFile(artists);
+	res.json(artists);
+}

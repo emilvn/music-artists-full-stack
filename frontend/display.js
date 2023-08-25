@@ -21,5 +21,4 @@ function displayArtist(artist){
         </article>
 	`;
 	document.querySelector("#artists").insertAdjacentHTML("beforeend", myHTML);
-
 }

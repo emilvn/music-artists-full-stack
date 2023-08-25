@@ -1,0 +1,23 @@
+{
+  "name": "music-artists-full-stack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "node --watch main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emilvn/music-artists-full-stack.git"
+  },
+  "author": "Emil V Nielsen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/emilvn/music-artists-full-stack/issues"
+  },
+  "homepage": "https://github.com/emilvn/music-artists-full-stack#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
+  }
+}

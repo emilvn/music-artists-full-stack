@@ -85,3 +85,13 @@ export async function updateArtist(updatedArtist){
 		scrollToTop();
 	}
 }
+
+export async function deleteArtist(artistToDelete){
+	const response = await fetch(endpoint + "/artists/" + artistToDelete.id, {
+		method: "DELETE"
+	});
+	if(response.ok){
+		artists = artists.filter(artist => artist.id !== artistToDelete.id);
+		displayArtists(artists);
+	}
+}

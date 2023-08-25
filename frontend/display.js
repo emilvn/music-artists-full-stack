@@ -1,4 +1,4 @@
-import {selectArtist} from "./main.js";
+import {deleteArtist, selectArtist} from "./main.js";
 
 export function displayArtists(artists){
 	document.querySelector("#artists").innerHTML = "";
@@ -29,6 +29,9 @@ function displayArtist(artist){
 
 	document.querySelector("#artists article:last-child .edit-button")
 		.addEventListener("click", ()=>selectArtist(artist));
+
+	document.querySelector("#artists article:last-child .delete-button")
+		.addEventListener("click", ()=>deleteArtist(artist));
 }
 
 export function scrollToTop() {

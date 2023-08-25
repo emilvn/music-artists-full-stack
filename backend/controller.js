@@ -1,5 +1,5 @@
 import fs from "fs/promises";
-
+import {v4 as uuidv4} from "uuid";
 
 async function getArtists(){
 	const data = await fs.readFile("artists.json");
@@ -11,7 +11,14 @@ function writeArtistsToFile(artists){
 }
 
 
-async function getMusicArtistData(req, res){
+async function getArtistsData(req, res){
 	const artists = await getArtists();
 	res.json(artists);
+}
+
+async function addArtistData(req, res){
+	const newArtist = req.body;
+	newArtist.id = uuidv4();
+	const artists = await getArtists();
+
 }

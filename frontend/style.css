@@ -1,0 +1,17 @@
+body{
+    font-family: Cambria, sans-serif;
+    margin: 0;
+}
+
+form{
+    border: 1px solid black;
+    width: 75vw;
+    text-align: center;
+}
+
+form fieldset{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+    text-align: left;
+}

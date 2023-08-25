@@ -1,6 +1,45 @@
+html{
+    width: 100%;
+    height: 100%;
+}
+
 body{
     font-family: Cambria, sans-serif;
     margin: 0;
+}
+button{
+    border-radius: 0.5em;
+    min-height: 2em;
+    min-width: 4em;
+    border: 1px solid black;
+    cursor: pointer;
+}
+button:hover{
+    box-shadow: 0 0 2px 0 black;
+    filter: grayscale(0.5);
+}
+
+header{
+    background-color: gray;
+    position: fixed;
+    width: 100%;
+    text-align: center;
+    z-index: 999;
+}
+header{
+    top: 0;
+    left: 0;
+}
+
+@media (max-width: 600px) {
+    header {
+        text-align: left;
+        height: auto;
+    }
+}
+
+main{
+    margin-top: 7.5em;
 }
 
 form{
@@ -12,6 +51,64 @@ form{
 form fieldset{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1em;
+    gap: 0.5em;
     text-align: left;
+}
+
+#artists{
+    margin: 1em;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1em;
+}
+
+@media (min-width: 600px){
+    #artists{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (min-width: 900px) {
+    #artists{
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media (min-width: 1200px) {
+    #artists{
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+@media (min-width: 1500px) {
+    #artists{
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+@media (min-width: 1800px) {
+    #artists{
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+@media (min-width: 2100px) {
+    #artists{
+        grid-template-columns: repeat(7, 1fr);
+    }
+}
+
+#artists article{
+    border-radius: 1em;
+    box-shadow: 0 0 10px 0 black;
+    padding: 1em;
+    cursor: pointer;
+    position: relative;
+    max-width: 90vw;
+}
+
+#artists article img{
+    width: 100%;
+    overflow: clip;
+}
+
+footer{
+    background-color: gray;
+    text-align: center;
+    font-size: 0.75em;
 }

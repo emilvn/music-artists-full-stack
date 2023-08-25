@@ -1,5 +1,5 @@
 import {displayArtists, scrollToTop} from "./display.js";
-import {submitArtistCreate} from "./submit.js";
+import {submitArtistCreate, submitArtistUpdate} from "./submit.js";
 
 window.addEventListener("load", main);
 
@@ -8,19 +8,24 @@ let artists;
 let selectedArtist;
 
 async function main(){
-	await getArtists();
+	await updateArtistsArray();
 	displayArtists(artists);
 	setEventListeners();
 }
 
+async function updateArtistsArray(){
+	artists = await getArtists();
+}
+
 function setEventListeners(){
 	document.querySelector("#form-create").addEventListener("submit", submitArtistCreate);
+	document.querySelector("#form-update").addEventListener("submit", submitArtistUpdate);
 }
 
 async function getArtists(){
 	const response = await fetch(endpoint + "/artists")
 	if(response.ok){
-		artists = await response.json();
+		return await response.json();
 	}
 }
 
@@ -34,7 +39,7 @@ export async function addArtist(artist){
 	});
 
 	if(response.ok){
-		artists.push(artist);
+		await updateArtistsArray();
 		displayArtists(artists);
 		scrollToTop();
 	}
@@ -56,26 +61,26 @@ export function selectArtist(artist){
 }
 
 export async function updateArtist(updatedArtist){
+	const artistToUpdate = artists.find(artist => artist.id === selectedArtist.id);
 
-	const response = await fetch(endpoint + "/artists/" + updatedArtist.id, {
+	artistToUpdate.name = updatedArtist.name;
+	artistToUpdate.birthdate = updatedArtist.birthdate;
+	artistToUpdate.activeSince = updatedArtist.activeSince;
+	artistToUpdate.image = updatedArtist.image;
+	artistToUpdate.genres = updatedArtist.genres;
+	artistToUpdate.labels = updatedArtist.labels;
+	artistToUpdate.roles = updatedArtist.roles;
+	artistToUpdate.website = updatedArtist.website;
+	artistToUpdate.shortDescription = updatedArtist.shortDescription;
+
+	const response = await fetch(endpoint + "/artists/" + selectedArtist.id, {
 		method: "PUT",
 		headers: {
 			"Content-Type":"application/json"
 		},
-		body: JSON.stringify(updatedArtist)
+		body: JSON.stringify(artistToUpdate)
 	});
 	if(response.ok){
-		const artistToUpdate = artists.find(artist => artist.id === selectedArtist.id);
-		artistToUpdate.name = updatedArtist.name;
-		artistToUpdate.birthdate = updatedArtist.birthdate;
-		artistToUpdate.activeSince = updatedArtist.activeSince;
-		artistToUpdate.image = updatedArtist.image;
-		artistToUpdate.genres = updatedArtist.genres;
-		artistToUpdate.labels = updatedArtist.labels;
-		artistToUpdate.roles = updatedArtist.roles;
-		artistToUpdate.website = updatedArtist.website;
-		artistToUpdate.shortDescription = updatedArtist.shortDescription;
-
 		displayArtists(artists);
 		scrollToTop();
 	}

@@ -1,10 +1,23 @@
-import {addArtist} from "./main.js";
+import {addArtist, updateArtist} from "./main.js";
 
 export function submitArtistCreate(event){
 	event.preventDefault();
 	const form = event.target;
+	const newArtist = getArtistDataFromInput(form);
+	addArtist(newArtist);
+	form.reset();
+}
 
-	const newArtist = {
+export function submitArtistUpdate(event){
+	event.preventDefault();
+	const form = event.target;
+	const updatedArtist = getArtistDataFromInput(form);
+	updateArtist(updatedArtist);
+	form.reset();
+}
+
+function getArtistDataFromInput(form){
+	return {
 		name: form.name.value,
 		birthdate: form.birthdate.value,
 		activeSince: form.activeSince.value,
@@ -15,6 +28,4 @@ export function submitArtistCreate(event){
 		image: form.image.value,
 		shortDescription: form.shortDescription.value
 	}
-	addArtist(newArtist);
-	form.reset();
 }

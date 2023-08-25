@@ -29,7 +29,6 @@ export async function addArtistData(req, res){
 export async function updateArtistData(req, res){
 	const id = req.params.id;
 	const artists = await getArtists();
-
 	const artistToUpdate = artists.find(artist => artist.id === id);
 	const body = req.body;
 

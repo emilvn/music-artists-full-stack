@@ -1,0 +1,14 @@
+[
+  {
+    "id": "1",
+    "name": "artist name",
+    "birthdate": "yyyy-mm-dd",
+    "activeSince": "yyyy-mm-dd",
+    "genres": ["genre1", "genre2"],
+    "labels": ["label1", "label2"],
+    "website": "https://artistwebsite.com",
+    "image": "https://artistimage.com",
+    "roles": ["guitarist", "singer", "etc."],
+    "shortDescription": "short description of artist, max 100 characters"
+  }
+]

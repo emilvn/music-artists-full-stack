@@ -3,7 +3,7 @@ import {v4 as uuidv4} from "uuid";
 
 async function getArtists(){
 	const data = await fs.readFile("artists.json");
-	return JSON.parse(data);
+	return JSON.parse(String(data));
 }
 
 function writeArtistsToFile(artists){
@@ -40,6 +40,7 @@ export async function updateArtistData(req, res){
 	artistToUpdate.genres = body.genres;
 	artistToUpdate.labels = body.labels;
 	artistToUpdate.website = body.website;
+	artistToUpdate.roles = body.roles;
 	artistToUpdate.image = body.image;
 	artistToUpdate.shortDescription = body.shortDescription;
 

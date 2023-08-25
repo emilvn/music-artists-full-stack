@@ -1,4 +1,17 @@
-import express from "express";
+import fs from "fs/promises";
 
-const app = express();
 
+async function getArtists(){
+	const data = await fs.readFile("artists.json");
+	return JSON.parse(data);
+}
+
+function writeArtistsToFile(artists){
+	fs.writeFile("artists.json", JSON.stringify(artists));
+}
+
+
+async function getMusicArtistData(req, res){
+	const artists = await getArtists();
+	res.json(artists);
+}

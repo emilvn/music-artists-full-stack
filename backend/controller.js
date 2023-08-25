@@ -20,7 +20,6 @@ export async function addArtistData(req, res){
 	const artists = await getArtists();
 	const newArtist = req.body;
 	newArtist.id = uuidv4();
-
 	artists.push(newArtist);
 	writeArtistsToFile(artists);
 

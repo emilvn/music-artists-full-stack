@@ -1,6 +1,6 @@
 import express from "express";
-import {router} from "./router.js";
 import cors from "cors";
+import {addArtistData, deleteArtist, getArtistsData, updateArtistData} from "./controller.js";
 
 const app = express();
 const port = 3333;
@@ -12,4 +12,7 @@ app.listen(port, ()=>{
 	console.log(`app  running on http://localhost:${port}`);
 });
 
-app.use(router);
+app.get("/artists", getArtistsData);
+app.post("/artists", addArtistData);
+app.put("/artists/:id", updateArtistData);
+app.delete("/artists/:id", deleteArtist);

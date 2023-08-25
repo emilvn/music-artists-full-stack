@@ -7,7 +7,7 @@
     "genres": ["Rock", "Pop", "Experimental"],
     "labels": ["RCA Records", "EMI", "Columbia Records"],
     "website": "https://www.davidbowie.com/",
-    "image": "https://www.davidbowie.com/images/bowie.jpg",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/d/d0/David_Bowie_-_TopPop_1974_03.png",
     "roles": ["Singer", "Songwriter", "Actor"],
     "shortDescription": "Iconic musician and actor"
   },
@@ -19,7 +19,7 @@
     "genres": ["Rock", "Psychedelic Rock", "Blues"],
     "labels": ["Experience Hendrix", "MCA Records"],
     "website": "https://www.jimihendrix.com/",
-    "image": "https://www.jimihendrix.com/assets/images/hendrix-logo.jpg",
+    "image": "https://live.staticflickr.com/5612/31080158030_b1d5d137a7_b.jpg",
     "roles": ["Guitarist", "Singer", "Songwriter"],
     "shortDescription": "Guitar virtuoso and rock icon"
   },
@@ -31,7 +31,7 @@
     "genres": ["Rock", "Pop", "Glam Rock"],
     "labels": ["EMI", "Parlophone"],
     "website": "https://www.queenonline.com/",
-    "image": "https://www.queenonline.com/assets/images/queen-logo.jpg",
+    "image": "https://live.staticflickr.com/3401/3479284116_3a70e29a02_c.jpg",
     "roles": ["Singer", "Songwriter", "Pianist"],
     "shortDescription": "Legendary frontman of Queen"
   },
@@ -43,7 +43,7 @@
     "genres": ["Rock", "Blues Rock", "Rock 'n' Roll"],
     "labels": ["Virgin Records", "Columbia Records"],
     "website": "https://www.mickjagger.com/",
-    "image": "https://www.mickjagger.com/assets/images/mick-jagger-logo.jpg",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/3/31/Mick_Jagger_%281982%29.jpg",
     "roles": ["Singer", "Songwriter"],
     "shortDescription": "Legendary Rolling Stones frontman"
   },
@@ -55,7 +55,7 @@
     "genres": ["Rock", "Hard Rock", "Blues Rock"],
     "labels": ["Atlantic Records", "Swan Song Records"],
     "website": "https://www.jimmypage.com/",
-    "image": "https://www.jimmypage.com/assets/images/jimmy-page-logo.jpg",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/5/51/Jimmy_Page_early.jpg",
     "roles": ["Guitarist", "Songwriter", "Producer"],
     "shortDescription": "Led Zeppelin guitarist"
   },
@@ -67,7 +67,7 @@
     "genres": ["Progressive Rock", "Psychedelic Rock"],
     "labels": ["Harvest Records", "Columbia Records"],
     "website": "https://www.rogerwaters.com/",
-    "image": "https://www.rogerwaters.com/assets/images/roger-waters-logo.jpg",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Roger_Waters_en_el_Palau_Sant_Jordi_de_Barcelona_%28The_Wall_Live%29_-_04_%28crop%29.jpg",
     "roles": ["Singer", "Bassist", "Songwriter"],
     "shortDescription": "Pink Floyd co-founder"
   },
@@ -79,7 +79,7 @@
     "genres": ["Rock", "Punk Rock", "Art Rock"],
     "labels": ["Arista Records", "Columbia Records"],
     "website": "https://www.pattismith.net/",
-    "image": "https://www.pattismith.net/assets/images/patti-smith-logo.jpg",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/8/80/Patti_Smith_performing_in_Finland%2C_2007.jpg",
     "roles": ["Singer", "Songwriter", "Poet"],
     "shortDescription": "Punk rock pioneer"
   },
@@ -91,7 +91,7 @@
     "genres": ["Rock", "Blues", "Blues Rock"],
     "labels": ["Polydor Records", "RSO Records"],
     "website": "https://www.ericclapton.com/",
-    "image": "https://www.ericclapton.com/assets/images/eric-clapton-logo.jpg",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Eric_Clapton_1.jpg",
     "roles": ["Guitarist", "Singer", "Songwriter"],
     "shortDescription": "Legendary blues and rock guitarist"
   },
@@ -103,7 +103,7 @@
     "genres": ["Rock", "Pop Rock"],
     "labels": ["Modern Records", "Warner Bros. Records"],
     "website": "https://www.stevienicks.net/",
-    "image": "https://www.stevienicks.net/assets/images/stevie-nicks-logo.jpg",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/2/29/Stevie_Nicks_2017.jpg",
     "roles": ["Singer", "Songwriter"],
     "shortDescription": "Fleetwood Mac vocalist"
   },
@@ -115,7 +115,7 @@
     "genres": ["Rock", "Hard Rock", "Country Rock"],
     "labels": ["Asylum Records", "Eagles Records"],
     "website": "https://www.joewalsh.com/",
-    "image": "https://www.joewalsh.com/assets/images/joe-walsh-logo.jpg",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/9/93/Joe_Walsh.png",
     "roles": ["Guitarist", "Singer", "Songwriter"],
     "shortDescription": "Eagles guitarist and rock solo artist"
   },
@@ -127,7 +127,7 @@
     "genres": ["Rock", "Heartland Rock"],
     "labels": ["MCA Records", "Warner Bros. Records"],
     "website": "https://www.tompetty.com/",
-    "image": "https://www.tompetty.com/assets/images/tom-petty-logo.jpg",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/c/cd/Tom_Petty_Live_in_Horsens.jpg",
     "roles": ["Singer", "Songwriter", "Guitarist"],
     "shortDescription": "Heartland rock legend"
   },
@@ -139,7 +139,7 @@
     "genres": ["Rock", "AOR"],
     "labels": ["Columbia Records"],
     "website": "https://www.steveperry.com/",
-    "image": "https://www.steveperry.com/assets/images/steve-perry-logo.jpg",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/e/e9/Steve_Perry%2C_cropped_from_Steve_Perry_%26_Efrim_Manuel_Manuck_03.jpg",
     "roles": ["Singer", "Songwriter"],
     "shortDescription": "Journey's iconic frontman"
   },
@@ -151,7 +151,7 @@
     "genres": ["Rock", "Hard Rock", "Punk Rock"],
     "labels": ["Blackheart Records"],
     "website": "https://www.joanjett.com/",
-    "image": "https://www.joanjett.com/assets/images/joan-jett-logo.jpg",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Joan_Jett_1.jpg",
     "roles": ["Singer", "Guitarist", "Songwriter"],
     "shortDescription": "Queen of rock 'n' roll"
   },
@@ -163,7 +163,7 @@
     "genres": ["Rock", "Pop Rock"],
     "labels": ["Columbia Records"],
     "website": "https://www.billyjoel.com/",
-    "image": "https://www.billyjoel.com/assets/images/billy-joel-logo.jpg",
+    "image": "https://media.snl.no/media/242256/standard_compressed_billy-joel.jpg",
     "roles": ["Singer", "Songwriter", "Pianist"],
     "shortDescription": "Piano Man"
   },
@@ -175,7 +175,7 @@
     "genres": ["Rock", "Hard Rock"],
     "labels": ["Warner Bros. Records"],
     "website": "https://www.van-halen.com/",
-    "image": "https://www.van-halen.com/assets/images/van-halen-logo.jpg",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/a/a0/Eddie_Van_Halen_at_the_New_Haven_Coliseum_2.jpg",
     "roles": ["Guitarist", "Songwriter"],
     "shortDescription": "Guitar legend of Van Halen"
   },
@@ -187,7 +187,7 @@
     "genres": ["Rock", "New Wave", "Punk"],
     "labels": ["Chrysalis Records"],
     "website": "https://www.blondie.net/",
-    "image": "https://www.blondie.net/assets/images/debbie-harry-logo.jpg",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/b/b3/Blondie_-_Debbie_Harry_-_Zwarte_Cross_2011_%28cropped%29.jpg",
     "roles": ["Singer", "Songwriter"],
     "shortDescription": "Blondie's iconic frontwoman"
   },
@@ -199,7 +199,7 @@
     "genres": ["Rock", "Hard Rock"],
     "labels": ["Epic Records"],
     "website": "https://www.bandboston.com/",
-    "image": "https://www.bandboston.com/assets/images/tom-scholz-logo.jpg",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/7/76/TomScholz.JPG",
     "roles": ["Guitarist", "Songwriter"],
     "shortDescription": "Founder of the band Boston"
   },
@@ -211,7 +211,7 @@
     "genres": ["Rock", "New Wave", "Punk"],
     "labels": ["Sire Records"],
     "website": "https://www.thepretenders.com/",
-    "image": "https://www.thepretenders.com/assets/images/chrissie-hynde-logo.jpg",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/9/9d/Chrissie_Hynde_%282021%29_%28cropped%29.jpg",
     "roles": ["Singer", "Guitarist", "Songwriter"],
     "shortDescription": "Frontwoman of The Pretenders"
   },
@@ -223,7 +223,7 @@
     "genres": ["Rock", "Hard Rock"],
     "labels": ["A&M Records"],
     "website": "https://www.frampton.com/",
-    "image": "https://www.frampton.com/assets/images/peter-frampton-logo.jpg",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/b/b6/Peter_Frampton_at_the_2011_Ottawa_Bluesfest_%28cropped%29.jpg",
     "roles": ["Guitarist", "Singer", "Songwriter"],
     "shortDescription": "Frampton Comes Alive!"
   },
@@ -235,7 +235,7 @@
     "genres": ["Rock", "Blues Rock", "Hard Rock"],
     "labels": ["Swan Song Records"],
     "website": "https://www.robertplant.com/",
-    "image": "https://www.robertplant.com/assets/images/robert-plant-logo.jpg",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/c/cc/Robert_Plant_at_the_Palace_Theatre%2C_Manchester.jpg",
     "roles": ["Singer", "Songwriter"],
     "shortDescription": "Led Zeppelin's golden voice"
   }

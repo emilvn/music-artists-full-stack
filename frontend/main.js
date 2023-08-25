@@ -1,4 +1,5 @@
 import {displayArtists, scrollToTop} from "./display.js";
+import {submitArtistCreate} from "./submit.js";
 
 window.addEventListener("load", main);
 
@@ -8,6 +9,11 @@ let artists;
 async function main(){
 	await getArtists();
 	displayArtists(artists);
+	setEventListeners();
+}
+
+function setEventListeners(){
+	document.querySelector("#form-create").addEventListener("submit", submitArtistCreate);
 }
 
 async function getArtists(){

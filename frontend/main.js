@@ -1,4 +1,4 @@
-import {displayArtists} from "./display.js";
+import {displayArtists, scrollToTop} from "./display.js";
 
 window.addEventListener("load", main);
 
@@ -14,5 +14,21 @@ async function getArtists(){
 	const response = await fetch(endpoint + "/artists")
 	if(response.ok){
 		artists = await response.json();
+	}
+}
+
+export async function addArtist(artist){
+	const response = await fetch(endpoint + "/artists", {
+		method: "POST",
+		headers: {
+			"Content-Type":"application/json"
+		},
+		body: JSON.stringify(artist)
+	});
+
+	if(response.ok){
+		artists.push(artist);
+		displayArtists(artists);
+		scrollToTop();
 	}
 }

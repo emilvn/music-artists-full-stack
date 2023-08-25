@@ -8,9 +8,9 @@ export function submitArtistCreate(event){
 		name: form.name.value,
 		birthdate: form.birthdate.value,
 		activeSince: form.activeSince.value,
-		genres: Array.from(form.genres.value),
-		labels: Array.from(form.labels.value),
-		roles: Array.from(form.roles.value),
+		genres: form.genres.value.split(",").map(genre => genre.trim()),
+		labels: form.labels.value.split(",").map(genre => genre.trim()),
+		roles: form.roles.value.split(",").map(genre => genre.trim()),
 		website: form.website.value,
 		image: form.image.value,
 		shortDescription: form.shortDescription.value

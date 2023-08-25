@@ -18,6 +18,10 @@ function displayArtist(artist){
                 <p>Date of birth: ${artist.birthdate}</p>
                 <a href="${artist.website}">${artist.website}</a>
             </div>
+            <div>
+            	<button class="edit-button">Edit</button>
+            	<button class="delete-button">Delete</button>
+			</div>
         </article>
 	`;
 	document.querySelector("#artists").insertAdjacentHTML("beforeend", myHTML);

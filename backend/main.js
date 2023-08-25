@@ -1,5 +1,5 @@
 import express from "express";
-import router from "./router.js";
+import {router} from "./router.js";
 import cors from "cors";
 
 const app = express();
@@ -12,4 +12,4 @@ app.listen(port, ()=>{
 	console.log(`app  running on http://localhost:${port}`);
 });
 
-
+app.use(router);

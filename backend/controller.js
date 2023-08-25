@@ -11,12 +11,12 @@ function writeArtistsToFile(artists){
 }
 
 
-async function getArtistsData(req, res){
+export async function getArtistsData(req, res){
 	const artists = await getArtists();
 	res.json(artists);
 }
 
-async function addArtistData(req, res){
+export async function addArtistData(req, res){
 	const artists = await getArtists();
 	const newArtist = req.body;
 	newArtist.id = uuidv4();
@@ -27,7 +27,7 @@ async function addArtistData(req, res){
 	res.json(artists);
 }
 
-async function updateArtistData(req, res){
+export async function updateArtistData(req, res){
 	const id = req.params.id;
 	const artists = await getArtists();
 
@@ -47,7 +47,7 @@ async function updateArtistData(req, res){
 	res.json(artists);
 }
 
-async function deleteArtist(req, res){
+export async function deleteArtist(req, res){
 	const id = req.params.id;
 	const artists = await getArtists();
 

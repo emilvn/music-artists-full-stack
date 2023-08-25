@@ -1,5 +1,5 @@
 import express from "express";
-import {getArtistsData, addArtistData, updateArtistData, deleteArtist} from "./controller.js";
+import {addArtistData, deleteArtist, getArtistsData, updateArtistData} from "./controller.js";
 
 export const router = express.Router();
 

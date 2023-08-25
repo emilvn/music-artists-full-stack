@@ -7,7 +7,6 @@ let artists;
 
 async function main(){
 	await getArtists();
-	console.log(artists);
 	displayArtists(artists);
 }
 

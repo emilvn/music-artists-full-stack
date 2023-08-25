@@ -46,3 +46,13 @@ async function updateArtistData(req, res){
 	writeArtistsToFile(artists);
 	res.json(artists);
 }
+
+async function deleteArtist(req, res){
+	const id = req.params.id;
+	const artists = await getArtists();
+
+	const updatedArtists = artists.filter(artist => artist.id !== id);
+
+	writeArtistsToFile(updatedArtists);
+	res.json(updatedArtists);
+}

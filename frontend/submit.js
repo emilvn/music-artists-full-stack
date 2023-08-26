@@ -6,6 +6,7 @@ export function submitArtistCreate(event){
 	const newArtist = getArtistDataFromInput(form);
 	addArtist(newArtist);
 	form.reset();
+	form.parentElement.close();
 }
 
 export function submitArtistUpdate(event){
@@ -14,6 +15,7 @@ export function submitArtistUpdate(event){
 	const updatedArtist = getArtistDataFromInput(form);
 	updateArtist(updatedArtist);
 	form.reset();
+	form.parentElement.close();
 }
 
 function getArtistDataFromInput(form){

@@ -1,4 +1,4 @@
-import {displayArtists, displayFavorites, scrollToTop} from "./display.js";
+import {displayArtists, displayFavorites, scrollToTop, showCreateDialog, showUpdateDialog} from "./display.js";
 import {submitArtistCreate, submitArtistUpdate} from "./submit.js";
 
 window.addEventListener("load", main);
@@ -24,8 +24,8 @@ async function updateFavoritesArray(){
 }
 
 function setEventListeners(){
-	document.querySelector("#form-create").addEventListener("submit", submitArtistCreate);
-	document.querySelector("#form-update").addEventListener("submit", submitArtistUpdate);
+	document.querySelector("#add-artist-dialog-button")
+		.addEventListener("click", showCreateDialog);
 }
 
 async function getArtists(){
@@ -63,7 +63,7 @@ export function selectArtist(artist){
 	form.roles.value = String(artist.roles);
 	form.website.value = artist.website;
 	form.shortDescription.value = artist.shortDescription;
-	form.scrollIntoView({ behavior: "smooth" });
+	showUpdateDialog();
 }
 
 export async function updateArtist(updatedArtist){

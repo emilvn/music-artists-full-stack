@@ -55,7 +55,7 @@ form fieldset{
     text-align: left;
 }
 
-#artists{
+.grid-container{
     margin: 1em;
     display: grid;
     grid-template-columns: 1fr;
@@ -63,37 +63,37 @@ form fieldset{
 }
 
 @media (min-width: 600px){
-    #artists{
+    .grid-container{
         grid-template-columns: repeat(2, 1fr);
     }
 }
 @media (min-width: 900px) {
-    #artists{
+    .grid-container{
         grid-template-columns: repeat(3, 1fr);
     }
 }
 @media (min-width: 1200px) {
-    #artists{
+    .grid-container{
         grid-template-columns: repeat(4, 1fr);
     }
 }
 @media (min-width: 1500px) {
-    #artists{
+    .grid-container{
         grid-template-columns: repeat(5, 1fr);
     }
 }
 @media (min-width: 1800px) {
-    #artists{
+    .grid-container{
         grid-template-columns: repeat(6, 1fr);
     }
 }
 @media (min-width: 2100px) {
-    #artists{
+    .grid-container{
         grid-template-columns: repeat(7, 1fr);
     }
 }
 
-#artists article{
+.grid-container article{
     border-radius: 1em;
     box-shadow: 0 0 10px 0 black;
     padding: 1em;
@@ -102,7 +102,7 @@ form fieldset{
     max-width: 90vw;
 }
 
-#artists article img{
+.grid-container article img{
     width: 100%;
     overflow: clip;
 }

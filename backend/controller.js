@@ -1,34 +1,34 @@
 import fs from "fs/promises";
 import {v4 as uuidv4} from "uuid";
 
-async function getArtists(){
-	const data = await fs.readFile("artists.json");
+async function getArtists(path){
+	const data = await fs.readFile(path);
 	return JSON.parse(String(data));
 }
 
-function writeArtistsToFile(artists){
-	fs.writeFile("artists.json", JSON.stringify(artists));
+function writeArtistsToFile(artistsArr, path){
+	fs.writeFile(path, JSON.stringify(artistsArr));
 }
 
 
 export async function getArtistsData(req, res){
-	const artists = await getArtists();
+	const artists = await getArtists("artists.json");
 	res.json(artists);
 }
 
 export async function addArtistData(req, res){
-	const artists = await getArtists();
+	const artists = await getArtists("artists.json");
 	const newArtist = req.body;
 	newArtist.id = uuidv4();
 	artists.push(newArtist);
-	writeArtistsToFile(artists);
+	writeArtistsToFile(artists, "artists.json");
 
 	res.json(artists);
 }
 
 export async function updateArtistData(req, res){
 	const id = req.params.id;
-	const artists = await getArtists();
+	const artists = await getArtists("artists.json");
 	const artistToUpdate = artists.find(artist => artist.id === id);
 	const body = req.body;
 
@@ -42,16 +42,31 @@ export async function updateArtistData(req, res){
 	artistToUpdate.image = body.image;
 	artistToUpdate.shortDescription = body.shortDescription;
 
-	writeArtistsToFile(artists);
+	writeArtistsToFile(artists, "artists.json");
 	res.json(artists);
 }
 
 export async function deleteArtist(req, res){
 	const id = req.params.id;
-	const artists = await getArtists();
+	const artists = await getArtists("artists.json");
 
 	const updatedArtists = artists.filter(artist => artist.id !== id);
 
-	writeArtistsToFile(updatedArtists);
+	writeArtistsToFile(updatedArtists, "artists.json");
 	res.json(updatedArtists);
+}
+
+export async function getFavoritesData(req, res){
+	const favorites = await getArtists("favorites.json");
+	res.json(favorites);
+}
+
+export async function addFavorite(req, res){
+	const favorites = await getArtists("favorites.json");
+	const artist = req.body;
+	if(!favorites.find(favorite => favorite.id === artist.id)){
+		favorites.push(artist);
+		writeArtistsToFile(favorites, "favorites.json");
+	}
+	res.json(favorites);
 }

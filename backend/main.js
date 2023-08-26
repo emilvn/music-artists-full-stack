@@ -1,6 +1,13 @@
 import express from "express";
 import cors from "cors";
-import {addArtistData, deleteArtist, getArtistsData, updateArtistData} from "./controller.js";
+import {
+	addArtistData,
+	addFavorite,
+	deleteArtist,
+	getArtistsData,
+	getFavoritesData,
+	updateArtistData
+} from "./controller.js";
 
 const app = express();
 const port = 3333;
@@ -16,3 +23,5 @@ app.get("/artists", getArtistsData);
 app.post("/artists", addArtistData);
 app.put("/artists/:id", updateArtistData);
 app.delete("/artists/:id", deleteArtist);
+app.get("/artists/favorites", getFavoritesData);
+app.post("/artists/favorites", addFavorite);

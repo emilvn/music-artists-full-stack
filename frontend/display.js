@@ -1,13 +1,14 @@
-import {deleteArtist, selectArtist} from "./main.js";
+import {addToFavorites, deleteArtist, selectArtist} from "./main.js";
 
 export function displayArtists(artists){
 	document.querySelector("#artists").innerHTML = "";
 	for(const artist of artists){
-		displayArtist(artist);
+		displayArtist(artist, "#artists");
 	}
 }
 
-function displayArtist(artist){
+function displayArtist(artist, containerID){
+	const container = document.querySelector(containerID);
 	const myHTML = /*html*/`
 		<article>
             <div>
@@ -22,17 +23,27 @@ function displayArtist(artist){
             <div>
             	<button class="edit-button">Edit</button>
             	<button class="delete-button">Delete</button>
-            	<button class="favorite-button">Add to favorites</button>
+            	<button class="favorite-button">${(containerID === "#favorites")?"Remove from favorites":"Add to favorites"}</button>
 			</div>
         </article>
 	`;
-	document.querySelector("#artists").insertAdjacentHTML("beforeend", myHTML);
+	container.insertAdjacentHTML("beforeend", myHTML);
 
-	document.querySelector("#artists article:last-child .edit-button")
+	container.querySelector("article:last-child .edit-button")
 		.addEventListener("click", ()=>selectArtist(artist));
 
-	document.querySelector("#artists article:last-child .delete-button")
+	container.querySelector("article:last-child .delete-button")
 		.addEventListener("click", ()=>deleteArtist(artist));
+
+	container.querySelector("article:last-child .favorite-button")
+		.addEventListener("click", ()=> ((containerID === "#favorites")?removeFromFavorites(artist):addToFavorites(artist)));
+}
+
+export function displayFavorites(favorites){
+	document.querySelector("#favorites").innerHTML = "";
+	for(const artist of favorites){
+		displayArtist(artist, "#favorites");
+	}
 }
 
 export function scrollToTop() {

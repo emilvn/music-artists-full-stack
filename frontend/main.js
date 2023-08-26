@@ -1,4 +1,4 @@
-import {displayArtists, scrollToTop} from "./display.js";
+import {displayArtists, displayFavorites, scrollToTop} from "./display.js";
 import {submitArtistCreate, submitArtistUpdate} from "./submit.js";
 
 window.addEventListener("load", main);
@@ -6,15 +6,21 @@ window.addEventListener("load", main);
 const endpoint = "http://localhost:3333";
 let artists;
 let selectedArtist;
+let favoriteArtists = [];
 
 async function main(){
 	await updateArtistsArray();
+	await updateFavoritesArray();
 	displayArtists(artists);
+	displayFavorites(favoriteArtists);
 	setEventListeners();
 }
 
 async function updateArtistsArray(){
 	artists = await getArtists();
+}
+async function updateFavoritesArray(){
+	favoriteArtists = await getFavorites();
 }
 
 function setEventListeners(){
@@ -93,5 +99,29 @@ export async function deleteArtist(artistToDelete){
 	if(response.ok){
 		artists = artists.filter(artist => artist.id !== artistToDelete.id);
 		displayArtists(artists);
+	}
+}
+
+async function getFavorites(){
+	const response = await fetch(endpoint + "/artists/favorites");
+	if(response.ok){
+		return await response.json();
+	}
+}
+
+export async function addToFavorites(artist){
+	const response = await fetch(endpoint + "/artists/favorites", {
+		method: "POST",
+		headers: {
+			"Content-Type":"application/json"
+		},
+		body: JSON.stringify(artist)
+	});
+	if(response.ok){
+		if(!favoriteArtists.find(favorite => favorite.id === artist.id)){
+			favoriteArtists.push(artist);
+		}
+		displayFavorites(favoriteArtists);
+		scrollToTop();
 	}
 }

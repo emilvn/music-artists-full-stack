@@ -70,3 +70,13 @@ export async function addFavorite(req, res){
 	}
 	res.json(favorites);
 }
+
+export async function removeFromFavorites(req, res){
+	const favorites = await getArtists("favorites.json");
+	const id = req.params.id;
+
+	const updatedFavorites = favorites.filter(artist => artist.id !== id);
+
+	writeArtistsToFile(updatedFavorites, "favorites.json");
+	res.json(updatedFavorites);
+}

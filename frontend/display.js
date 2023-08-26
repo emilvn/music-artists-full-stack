@@ -1,4 +1,4 @@
-import {addToFavorites, deleteArtist, selectArtist} from "./main.js";
+import {addToFavorites, deleteArtist, removeFromFavorites, selectArtist} from "./main.js";
 
 export function displayArtists(artists){
 	document.querySelector("#artists").innerHTML = "";

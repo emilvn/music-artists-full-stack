@@ -125,3 +125,13 @@ export async function addToFavorites(artist){
 		scrollToTop();
 	}
 }
+
+export async function removeFromFavorites(artistToRemove){
+	const response = await fetch(endpoint + "/artists/favorites" + artistToRemove.id, {
+		method: "DELETE"
+	});
+	if(response.ok){
+		favoriteArtists = favoriteArtists.filter(artist => artist.id !== artistToRemove.id);
+		displayFavorites(favoriteArtists);
+	}
+}

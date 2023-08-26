@@ -5,7 +5,7 @@ import {
 	addFavorite,
 	deleteArtist,
 	getArtistsData,
-	getFavoritesData, removeFromFavorites,
+	getFavoritesData, getSpecificArtist, removeFromFavorites,
 	updateArtistData
 } from "./controller.js";
 
@@ -20,6 +20,7 @@ app.listen(port, ()=>{
 });
 
 app.get("/artists", getArtistsData);
+app.get("/artists/:id", getSpecificArtist);
 app.post("/artists", addArtistData);
 app.put("/artists/:id", updateArtistData);
 app.delete("/artists/:id", deleteArtist);

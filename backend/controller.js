@@ -16,6 +16,12 @@ export async function getArtistsData(req, res){
 	res.json(artists);
 }
 
+export async function getSpecificArtist(req, res){
+	const id = req.params.id;
+	const artists = await getArtists("artists.json");
+	res.json(artists.find(artist => artist.id === id));
+}
+
 export async function addArtistData(req, res){
 	const artists = await getArtists("artists.json");
 	const newArtist = req.body;

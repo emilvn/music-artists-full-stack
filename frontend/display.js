@@ -22,6 +22,7 @@ function displayArtist(artist){
             <div>
             	<button class="edit-button">Edit</button>
             	<button class="delete-button">Delete</button>
+            	<button class="favorite-button">Add to favorites</button>
 			</div>
         </article>
 	`;

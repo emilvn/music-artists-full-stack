@@ -103,14 +103,14 @@ export async function deleteArtist(artistToDelete){
 }
 
 async function getFavorites(){
-	const response = await fetch(endpoint + "/artists/favorites");
+	const response = await fetch(endpoint + "/favorites");
 	if(response.ok){
 		return await response.json();
 	}
 }
 
 export async function addToFavorites(artist){
-	const response = await fetch(endpoint + "/artists/favorites", {
+	const response = await fetch(endpoint + "/favorites", {
 		method: "POST",
 		headers: {
 			"Content-Type":"application/json"
@@ -127,7 +127,7 @@ export async function addToFavorites(artist){
 }
 
 export async function removeFromFavorites(artistToRemove){
-	const response = await fetch(endpoint + "/artists/favorites/" + artistToRemove.id, {
+	const response = await fetch(endpoint + "/favorites/" + artistToRemove.id, {
 		method: "DELETE"
 	});
 	if(response.ok){

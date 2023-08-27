@@ -83,3 +83,25 @@ export function inputSearchChanged(event){
 	displayFavorites(filteredFavorites);
 	displayArtists(filteredArtists);
 }
+
+export function inputSortChanged(event){
+	const sortValue = event.target.value;
+	if(sortValue === "name-ascending"){
+		artists.sort((a,b) => a.name.localeCompare(b.name));
+		favoriteArtists.sort((a,b) => a.name.localeCompare(b.name));
+	}
+	if(sortValue === "name-descending"){
+		artists.sort((a,b) => b.name.localeCompare(a.name));
+		favoriteArtists.sort((a,b) => b.name.localeCompare(a.name));
+	}
+	if(sortValue === "age-descending"){
+		artists.sort((a,b) => new Date(a.birthdate).getTime() - new Date(b.birthdate).getTime());
+		favoriteArtists.sort((a,b) => new Date(a.birthdate).getTime() - new Date(b.birthdate).getTime());
+	}
+	if(sortValue === "age-ascending"){
+		artists.sort((a,b) => new Date(b.birthdate).getTime() - new Date(a.birthdate).getTime());
+		favoriteArtists.sort((a,b) => new Date(b.birthdate).getTime() - new Date(a.birthdate).getTime());
+	}
+	displayArtists(artists);
+	displayFavorites(favoriteArtists);
+}

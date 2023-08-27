@@ -1,7 +1,7 @@
 import {
 	displayArtists,
 	displayFavorites,
-	inputSearchChanged,
+	inputSearchChanged, inputSortChanged,
 	scrollToTop,
 	showCreateDialog,
 	showUpdateDialog
@@ -36,6 +36,8 @@ function setEventListeners(){
 	const searchBar = document.querySelector("#artist-search");
 	searchBar.addEventListener("search", inputSearchChanged);
 	searchBar.addEventListener("keyup", inputSearchChanged);
+	document.querySelector("#artist-sort")
+		.addEventListener("change", inputSortChanged);
 }
 
 async function getArtists(){

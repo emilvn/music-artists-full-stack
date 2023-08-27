@@ -27,8 +27,23 @@ header{
     z-index: 999;
 }
 header{
+    position: fixed;
+    width: 100%;
+    height: 10vh;
     top: 0;
     left: 0;
+    display: flex;
+    justify-content: space-between;
+    background-color: grey;
+    align-items: center;
+    padding: 2vh 0 2vh 0;
+    border-bottom: 1px solid black;
+    color: white;
+    z-index: 9999;
+    user-select: none;
+}
+#add-artist-dialog-button{
+
 }
 
 @media (max-width: 600px) {
@@ -38,8 +53,42 @@ header{
     }
 }
 
+#artist-search-div{
+    position: fixed;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5em;
+    top: 14vh;
+    background-color: grey;
+    padding: 0.5em 0.5em 0.5em 0.5em;
+    max-width: 100vw;
+    border-radius: 0 0 1em 0;
+    z-index: 999;
+    filter: drop-shadow(0 0 2px black);
+}
+@media (max-width: 500px) {
+    #artist-search-div{
+        grid-template-columns: 1fr;
+        width: 100%;
+        border-radius: 0;
+        z-index: 9999;
+    }
+    #artist-search-div>div:last-child{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+}
+#artist-search-div div:first-child{
+    display: flex;
+    align-items: center;
+}
+#artist-search{
+    height: 2.5em;
+    width: 15em;
+}
+
 main{
-    margin-top: 7.5em;
+    margin-top: 10em;
 }
 
 form{

@@ -1,12 +1,19 @@
-import {displayArtists, displayFavorites, scrollToTop, showCreateDialog, showUpdateDialog} from "./display.js";
+import {
+	displayArtists,
+	displayFavorites,
+	inputSearchChanged,
+	scrollToTop,
+	showCreateDialog,
+	showUpdateDialog
+} from "./display.js";
 import {submitArtistCreate, submitArtistUpdate} from "./submit.js";
 
 window.addEventListener("load", main);
 
 const endpoint = "http://localhost:3333";
-let artists;
+export let artists;
 let selectedArtist;
-let favoriteArtists = [];
+export let favoriteArtists = [];
 
 async function main(){
 	await updateArtistsArray();
@@ -26,6 +33,9 @@ async function updateFavoritesArray(){
 function setEventListeners(){
 	document.querySelector("#add-artist-dialog-button")
 		.addEventListener("click", showCreateDialog);
+	const searchBar = document.querySelector("#artist-search");
+	searchBar.addEventListener("search", inputSearchChanged);
+	searchBar.addEventListener("keyup", inputSearchChanged);
 }
 
 async function getArtists(){

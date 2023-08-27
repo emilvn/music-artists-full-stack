@@ -1,4 +1,4 @@
-import {addToFavorites, deleteArtist, removeFromFavorites, selectArtist} from "./main.js";
+import {addToFavorites, artists, deleteArtist, favoriteArtists, removeFromFavorites, selectArtist} from "./main.js";
 import {submitArtistCreate, submitArtistUpdate} from "./submit.js";
 
 export function displayArtists(artists){
@@ -74,4 +74,12 @@ export function showUpdateDialog(){
 function removeSubmitEvent(form, functionToRemove){
 	form.reset();
 	form.removeEventListener("submit", functionToRemove);
+}
+
+export function inputSearchChanged(event){
+	const searchValue = event.target.value;
+	const filteredFavorites = favoriteArtists.filter(artist => artist.name.toLowerCase().includes(searchValue.toLowerCase()));
+	const filteredArtists = artists.filter(artist => artist.name.toLowerCase().includes(searchValue.toLowerCase()));
+	displayFavorites(filteredFavorites);
+	displayArtists(filteredArtists);
 }

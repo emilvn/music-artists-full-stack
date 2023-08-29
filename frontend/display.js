@@ -161,10 +161,6 @@ export function showDetailDialog(artist){
 function generateListFromArray(arr, container){
 	container.innerHTML = "";
 	for(const item of arr){
-		container.insertAdjacentHTML("beforeend",
-			`
-			<li>${item}</li>
-			`
-		);
+		container.insertAdjacentHTML("beforeend", `<li>${item}</li>`);
 	}
 }

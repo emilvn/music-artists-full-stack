@@ -3,7 +3,7 @@ import {
 	displayFavorites,
 	inputSearchChanged, inputSortChanged,
 	scrollToTop,
-	showCreateDialog,
+	showCreateDialog, showToastMessage,
 	showUpdateDialog
 } from "./display.js";
 import {submitArtistCreate, submitArtistUpdate} from "./submit.js";
@@ -53,6 +53,10 @@ export async function addArtist(artist){
 		artists = await response.json();
 		displayArtists(artists);
 		scrollToTop();
+		showToastMessage(`${artist.name} added successfully!`,"success");
+	}
+	else{
+		showToastMessage(`Error adding artist: ${response.status} ${response.statusText}`, "error");
 	}
 }
 
@@ -94,6 +98,10 @@ export async function updateArtist(updatedArtist){
 	if(response.ok){
 		displayArtists(artists);
 		scrollToTop();
+		showToastMessage(`${artistToUpdate.name} updated successfully!`,"success");
+	}
+	else {
+		showToastMessage(`Error updating artist: ${response.status} ${response.statusText}`, "error");
 	}
 }
 
@@ -104,6 +112,10 @@ export async function deleteArtist(artistToDelete){
 	if(response.ok){
 		artists = artists.filter(artist => artist.id !== artistToDelete.id);
 		displayArtists(artists);
+		showToastMessage( `${artistToDelete.name} deleted successfully!`, "success");
+	}
+	else{
+		showToastMessage(`Error adding artist: ${response.status} ${response.statusText}`, "error");
 	}
 }
 
@@ -126,6 +138,10 @@ export async function addToFavorites(artist){
 		favoriteArtists = await response.json();
 		displayFavorites(favoriteArtists);
 		scrollToTop();
+		showToastMessage(`${artist.name} added to favorites!`, "success");
+	}
+	else{
+		showToastMessage(`Error adding artist to favorites: ${response.status} ${response.statusText}`, "error");
 	}
 }
 
@@ -136,5 +152,9 @@ export async function removeFromFavorites(artistToRemove){
 	if(response.ok){
 		favoriteArtists = favoriteArtists.filter(artist => artist.id !== artistToRemove.id);
 		displayFavorites(favoriteArtists);
+		showToastMessage(`${artistToRemove.name} removed from favorites`, "success");
+	}
+	else{
+		showToastMessage(`Error removing artist from favorites: ${response.status} ${response.statusText}`, "error");
 	}
 }

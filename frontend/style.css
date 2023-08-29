@@ -161,3 +161,45 @@ footer{
     text-align: center;
     font-size: 0.75em;
 }
+
+/* ========== toast messages ========== */
+#toast-container {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    display: grid;
+    grid-template-columns: auto;
+    z-index: 99999;
+}
+
+.toast {
+    display: inline-block;
+    padding: 1em 2em;
+    margin-bottom: 0;
+    color: white;
+    border-radius: 0.5em;
+    font-size: 1.5em;
+    pointer-events: none;
+}
+
+.toast.success {
+    background-color: #2ecc71;
+}
+
+.toast.error {
+    background-color: #e74c3c;
+}
+
+.fade-out{
+    animation-name: fade-out;
+    animation-duration: 3s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fade-out {
+    100%{
+        opacity: 0;
+    }
+}

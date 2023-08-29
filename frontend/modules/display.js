@@ -1,5 +1,5 @@
 /* ========== IMPORTS ========== */
-import { selectArtist} from "./main.js";
+import { selectArtist} from "../main.js";
 import {submitArtistCreate, submitArtistUpdate} from "./submit.js";
 import {addToFavorites, artists, deleteArtist, favoriteArtists, removeFromFavorites} from "./requests.js";
 

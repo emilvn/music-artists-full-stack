@@ -1,6 +1,6 @@
 /* ========== IMPORTS ========== */
-import {displayArtists, displayFavorites, inputSearchChanged, inputSortChanged, showCreateDialog, showUpdateDialog} from "./display.js";
-import {artists, favoriteArtists, getArtists, getFavorites} from "./requests.js";
+import {displayArtists, displayFavorites, inputSearchChanged, inputSortChanged, showCreateDialog, showUpdateDialog} from "./modules/display.js";
+import {artists, favoriteArtists, getArtists, getFavorites} from "./modules/requests.js";
 
 window.addEventListener("load", main);
 

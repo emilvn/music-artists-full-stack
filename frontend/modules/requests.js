@@ -1,5 +1,5 @@
 /* ========== IMPORTS ========== */
-import {endpoint, selectedArtist} from "./main.js";
+import {endpoint, selectedArtist} from "../main.js";
 import {displayArtists, displayFavorites, scrollToTop, showToastMessage} from "./display.js";
 
 // global variables for artists and favorite artists //

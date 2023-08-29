@@ -1,7 +1,8 @@
 /* ========== IMPORTS ========== */
-import { selectArtist} from "../main.js";
 import {submitArtistCreate, submitArtistUpdate} from "./submit.js";
 import {addToFavorites, artists, deleteArtist, favoriteArtists, removeFromFavorites} from "./requests.js";
+
+export let selectedArtist;
 
 /* ========== DISPLAY ARTISTS ========== */
 
@@ -95,6 +96,22 @@ export function showUpdateDialog(){
 		.addEventListener("close", ()=> removeSubmitEvent(form, submitArtistUpdate))
 	form.parentElement.querySelector(".dialog-close-button")
 		.addEventListener("click", () => form.parentElement.close());
+}
+
+// Selects an artist and populates the update form with artist details. //
+export function selectArtist(artist){
+	selectedArtist = artist;
+	const form = document.querySelector("#form-update");
+	form.name.value = artist.name;
+	form.birthdate.value = artist.birthdate;
+	form.activeSince.value = artist.activeSince;
+	form.image.value = artist.image;
+	form.genres.value = String(artist.genres);
+	form.labels.value = String(artist.labels);
+	form.roles.value = String(artist.roles);
+	form.website.value = artist.website;
+	form.shortDescription.value = artist.shortDescription;
+	showUpdateDialog();
 }
 
 // function to remove submit events from forms. //

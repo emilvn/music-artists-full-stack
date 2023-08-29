@@ -1,6 +1,7 @@
 /* ========== IMPORTS ========== */
-import {addToFavorites, artists, deleteArtist, favoriteArtists, removeFromFavorites, selectArtist} from "./main.js";
+import { selectArtist} from "./main.js";
 import {submitArtistCreate, submitArtistUpdate} from "./submit.js";
+import {addToFavorites, artists, deleteArtist, favoriteArtists, removeFromFavorites} from "./requests.js";
 
 /* ========== DISPLAY ARTISTS ========== */
 
@@ -49,11 +50,20 @@ function displayArtist(artist, containerID){
 
 	// edit, delete, and favorite buttons. //
 	artistArticle.querySelector(".edit-button")
-		.addEventListener("click", ()=>selectArtist(artist));
+		.addEventListener("click", (e)=> {
+			e.stopPropagation();
+			selectArtist(artist)
+		});
 	artistArticle.querySelector(".delete-button")
-		.addEventListener("click", ()=>deleteArtist(artist));
+		.addEventListener("click", (e)=> {
+			e.stopPropagation();
+			deleteArtist(artist)
+		});
 	artistArticle.querySelector(".favorite-button")
-		.addEventListener("click", ()=> ((containerID === "#favorites")?removeFromFavorites(artist):addToFavorites(artist)));
+		.addEventListener("click", (e)=> {
+			e.stopPropagation();
+			(containerID === "#favorites") ? removeFromFavorites(artist) : addToFavorites(artist);
+			});
 	// display artist details when article clicked. //
 	artistArticle.addEventListener("click", ()=>showDetailDialog(artist));
 }

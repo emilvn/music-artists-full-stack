@@ -1,10 +1,12 @@
 /* ========== IMPORTS ========== */
-import {addArtist, updateArtist} from "./main.js";
+import {addArtist, updateArtist} from "./requests.js";
+
 
 
 /* ========== CREATE ========== */
 
 // Function to handle the submission of a new artist //
+
 export function submitArtistCreate(event){
 	event.preventDefault();
 	const form = event.target;

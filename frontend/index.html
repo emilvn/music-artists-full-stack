@@ -10,16 +10,24 @@
     <title>Music Artists</title>
 </head>
 <body>
+    <!-- ========== HEADER ========== -->
     <header>
         <h1>Music Artists</h1>
+
+        <!-- Button to open the artist creation dialog -->
         <button id="add-artist-dialog-button">Add Artist</button>
     </header>
+
+    <!-- ========== MAIN CONTENT ========== -->
     <main>
+        <!-- ========== SEARCH/SORT ========== -->
         <section id="artist-search-div">
+            <!-- Search input -->
             <div>
                 <label for="artist-search">Søg:</label>
                 <input type="search" id="artist-search" name="search" placeholder="Search by name" />
             </div>
+            <!-- Sort select -->
             <div>
                 <label for="artist-sort">Sort By</label>
                 <select id="artist-sort">
@@ -32,15 +40,20 @@
             </div>
         </section>
 
+        <!-- ========== FAVORITE ARTISTS SECTION ========== -->
         <div>
             <h2>Favorite Artists</h2>
             <section class="grid-container" id="favorites"></section>
             <hr>
         </div>
+
+        <!-- ========== ALL ARTISTS SECTION ========== -->
         <div>
             <h2>All Artists</h2>
             <section class="grid-container" id="artists"></section>
         </div>
+
+        <!-- ========== ARTIST CREATION DIALOG ========== -->
         <dialog>
             <form action="" id="form-create">
                 <h2>Add artist</h2>
@@ -69,6 +82,8 @@
             </form>
             <button class="dialog-close-button">Close</button>
         </dialog>
+
+        <!-- ========== ARTIST UPDATE DIALOG ========== -->
         <dialog>
             <form action="" id="form-update">
                 <h2>Update artist</h2>
@@ -97,6 +112,8 @@
             </form>
             <button class="dialog-close-button">Close</button>
         </dialog>
+
+        <!-- ========== ARTIST DETAIL DIALOG ========== -->
         <dialog id="artist-detail-dialog">
             <article>
                 <div>
@@ -131,8 +148,11 @@
             </article>
         </dialog>
     </main>
-    <!-- ========== SUCCESS/ERROR TOAST MESSAGES ========== -->
+
+    <!-- ========== TOAST MESSAGES ========== -->
     <div id="toast-container"></div>
+
+    <!-- ========== FOOTER ========== -->
     <footer>
         <p>By Emil V. Nielsen</p>
     </footer>

@@ -2,10 +2,10 @@
   "name": "music-artists-full-stack",
   "version": "1.0.0",
   "description": "",
-  "main": "main.js",
+  "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "node --watch main.js"
+    "start": "node --watch server.js"
   },
   "repository": {
     "type": "git",

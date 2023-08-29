@@ -1,3 +1,5 @@
+/* ========== GLOBAL STYLES ========== */
+
 html{
     width: 100%;
     height: 100%;
@@ -7,6 +9,9 @@ body{
     font-family: Cambria, sans-serif;
     margin: 0;
 }
+
+/* ========== BUTTON STYLES ========== */
+
 button{
     border-radius: 0.5em;
     min-height: 2em;
@@ -18,6 +23,9 @@ button:hover{
     box-shadow: 0 0 2px 0 black;
     filter: grayscale(0.5);
 }
+
+
+/* ========== HEADER STYLES ========== */
 
 header{
     background-color: gray;
@@ -53,6 +61,8 @@ header{
     }
 }
 
+/* ========== SEARCH SECTION STYLES ========== */
+
 #artist-search-div{
     position: fixed;
     display: grid;
@@ -87,6 +97,8 @@ header{
     width: 15em;
 }
 
+/* ========== MAIN CONTENT STYLES ========== */
+
 main{
     margin-top: 10em;
 }
@@ -103,6 +115,9 @@ form fieldset{
     gap: 0.5em;
     text-align: left;
 }
+
+
+/* ========== GRID STYLES ========== */
 
 .grid-container{
     margin: 1em;
@@ -156,13 +171,8 @@ form fieldset{
     overflow: clip;
 }
 
-footer{
-    background-color: gray;
-    text-align: center;
-    font-size: 0.75em;
-}
+/* ========== TOAST MESSAGE STYLES ========== */
 
-/* ========== toast messages ========== */
 #toast-container {
     position: fixed;
     bottom: 10px;
@@ -204,6 +214,10 @@ footer{
     }
 }
 
-#artist-detail-dialog{
-    z-index: 99999;
+/* ========== FOOTER STYLES ========== */
+
+footer{
+    background-color: gray;
+    text-align: center;
+    font-size: 0.75em;
 }

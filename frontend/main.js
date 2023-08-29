@@ -1,3 +1,4 @@
+/* ========== IMPORTS ========== */
 import {
 	displayArtists,
 	displayFavorites,
@@ -6,33 +7,50 @@ import {
 	showCreateDialog, showToastMessage,
 	showUpdateDialog
 } from "./display.js";
-import {submitArtistCreate, submitArtistUpdate} from "./submit.js";
 
 window.addEventListener("load", main);
 
+// API endpoint for the server //
 const endpoint = "http://localhost:3333";
+
+// global variables for artists and favorite artists //
 export let artists;
 let selectedArtist;
 export let favoriteArtists = [];
 
+// Main function to fetch data and set event listeners //
 async function main(){
+	// fetch artists and save locally //
 	favoriteArtists = await getFavorites();
 	artists = await getArtists();
+
+	// display artists on page //
 	displayArtists(artists);
 	displayFavorites(favoriteArtists);
+
+	// set event listeners for user interactions //
 	setEventListeners();
 }
 
+// set event listeners for buttons and search/sort //
 function setEventListeners(){
+	// add artist button //
 	document.querySelector("#add-artist-dialog-button")
 		.addEventListener("click", showCreateDialog);
+
+	// search bar //
 	const searchBar = document.querySelector("#artist-search");
 	searchBar.addEventListener("search", inputSearchChanged);
 	searchBar.addEventListener("keyup", inputSearchChanged);
+
+	// sort select //
 	document.querySelector("#artist-sort")
 		.addEventListener("change", inputSortChanged);
 }
 
+/* ========== FETCH ARTISTS AND FAVORITES ========== */
+
+// Function to fetch artists from the server //
 async function getArtists(){
 	const response = await fetch(endpoint + "/artists")
 	if(response.ok){
@@ -40,6 +58,17 @@ async function getArtists(){
 	}
 }
 
+// Function to fetch favorite artists from the server //
+async function getFavorites(){
+	const response = await fetch(endpoint + "/favorites");
+	if(response.ok){
+		return await response.json();
+	}
+}
+
+/* ========== ADD ARTIST AND FAVORITE ARTIST ========== */
+
+// Function to add a new artist to the server //
 export async function addArtist(artist){
 	const response = await fetch(endpoint + "/artists", {
 		method: "POST",
@@ -57,6 +86,27 @@ export async function addArtist(artist){
 	}
 }
 
+// Function to add an artist to favorites on the server //
+export async function addToFavorites(artist){
+	const response = await fetch(endpoint + "/favorites", {
+		method: "POST",
+		headers: {
+			"Content-Type":"application/json"
+		},
+		body: JSON.stringify(artist)
+	});
+	if(response.ok){
+		favoriteArtists = await response.json();
+		displayFavorites(favoriteArtists);
+		scrollToTop();
+		showToastMessage(`${artist.name} added to favorites!`, "success");
+	}
+}
+
+
+/* ========== UPDATE ARTIST ========== */
+
+// Selects an artist and populates the update form with artist details. //
 export function selectArtist(artist){
 	selectedArtist = artist;
 	const form = document.querySelector("#form-update");
@@ -72,6 +122,7 @@ export function selectArtist(artist){
 	showUpdateDialog();
 }
 
+// Function to update artist details on server //
 export async function updateArtist(updatedArtist){
 	const artistToUpdate = artists.find(artist => artist.id === selectedArtist.id);
 
@@ -99,6 +150,9 @@ export async function updateArtist(updatedArtist){
 	}
 }
 
+/* ========== DELETE ARTIST ========== */
+
+// Delete artist from server //
 export async function deleteArtist(artistToDelete){
 	const response = await fetch(endpoint + "/artists/" + artistToDelete.id, {
 		method: "DELETE"
@@ -110,29 +164,9 @@ export async function deleteArtist(artistToDelete){
 	}
 }
 
-async function getFavorites(){
-	const response = await fetch(endpoint + "/favorites");
-	if(response.ok){
-		return await response.json();
-	}
-}
+/* ========== REMOVE ARTIST FROM FAVORITES ========== */
 
-export async function addToFavorites(artist){
-	const response = await fetch(endpoint + "/favorites", {
-		method: "POST",
-		headers: {
-			"Content-Type":"application/json"
-		},
-		body: JSON.stringify(artist)
-	});
-	if(response.ok){
-		favoriteArtists = await response.json();
-		displayFavorites(favoriteArtists);
-		scrollToTop();
-		showToastMessage(`${artist.name} added to favorites!`, "success");
-	}
-}
-
+// Removes artist from favorites on the server //
 export async function removeFromFavorites(artistToRemove){
 	const response = await fetch(endpoint + "/favorites/" + artistToRemove.id, {
 		method: "DELETE"

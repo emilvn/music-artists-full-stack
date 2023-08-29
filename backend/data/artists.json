@@ -4,11 +4,23 @@
     "name": "David Bowie",
     "birthdate": "1947-01-08",
     "activeSince": "1962-07-15",
-    "genres": ["Rock", "Pop", "Experimental"],
-    "labels": ["RCA Records", "EMI", "Columbia Records"],
+    "genres": [
+      "Rock",
+      "Pop",
+      "Experimental"
+    ],
+    "labels": [
+      "RCA Records",
+      "EMI",
+      "Columbia Records"
+    ],
     "website": "https://www.davidbowie.com/",
     "image": "https://upload.wikimedia.org/wikipedia/commons/d/d0/David_Bowie_-_TopPop_1974_03.png",
-    "roles": ["Singer", "Songwriter", "Actor"],
+    "roles": [
+      "Singer",
+      "Songwriter",
+      "Actor"
+    ],
     "shortDescription": "Iconic musician and actor"
   },
   {

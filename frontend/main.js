@@ -16,18 +16,11 @@ let selectedArtist;
 export let favoriteArtists = [];
 
 async function main(){
-	await updateArtistsArray();
-	await updateFavoritesArray();
+	favoriteArtists = await getFavorites();
+	artists = await getArtists();
 	displayArtists(artists);
 	displayFavorites(favoriteArtists);
 	setEventListeners();
-}
-
-async function updateArtistsArray(){
-	artists = await getArtists();
-}
-async function updateFavoritesArray(){
-	favoriteArtists = await getFavorites();
 }
 
 function setEventListeners(){
@@ -57,7 +50,7 @@ export async function addArtist(artist){
 	});
 
 	if(response.ok){
-		await updateArtistsArray();
+		artists = await response.json();
 		displayArtists(artists);
 		scrollToTop();
 	}
@@ -130,9 +123,7 @@ export async function addToFavorites(artist){
 		body: JSON.stringify(artist)
 	});
 	if(response.ok){
-		if(!favoriteArtists.find(favorite => favorite.id === artist.id)){
-			favoriteArtists.push(artist);
-		}
+		favoriteArtists = await response.json();
 		displayFavorites(favoriteArtists);
 		scrollToTop();
 	}

@@ -55,9 +55,6 @@ export async function addArtist(artist){
 		scrollToTop();
 		showToastMessage(`${artist.name} added successfully!`,"success");
 	}
-	else{
-		showToastMessage(`Error adding artist: ${response.status} ${response.statusText}`, "error");
-	}
 }
 
 export function selectArtist(artist){
@@ -100,9 +97,6 @@ export async function updateArtist(updatedArtist){
 		scrollToTop();
 		showToastMessage(`${artistToUpdate.name} updated successfully!`,"success");
 	}
-	else {
-		showToastMessage(`Error updating artist: ${response.status} ${response.statusText}`, "error");
-	}
 }
 
 export async function deleteArtist(artistToDelete){
@@ -113,9 +107,6 @@ export async function deleteArtist(artistToDelete){
 		artists = artists.filter(artist => artist.id !== artistToDelete.id);
 		displayArtists(artists);
 		showToastMessage( `${artistToDelete.name} deleted successfully!`, "success");
-	}
-	else{
-		showToastMessage(`Error adding artist: ${response.status} ${response.statusText}`, "error");
 	}
 }
 
@@ -140,9 +131,6 @@ export async function addToFavorites(artist){
 		scrollToTop();
 		showToastMessage(`${artist.name} added to favorites!`, "success");
 	}
-	else{
-		showToastMessage(`Error adding artist to favorites: ${response.status} ${response.statusText}`, "error");
-	}
 }
 
 export async function removeFromFavorites(artistToRemove){
@@ -153,8 +141,5 @@ export async function removeFromFavorites(artistToRemove){
 		favoriteArtists = favoriteArtists.filter(artist => artist.id !== artistToRemove.id);
 		displayFavorites(favoriteArtists);
 		showToastMessage(`${artistToRemove.name} removed from favorites`, "success");
-	}
-	else{
-		showToastMessage(`Error removing artist from favorites: ${response.status} ${response.statusText}`, "error");
 	}
 }

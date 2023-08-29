@@ -203,3 +203,7 @@ footer{
         opacity: 0;
     }
 }
+
+#artist-detail-dialog{
+    z-index: 99999;
+}

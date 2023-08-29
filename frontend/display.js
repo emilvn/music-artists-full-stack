@@ -29,15 +29,17 @@ function displayArtist(artist, containerID){
         </article>
 	`;
 	container.insertAdjacentHTML("beforeend", myHTML);
-
-	container.querySelector("article:last-child .edit-button")
+	const artistArticle = container.querySelector("article:last-child");
+	artistArticle.querySelector(".edit-button")
 		.addEventListener("click", ()=>selectArtist(artist));
 
-	container.querySelector("article:last-child .delete-button")
+	artistArticle.querySelector(".delete-button")
 		.addEventListener("click", ()=>deleteArtist(artist));
 
-	container.querySelector("article:last-child .favorite-button")
+	artistArticle.querySelector(".favorite-button")
 		.addEventListener("click", ()=> ((containerID === "#favorites")?removeFromFavorites(artist):addToFavorites(artist)));
+
+	artistArticle.addEventListener("click", ()=>showDetailDialog(artist));
 }
 
 export function displayFavorites(favorites){
@@ -126,4 +128,43 @@ export function showToastMessage(message, type) {
 	setTimeout(() => {
 		toastContainer.removeChild(toast);
 	}, 3000);
+}
+
+export function showDetailDialog(artist){
+	const dialog = document.querySelector("#artist-detail-dialog");
+	dialog.querySelector("#detail-artist__name")
+		.textContent = artist.name;
+	dialog.querySelector("#detail-artist__image")
+		.src = artist.image;
+	dialog.querySelector("#detail-artist__short-description")
+		.textContent = artist.shortDescription;
+	dialog.querySelector("#detail-artist__date-of-birth")
+		.textContent = artist.birthdate;
+	dialog.querySelector("#detail-artist__active-since")
+		.textContent = artist.activeSince;
+	dialog.querySelector("#detail-artist__website")
+		.href = artist.website;
+	dialog.querySelector("#detail-artist__website")
+		.textContent = artist.website;
+	generateListFromArray(artist.genres, dialog.querySelector("#detail-artist__genres"));
+	generateListFromArray(artist.roles, dialog.querySelector("#detail-artist__roles"));
+	generateListFromArray(artist.labels, dialog.querySelector("#detail-artist__labels"));
+
+	dialog.querySelector("#detail-dialog__close-button")
+		.addEventListener("click", () => {
+			dialog.close();
+		});
+
+	dialog.showModal();
+}
+
+function generateListFromArray(arr, container){
+	container.innerHTML = "";
+	for(const item of arr){
+		container.insertAdjacentHTML("beforeend",
+			`
+			<li>${item}</li>
+			`
+		);
+	}
 }

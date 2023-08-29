@@ -1,5 +1,10 @@
+/* ========== IMPORTS ========== */
 import {addArtist, updateArtist} from "./main.js";
 
+
+/* ========== CREATE ========== */
+
+// Function to handle the submission of a new artist //
 export function submitArtistCreate(event){
 	event.preventDefault();
 	const form = event.target;
@@ -9,6 +14,9 @@ export function submitArtistCreate(event){
 	form.parentElement.close();
 }
 
+/* ========== UPDATE ========== */
+
+// Function to handle the submission of artist updates //
 export function submitArtistUpdate(event){
 	event.preventDefault();
 	const form = event.target;
@@ -18,6 +26,7 @@ export function submitArtistUpdate(event){
 	form.parentElement.close();
 }
 
+// Helper function to extract artist data from form input fields //
 function getArtistDataFromInput(form){
 	return {
 		name: form.name.value,

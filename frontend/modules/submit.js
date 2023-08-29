@@ -1,8 +1,6 @@
 /* ========== IMPORTS ========== */
 import {addArtist, updateArtist} from "./requests.js";
 
-
-
 /* ========== CREATE ========== */
 
 // Function to handle the submission of a new artist //

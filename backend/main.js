@@ -8,6 +8,7 @@ import {
 	getFavoritesData, getSpecificArtist, removeFromFavorites,
 	updateArtistData
 } from "./controller.js";
+import {router} from "./router.js";
 
 const app = express();
 const port = 3333;
@@ -15,15 +16,8 @@ const port = 3333;
 app.use(express.json());
 app.use(cors());
 
+app.use("/", router);
+
 app.listen(port, ()=>{
 	console.log(`app  running on http://localhost:${port}`);
 });
-
-app.get("/artists", getArtistsData);
-app.get("/artists/:id", getSpecificArtist);
-app.post("/artists", addArtistData);
-app.put("/artists/:id", updateArtistData);
-app.delete("/artists/:id", deleteArtist);
-app.get("/favorites", getFavoritesData);
-app.post("/favorites", addFavorite);
-app.delete("/favorites/:id", removeFromFavorites);

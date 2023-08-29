@@ -7,7 +7,7 @@ async function getArtists(path){
 }
 
 function writeArtistsToFile(artistsArr, path){
-	fs.writeFile(path, JSON.stringify(artistsArr));
+	fs.writeFile(path, JSON.stringify(artistsArr, null, 2));
 }
 
 

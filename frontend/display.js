@@ -86,22 +86,30 @@ export function inputSearchChanged(event){
 
 export function inputSortChanged(event){
 	const sortValue = event.target.value;
+	let sortedArtists = [];
+	let sortedFavorites = [];
 	if(sortValue === "name-ascending"){
-		artists.sort((a,b) => a.name.localeCompare(b.name));
-		favoriteArtists.sort((a,b) => a.name.localeCompare(b.name));
+		sortedArtists = artists.toSorted((a,b) => a.name.localeCompare(b.name));
+		sortedFavorites = favoriteArtists.toSorted((a,b) => a.name.localeCompare(b.name));
 	}
-	if(sortValue === "name-descending"){
-		artists.sort((a,b) => b.name.localeCompare(a.name));
-		favoriteArtists.sort((a,b) => b.name.localeCompare(a.name));
+	else if(sortValue === "name-descending"){
+		sortedArtists = artists.toSorted((a,b) => b.name.localeCompare(a.name));
+		sortedFavorites = favoriteArtists.toSorted((a,b) => b.name.localeCompare(a.name));
 	}
-	if(sortValue === "age-descending"){
-		artists.sort((a,b) => new Date(a.birthdate).getTime() - new Date(b.birthdate).getTime());
-		favoriteArtists.sort((a,b) => new Date(a.birthdate).getTime() - new Date(b.birthdate).getTime());
+	else if(sortValue === "age-descending"){
+		sortedArtists = artists.toSorted((a,b) => new Date(a.birthdate).getTime() - new Date(b.birthdate).getTime());
+		sortedFavorites = favoriteArtists.toSorted((a,b) => new Date(a.birthdate).getTime() - new Date(b.birthdate).getTime());
 	}
-	if(sortValue === "age-ascending"){
-		artists.sort((a,b) => new Date(b.birthdate).getTime() - new Date(a.birthdate).getTime());
-		favoriteArtists.sort((a,b) => new Date(b.birthdate).getTime() - new Date(a.birthdate).getTime());
+	else if(sortValue === "age-ascending"){
+		sortedArtists = artists.toSorted((a,b) => new Date(b.birthdate).getTime() - new Date(a.birthdate).getTime());
+		sortedFavorites = favoriteArtists.toSorted((a,b) => new Date(b.birthdate).getTime() - new Date(a.birthdate).getTime());
 	}
-	displayArtists(artists);
-	displayFavorites(favoriteArtists);
+	if(sortValue !== ""){
+		displayArtists(sortedArtists);
+		displayFavorites(sortedFavorites);
+	}
+	else{
+		displayArtists(artists);
+		displayFavorites(favoriteArtists);
+	}
 }

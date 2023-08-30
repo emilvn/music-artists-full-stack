@@ -158,7 +158,6 @@ form fieldset{
 }
 
 .grid-container article{
-    border-radius: 1em;
     box-shadow: 0 0 10px 0 black;
     padding: 1em;
     cursor: pointer;

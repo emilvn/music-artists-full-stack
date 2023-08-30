@@ -65,6 +65,9 @@ function displayArtist(artist, containerID){
 			e.stopPropagation();
 			(containerID === "#favorites") ? removeFromFavorites(artist) : addToFavorites(artist);
 			});
+
+	addToolTip(artistArticle);
+
 	// display artist details when article clicked. //
 	artistArticle.addEventListener("click", ()=>showDetailDialog(artist));
 }
@@ -217,4 +220,24 @@ export function showToastMessage(message, mode="success") {
 	setTimeout(() => {
 		toastContainer.removeChild(toast);
 	}, 3000);
+}
+
+/* ========== TOOLTIP FOR DETAIL DIALOG ========== */
+function addToolTip(artistArticle) {
+	const tooltip = document.querySelector("#detail-tooltip");
+
+	function updateTooltipPos(event){
+		tooltip.style.top = event.clientY - 10 + "px";
+		tooltip.style.left = event.clientX + 10 + "px";
+	}
+
+	artistArticle.addEventListener("mouseenter", () => {
+		tooltip.style.display = "block";
+		artistArticle.addEventListener("mousemove", updateTooltipPos);
+	});
+	artistArticle.addEventListener("mouseleave", () => {
+		tooltip.style.display = "none";
+		artistArticle.removeEventListener("mousemove", updateTooltipPos);
+	});
+	window.addEventListener("scroll", updateTooltipPos);
 }

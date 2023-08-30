@@ -208,6 +208,44 @@ export function inputSortChanged(event){
 	}
 }
 
+/* ========== FILTER ========== */
+// Filter artists //
+export function filterArtists(){
+	const selectElement = document.querySelector("#artist-filter-by__genre");
+	if(selectElement.value === ""){
+		displayArtists(artists);
+		displayFavorites(favoriteArtists);
+	}
+	else{
+		const filteredArtists = artists.filter(artist => artist.genres.includes(selectElement.value));
+		const filteredFavorites = favoriteArtists.filter(artist => artist.genres.includes(selectElement.value));
+		displayArtists(filteredArtists);
+		displayFavorites(filteredFavorites);
+	}
+}
+
+// Generate options for genrefilter //
+export function generateFilterOptions(){
+	const selectElement = document.querySelector("#artist-filter-by__genre");
+	selectElement.innerHTML = "";
+	const genres = [];
+	const noneOption = document.createElement("option");
+	noneOption.value = "";
+	noneOption.textContent = "";
+	selectElement.insertAdjacentElement("beforeend", noneOption);
+	for(const artist of artists){
+		for(const genre of artist.genres){
+			if(!genres.includes(genre)){
+				const option = document.createElement("option");
+				option.value = genre;
+				option.textContent = genre;
+				genres.push(genre);
+				selectElement.insertAdjacentElement("beforeend", option);
+			}
+		}
+	}
+}
+
 /* ========== TOAST MESSAGE ========== */
 // Function to display a toast message (mode is "success" or "error"). //
 export function showToastMessage(message, mode="success") {

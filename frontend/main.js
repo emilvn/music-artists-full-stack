@@ -1,5 +1,12 @@
 /* ========== IMPORTS ========== */
-import {displayArtists, displayFavorites, inputSearchChanged, inputSortChanged, showCreateDialog} from "./modules/display.js";
+import {
+	displayArtists,
+	displayFavorites, filterArtists,
+	generateFilterOptions,
+	inputSearchChanged,
+	inputSortChanged,
+	showCreateDialog
+} from "./modules/display.js";
 import {artists, favoriteArtists, getArtists, getFavorites} from "./modules/requests.js";
 
 window.addEventListener("load", main);
@@ -12,6 +19,9 @@ async function main(){
 	// fetch artists and save locally //
 	await getFavorites();
 	await getArtists();
+
+	// generate options for filter select //
+	generateFilterOptions();
 
 	// display artists on page //
 	displayArtists(artists);
@@ -35,4 +45,7 @@ function setEventListeners(){
 	// sort select //
 	document.querySelector("#artist-sort")
 		.addEventListener("change", inputSortChanged);
+
+	document.querySelector("#artist-filter-by__genre")
+		.addEventListener("change", filterArtists);
 }

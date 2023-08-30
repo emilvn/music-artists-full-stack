@@ -108,7 +108,7 @@ export async function deleteArtist(req, res, next){
 
 /* ----- GET ALL FAVORITES ----- */
 // Handler for getting favorite artists' data.//
-export async function getFavoritesData(req, res){
+export async function getFavoritesData(req, res, next){
 	try{
 		const favorites = await getArtists("data/favorites.json");
 		res.json(favorites);

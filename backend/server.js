@@ -16,6 +16,7 @@ const port = 3333;
 // Parse incoming JSON data. //
 app.use(express.json());
 
+// Use morgan middleware for request logging. //
 app.use(morgan("tiny"));
 
 // Enable CORS to allow cross-origin requests. //

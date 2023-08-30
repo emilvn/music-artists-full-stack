@@ -231,7 +231,7 @@ export function generateFilterOptions(){
 	const genres = [];
 	const noneOption = document.createElement("option");
 	noneOption.value = "";
-	noneOption.textContent = "";
+	noneOption.textContent = "All";
 	selectElement.insertAdjacentElement("beforeend", noneOption);
 	for(const artist of artists){
 		for(const genre of artist.genres){

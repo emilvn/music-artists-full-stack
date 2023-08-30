@@ -1,5 +1,6 @@
 /* ========== IMPORTS ========== */
 import express from "express";
+import morgan from "morgan";
 import {router} from "./router.js";
 import cors from "cors";
 
@@ -15,6 +16,8 @@ const port = 3333;
 // Parse incoming JSON data. //
 app.use(express.json());
 
+app.use(morgan("tiny"));
+
 // Enable CORS to allow cross-origin requests. //
 app.use(cors());
 
@@ -27,5 +30,5 @@ app.use("/", router);
 
 // Start the Express server and listen on the defined port. //
 app.listen(port, ()=>{
-	console.log(`app  running on http://localhost:${port}`);
+	console.log(`app running on http://localhost:${port}`);
 });

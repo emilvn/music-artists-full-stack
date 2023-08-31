@@ -13,11 +13,13 @@ import {
 	filterArtists,
 	inputSearchChanged,
 	inputSortChanged, scrollToTop,
-	showCreateDialog, showToastMessage,
+	showCreateDialog, showDetailDialog, showToastMessage,
 	showUpdateDialog
 } from "../view/view.js";
 
 export let selectedArtist;
+
+/* ========== EVENT LISTENERS ========== */
 
 // set event listeners for buttons and search/sort //
 export function setEventListeners(){
@@ -36,6 +38,35 @@ export function setEventListeners(){
 
 	document.querySelector("#artist-filter-by__genre")
 		.addEventListener("change", filterArtists);
+}
+
+// sets event listeners for artist articles //
+export function setArtistEventListeners(artistArticle, artist, containerID){
+	// edit, delete, and favorite buttons. //
+	artistArticle.querySelector(".edit-button")
+		.addEventListener("click", (e)=> {
+			e.stopPropagation();
+			selectArtist(artist);
+		});
+	artistArticle.querySelector(".delete-button")
+		.addEventListener("click", (e)=> {
+			e.stopPropagation();
+			submitArtistDelete(artist);
+		});
+	artistArticle.querySelector(".favorite-button")
+		.addEventListener("click", (e)=> {
+			e.stopPropagation();
+			(containerID === "#favorites") ? submitRemoveFromFavorites(artist) : submitFavoriteArtist(artist);
+		});
+
+	// display artist details when article clicked. //
+	artistArticle.addEventListener("click", ()=>showDetailDialog(artist));
+}
+
+// function to remove submit events from forms. //
+export function removeSubmitEvent(form, functionToRemove){
+	form.reset();
+	form.removeEventListener("submit", functionToRemove);
 }
 
 /* ========== CREATE ========== */

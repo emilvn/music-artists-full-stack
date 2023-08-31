@@ -1,12 +1,10 @@
 /* ========== IMPORTS ========== */
 import {
-	selectArtist,
+	removeSubmitEvent, setArtistEventListeners,
 	submitArtistCreate,
-	submitArtistDelete,
 	submitArtistUpdate,
-	submitFavoriteArtist, submitRemoveFromFavorites
 } from "../controller/controller.js";
-import {addToFavorites, artists, deleteArtist, favoriteArtists, removeFromFavorites} from "../model/model.js";
+import { artists, favoriteArtists} from "../model/model.js";
 
 /* ========== DISPLAY ARTISTS ========== */
 
@@ -50,30 +48,9 @@ function displayArtist(artist, containerID){
 	`;
 	container.insertAdjacentHTML("beforeend", myHTML);
 
-	/* ----- EVENT LISTENERS FOR ARTIST ----- */
 	const artistArticle = container.querySelector("article:last-child");
-
-	// edit, delete, and favorite buttons. //
-	artistArticle.querySelector(".edit-button")
-		.addEventListener("click", (e)=> {
-			e.stopPropagation();
-			selectArtist(artist);
-		});
-	artistArticle.querySelector(".delete-button")
-		.addEventListener("click", (e)=> {
-			e.stopPropagation();
-			submitArtistDelete(artist);
-		});
-	artistArticle.querySelector(".favorite-button")
-		.addEventListener("click", (e)=> {
-			e.stopPropagation();
-			(containerID === "#favorites") ? submitRemoveFromFavorites(artist) : submitFavoriteArtist(artist);
-			});
-
+	setArtistEventListeners(artistArticle, artist, containerID);
 	addToolTip(artistArticle);
-
-	// display artist details when article clicked. //
-	artistArticle.addEventListener("click", ()=>showDetailDialog(artist));
 }
 
 // scroll to top of page. //
@@ -103,12 +80,6 @@ export function showUpdateDialog(){
 		.addEventListener("close", ()=> removeSubmitEvent(form, submitArtistUpdate))
 	form.parentElement.querySelector(".dialog-close-button")
 		.addEventListener("click", () => form.parentElement.close());
-}
-
-// function to remove submit events from forms. //
-function removeSubmitEvent(form, functionToRemove){
-	form.reset();
-	form.removeEventListener("submit", functionToRemove);
 }
 
 /* ========== DETAIL DIALOG ========== */

@@ -53,10 +53,8 @@ export async function addToFavorites(artist){
 	});
 	if(response.ok){
 		favoriteArtists = await response.json();
-		displayFavorites(favoriteArtists);
-		scrollToTop();
-		showToastMessage(`${artist.name} added to favorites!`, "success");
 	}
+	return response;
 }
 
 /* ========== UPDATE ARTIST ========== */

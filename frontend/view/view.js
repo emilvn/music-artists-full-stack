@@ -1,5 +1,5 @@
 /* ========== IMPORTS ========== */
-import {selectArtist, submitArtistCreate, submitArtistUpdate} from "../controller/controller.js";
+import {selectArtist, submitArtistCreate, submitArtistUpdate, submitFavoriteArtist} from "../controller/controller.js";
 import {addToFavorites, artists, deleteArtist, favoriteArtists, removeFromFavorites} from "../model/model.js";
 
 /* ========== DISPLAY ARTISTS ========== */
@@ -61,7 +61,7 @@ function displayArtist(artist, containerID){
 	artistArticle.querySelector(".favorite-button")
 		.addEventListener("click", (e)=> {
 			e.stopPropagation();
-			(containerID === "#favorites") ? removeFromFavorites(artist) : addToFavorites(artist);
+			(containerID === "#favorites") ? removeFromFavorites(artist) : submitFavoriteArtist(artist);
 			});
 
 	addToolTip(artistArticle);

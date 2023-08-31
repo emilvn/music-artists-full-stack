@@ -1,7 +1,7 @@
 /* ========== IMPORTS ========== */
-import {addArtist, artists, updateArtist} from "../model/model.js";
+import {addArtist, addToFavorites, artists, favoriteArtists, updateArtist} from "../model/model.js";
 import {
-	displayArtists,
+	displayArtists, displayFavorites,
 	filterArtists,
 	inputSearchChanged,
 	inputSortChanged, scrollToTop,
@@ -44,6 +44,15 @@ export async function submitArtistCreate(event){
 		showToastMessage("Artist added successfully!" ,"success");
 		form.reset();
 		form.parentElement.close();
+	}
+}
+
+export async function submitFavoriteArtist(artist){
+	const response = await addToFavorites(artist);
+	if (response.ok){
+		displayFavorites(favoriteArtists);
+		scrollToTop();
+		showToastMessage(`${artist.name} added to favorites!`, "success");
 	}
 }
 

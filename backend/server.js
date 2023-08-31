@@ -31,5 +31,5 @@ app.use("/", router);
 
 // Start the Express server and listen on the defined port. //
 app.listen(port, ()=>{
-	console.log(`app running on http://localhost:${port}`);
+	console.log(`Server running on http://localhost:${port}`);
 });

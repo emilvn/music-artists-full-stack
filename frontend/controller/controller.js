@@ -101,6 +101,7 @@ export async function submitArtistCreate(event){
 	}
 }
 
+// add to favorites clicked //
 export async function submitFavoriteArtist(artist){
 	const response = await addToFavorites(artist);
 	if (response.ok){
@@ -138,7 +139,7 @@ export async function submitArtistDelete(artist){
 	}
 }
 
-//remove artist from favorites //
+//remove from favorites clicked //
 export async function submitRemoveFromFavorites(artist){
 	const response = await removeFromFavorites(artist);
 	if(response.ok){

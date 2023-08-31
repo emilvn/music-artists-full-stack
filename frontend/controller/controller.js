@@ -63,6 +63,15 @@ export function setArtistEventListeners(artistArticle, artist, containerID){
 	artistArticle.addEventListener("click", ()=>showDetailDialog(artist));
 }
 
+// event listeners for forms //
+export function setFormEventListeners(form, submitFunction){
+	form.addEventListener("submit", submitFunction);
+	form.parentElement
+		.addEventListener("close", ()=> removeSubmitEvent(form, submitFunction));
+	form.parentElement.querySelector(".dialog-close-button")
+		.addEventListener("click", () => form.parentElement.close());
+}
+
 // function to remove submit events from forms. //
 export function removeSubmitEvent(form, functionToRemove){
 	form.reset();

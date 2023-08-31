@@ -1,6 +1,6 @@
 /* ========== IMPORTS ========== */
 import {
-	removeSubmitEvent, setArtistEventListeners,
+	removeSubmitEvent, setArtistEventListeners, setFormEventListeners,
 	submitArtistCreate,
 	submitArtistUpdate,
 } from "../controller/controller.js";
@@ -62,24 +62,16 @@ export function scrollToTop() {
 // Function to display the create artist dialog. //
 export function showCreateDialog(){
 	const form = document.querySelector("#form-create");
-	form.addEventListener("submit", submitArtistCreate);
+	setFormEventListeners(form, submitArtistCreate);
 	form.parentElement.showModal();
-	form.parentElement
-		.addEventListener("close", ()=> removeSubmitEvent(form, submitArtistCreate));
-	form.parentElement.querySelector(".dialog-close-button")
-		.addEventListener("click", () => form.parentElement.close());
 }
 
 /* ========== UPDATE DIALOG ========== */
 // Function to display the update artist dialog. //
 export function showUpdateDialog(){
 	const form = document.querySelector("#form-update");
-	form.addEventListener("submit", submitArtistUpdate);
+	setFormEventListeners(form, submitArtistUpdate);
 	form.parentElement.showModal();
-	form.parentElement
-		.addEventListener("close", ()=> removeSubmitEvent(form, submitArtistUpdate))
-	form.parentElement.querySelector(".dialog-close-button")
-		.addEventListener("click", () => form.parentElement.close());
 }
 
 /* ========== DETAIL DIALOG ========== */

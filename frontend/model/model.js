@@ -1,6 +1,7 @@
 /* ========== IMPORTS ========== */
 import {endpoint} from "../main.js";
-import {displayArtists, displayFavorites, scrollToTop, selectedArtist, showToastMessage} from "./display.js";
+import {displayArtists, displayFavorites, scrollToTop, showToastMessage} from "../view/view.js";
+import {selectedArtist} from "../controller/controller.js";
 
 // global variables for artists and favorite artists //
 export let favoriteArtists = [];
@@ -35,13 +36,10 @@ export async function addArtist(artist){
 		},
 		body: JSON.stringify(artist)
 	});
-
 	if(response.ok){
 		artists = await response.json();
-		displayArtists(artists);
-		scrollToTop();
-		showToastMessage(`${artist.name} added successfully!`,"success");
 	}
+	return response;
 }
 
 // Function to add an artist to favorites on the server //
@@ -77,18 +75,13 @@ export async function updateArtist(updatedArtist){
 	artistToUpdate.website = updatedArtist.website;
 	artistToUpdate.shortDescription = updatedArtist.shortDescription;
 
-	const response = await fetch(endpoint + "/artists/" + selectedArtist.id, {
+	return await fetch(endpoint + "/artists/" + selectedArtist.id, {
 		method: "PUT",
 		headers: {
 			"Content-Type":"application/json"
 		},
 		body: JSON.stringify(artistToUpdate)
 	});
-	if(response.ok){
-		displayArtists(artists);
-		scrollToTop();
-		showToastMessage(`${artistToUpdate.name} updated successfully!`,"success");
-	}
 }
 
 /* ========== DELETE ARTIST ========== */

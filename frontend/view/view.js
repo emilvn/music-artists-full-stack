@@ -1,8 +1,6 @@
 /* ========== IMPORTS ========== */
-import {submitArtistCreate, submitArtistUpdate} from "./submit.js";
-import {addToFavorites, artists, deleteArtist, favoriteArtists, removeFromFavorites} from "./requests.js";
-
-export let selectedArtist;
+import {selectArtist, submitArtistCreate, submitArtistUpdate} from "../controller/controller.js";
+import {addToFavorites, artists, deleteArtist, favoriteArtists, removeFromFavorites} from "../model/model.js";
 
 /* ========== DISPLAY ARTISTS ========== */
 
@@ -53,12 +51,12 @@ function displayArtist(artist, containerID){
 	artistArticle.querySelector(".edit-button")
 		.addEventListener("click", (e)=> {
 			e.stopPropagation();
-			selectArtist(artist)
+			selectArtist(artist);
 		});
 	artistArticle.querySelector(".delete-button")
 		.addEventListener("click", (e)=> {
 			e.stopPropagation();
-			deleteArtist(artist)
+			deleteArtist(artist);
 		});
 	artistArticle.querySelector(".favorite-button")
 		.addEventListener("click", (e)=> {
@@ -84,7 +82,7 @@ export function showCreateDialog(){
 	form.addEventListener("submit", submitArtistCreate);
 	form.parentElement.showModal();
 	form.parentElement
-		.addEventListener("close", ()=> removeSubmitEvent(form, submitArtistCreate))
+		.addEventListener("close", ()=> removeSubmitEvent(form, submitArtistCreate));
 	form.parentElement.querySelector(".dialog-close-button")
 		.addEventListener("click", () => form.parentElement.close());
 }
@@ -99,22 +97,6 @@ export function showUpdateDialog(){
 		.addEventListener("close", ()=> removeSubmitEvent(form, submitArtistUpdate))
 	form.parentElement.querySelector(".dialog-close-button")
 		.addEventListener("click", () => form.parentElement.close());
-}
-
-// Selects an artist and populates the update form with artist details. //
-export function selectArtist(artist){
-	selectedArtist = artist;
-	const form = document.querySelector("#form-update");
-	form.name.value = artist.name;
-	form.birthdate.value = artist.birthdate;
-	form.activeSince.value = artist.activeSince;
-	form.image.value = artist.image;
-	form.genres.value = String(artist.genres);
-	form.labels.value = String(artist.labels);
-	form.roles.value = String(artist.roles);
-	form.website.value = artist.website;
-	form.shortDescription.value = artist.shortDescription;
-	showUpdateDialog();
 }
 
 // function to remove submit events from forms. //

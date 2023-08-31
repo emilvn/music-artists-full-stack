@@ -1,13 +1,7 @@
 /* ========== IMPORTS ========== */
-import {
-	displayArtists,
-	displayFavorites, filterArtists,
-	generateFilterOptions,
-	inputSearchChanged,
-	inputSortChanged,
-	showCreateDialog
-} from "./modules/display.js";
-import {artists, favoriteArtists, getArtists, getFavorites} from "./modules/requests.js";
+import {displayArtists, displayFavorites, generateFilterOptions} from "./view/view.js";
+import {artists, favoriteArtists, getArtists, getFavorites} from "./model/model.js";
+import {setEventListeners} from "./controller/controller.js";
 
 window.addEventListener("load", main);
 
@@ -29,23 +23,4 @@ async function main(){
 
 	// set event listeners for user interactions //
 	setEventListeners();
-}
-
-// set event listeners for buttons and search/sort //
-function setEventListeners(){
-	// add artist button //
-	document.querySelector("#add-artist-dialog-button")
-		.addEventListener("click", showCreateDialog);
-
-	// search bar //
-	const searchBar = document.querySelector("#artist-search");
-	searchBar.addEventListener("search", inputSearchChanged);
-	searchBar.addEventListener("keyup", inputSearchChanged);
-
-	// sort select //
-	document.querySelector("#artist-sort")
-		.addEventListener("change", inputSortChanged);
-
-	document.querySelector("#artist-filter-by__genre")
-		.addEventListener("change", filterArtists);
 }

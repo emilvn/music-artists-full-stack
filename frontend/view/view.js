@@ -100,12 +100,6 @@ export function showDetailDialog(artist){
 	generateListFromArray(artist.roles, dialog.querySelector("#detail-artist__roles"));
 	generateListFromArray(artist.labels, dialog.querySelector("#detail-artist__labels"));
 
-	// close button event listener //
-	dialog.querySelector("#detail-dialog__close-button")
-		.addEventListener("click", () => {
-			dialog.close();
-		});
-
 	dialog.showModal();
 }
 

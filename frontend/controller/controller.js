@@ -38,6 +38,12 @@ export function setEventListeners(){
 
 	document.querySelector("#artist-filter-by__genre")
 		.addEventListener("change", filterArtists);
+
+	// detail dialog close button event listener //
+	document.querySelector("#detail-dialog__close-button")
+		.addEventListener("click", () => {
+			document.querySelector("#artist-detail-dialog").close();
+		});
 }
 
 // sets event listeners for artist articles //

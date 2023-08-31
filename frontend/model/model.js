@@ -91,9 +91,8 @@ export async function deleteArtist(artistToDelete){
 	});
 	if(response.ok){
 		artists = artists.filter(artist => artist.id !== artistToDelete.id);
-		displayArtists(artists);
-		showToastMessage( `${artistToDelete.name} deleted successfully!`, "success");
 	}
+	return response;
 }
 
 /* ========== REMOVE ARTIST FROM FAVORITES ========== */
@@ -105,7 +104,6 @@ export async function removeFromFavorites(artistToRemove){
 	});
 	if(response.ok){
 		favoriteArtists = favoriteArtists.filter(artist => artist.id !== artistToRemove.id);
-		displayFavorites(favoriteArtists);
-		showToastMessage(`${artistToRemove.name} removed from favorites`, "success");
 	}
+	return response;
 }

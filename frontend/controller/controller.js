@@ -1,5 +1,13 @@
 /* ========== IMPORTS ========== */
-import {addArtist, addToFavorites, artists, favoriteArtists, updateArtist} from "../model/model.js";
+import {
+	addArtist,
+	addToFavorites,
+	artists,
+	deleteArtist,
+	favoriteArtists,
+	removeFromFavorites,
+	updateArtist
+} from "../model/model.js";
 import {
 	displayArtists, displayFavorites,
 	filterArtists,
@@ -70,6 +78,26 @@ export async function submitArtistUpdate(event){
 		showToastMessage(`${selectedArtist.name} updated successfully!`,"success");
 		form.reset();
 		form.parentElement.close();
+	}
+}
+
+/* ========== DELETE ========== */
+
+// delete artist button clicked //
+export async function submitArtistDelete(artist){
+	const response = await deleteArtist(artist);
+	if(response.ok){
+		displayArtists(artists);
+		showToastMessage( `${artist.name} deleted successfully!`, "success");
+	}
+}
+
+//remove artist from favorites //
+export async function submitRemoveFromFavorites(artist){
+	const response = await removeFromFavorites(artist);
+	if(response.ok){
+		displayFavorites(favoriteArtists);
+		showToastMessage(`${artist.name} removed from favorites`, "success");
 	}
 }
 

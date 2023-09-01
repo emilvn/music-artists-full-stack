@@ -17,6 +17,11 @@ export async function getArtists(){
 	}
 }
 
+// function to fetch specific artist from the server //
+export async function getSpecificArtist(artist){
+	return await fetch(endpoint + "/artists/" + artist.id);
+}
+
 // Function to fetch favorite artists from the server //
 export async function getFavorites(){
 	const response = await fetch(endpoint + "/favorites");

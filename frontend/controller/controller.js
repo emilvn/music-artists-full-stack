@@ -4,7 +4,7 @@ import {
 	addToFavorites,
 	artists,
 	deleteArtist,
-	favoriteArtists,
+	favoriteArtists, getSpecificArtist,
 	removeFromFavorites,
 	updateArtist
 } from "../model/model.js";
@@ -66,7 +66,13 @@ export function setArtistEventListeners(artistArticle, artist, containerID){
 		});
 
 	// display artist details when article clicked. //
-	artistArticle.addEventListener("click", ()=>showDetailDialog(artist));
+	artistArticle.addEventListener("click", async ()=> {
+		const response = await getSpecificArtist(artist);
+		if(response.ok){
+			const artistToShow = await response.json();
+			showDetailDialog(artistToShow);
+		}
+	});
 }
 
 // event listeners for forms //

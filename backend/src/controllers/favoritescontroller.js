@@ -3,7 +3,6 @@ import {getArtists, writeArtistsToFile} from "./filesystem.js";
 
 /* ----- GET ALL FAVORITES ----- */
 // Handler for getting favorite artists' data.//
-
 export async function getFavoritesData(req, res){
 	const favorites = await getArtists("data/favorites.json");
 	res.json(favorites);

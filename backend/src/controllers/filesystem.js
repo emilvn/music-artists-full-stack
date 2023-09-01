@@ -2,7 +2,7 @@
 // 'fs' module for file system operations.//
 import fs from "fs/promises";
 
-/* ========== FUNCTION TO READ&WRITE ARTISTS DATA FROM A FILE ========== */
+/* ========== FUNCTIONS TO READ&WRITE ARTISTS DATA FROM A FILE ========== */
 
 // function to read artist data from a JSON file.//
 export async function getArtists(path){

@@ -134,6 +134,8 @@ form fieldset{
     display: grid;
     grid-template-columns: 1fr;
     gap: 1em;
+    border-bottom: 2px solid var(--orange);
+    padding-bottom: 1em;
 }
 
 @media (min-width: 550px){
@@ -265,7 +267,12 @@ form fieldset{
 /* ========== FOOTER STYLES ========== */
 
 footer{
-    background-color: gray;
+    background-color: var(--dark-blue);
+    color: var(--light-grey);
+    padding: 1px;
     text-align: center;
     font-size: 0.75em;
+}
+footer a{
+    color: var(--cyan);
 }

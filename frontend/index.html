@@ -126,30 +126,67 @@
         <!-- ========== ARTIST UPDATE DIALOG ========== -->
         <dialog class="form-dialog">
             <form action="" id="form-update" class="artist-form">
-                <h2>Update artist</h2>
-                <fieldset>
-                    <label for="name-update">Name</label>
-                    <input type="text" name="name" id="name-update">
-                    <label for="birthdate-update">Date of birth</label>
-                    <input type="date" name="birthdate" id="birthdate-update">
-                    <label for="activeSince-update">Active since</label>
-                    <input type="date" name="activeSince" id="activeSince-update">
-                    <label for="genres-update">Genres</label>
-                    <textarea name="genres" id="genres-update" cols="20" rows="3" placeholder="Rock, Pop, etc."></textarea>
-                    <label for="labels-update">Labels</label>
-                    <textarea name="labels" id="labels-update" cols="20" rows="3" placeholder="Sony, Death Row, etc."></textarea>
-                    <label for="roles-update">Roles</label>
-                    <textarea name="roles" id="roles-update" cols="20" rows="3" placeholder="Guitarist, singer, etc."></textarea>
-                    <label for="shortDescription-update">Short description</label>
-                    <textarea name="shortDescription" id="shortDescription-update" cols="20" rows="3"></textarea>
-                    <label for="website-update">Website</label>
-                    <input type="url" name="website" id="website-update">
-                    <label for="image-update">Image URL</label>
-                    <input type="url" name="image" id="image-update">
-                    <button class="artist-form__submit-button">Submit</button>
-                    <button type="reset" class="artist-form__clear-button">Clear</button>
+                <h2>Add a new artist</h2>
+                <fieldset class="form-dialog__artist-personal-info">
+                    <legend>Personal information</legend>
+                    <div>
+                        <label for="name-update">Name</label>
+                        <br>
+                        <input type="text" name="name" id="name-update">
+                    </div>
+                    <div>
+                        <label for="birthdate-update">Date of birth</label>
+                        <br>
+                        <input type="date" name="birthdate" id="birthdate-update">
+                    </div>
+                    <div class="artist-form-shortdescription-div">
+                        <label for="shortDescription-update">Short description</label>
+                        <br>
+                        <textarea name="shortDescription" id="shortDescription-update" cols="20" rows="3"></textarea>
+                    </div>
                 </fieldset>
-                <button class="dialog-close-button" type="button"><img src="icons/close-icon.png" alt="Close"></button>
+                <fieldset class="form-dialog__career-info">
+                    <legend>Career information</legend>
+                    <div>
+                        <label for="activeSince-update">Active since</label>
+                        <br>
+                        <input type="date" name="activeSince" id="activeSince-update">
+                    </div>
+                    <div>
+                        <label for="genres-update">Genres</label>
+                        <br>
+                        <textarea name="genres" id="genres-update" cols="20" rows="3" placeholder="Rock, Pop, etc."></textarea>
+                    </div>
+                    <div>
+                        <label for="labels-update">Labels</label>
+                        <br>
+                        <textarea name="labels" id="labels-update" cols="20" rows="3" placeholder="Sony, Death Row, etc."></textarea>
+                    </div>
+                    <div>
+                        <label for="roles-update">Roles</label>
+                        <br>
+                        <textarea name="roles" id="roles-update" cols="20" rows="3" placeholder="Guitarist, singer, etc."></textarea>
+                    </div>
+                </fieldset>
+                <fieldset class="form-dialog__artist-links">
+                    <legend>Links</legend>
+                    <div>
+                        <label for="website-update">Website</label>
+                        <br>
+                        <input type="url" name="website" id="website-update">
+                    </div>
+                    <div>
+                        <label for="image-update">Image URL</label>
+                        <br>
+                        <input type="url" name="image" id="image-update">
+                    </div>
+                </fieldset>
+                <div class="artist-form__buttons">
+                    <div></div>
+                    <button class="artist-form__submit-button">Add artist</button>
+                    <button type="reset" class="artist-form__clear-button">Clear form</button>
+                    <button class="dialog-close-button" type="button"><img src="icons/close-icon.png" alt="Close"></button>
+                </div>
             </form>
         </dialog>
 

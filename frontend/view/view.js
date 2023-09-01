@@ -78,7 +78,7 @@ export function showUpdateDialog(){
 // Function to display the artist details in a dialog. //
 export function showDetailDialog(artist){
 	const dialog = document.querySelector("#artist-detail-dialog");
-
+	clearDetailDialog();
 	// Populate the dialog with artist details. //
 	dialog.querySelector("#detail-artist__name")
 		.textContent = artist.name;
@@ -103,9 +103,13 @@ export function showDetailDialog(artist){
 	dialog.showModal();
 }
 
+// function for clearing detail dialog info before showing new artist //
+function clearDetailDialog(){
+	document.querySelectorAll(".artist-detail").forEach(detail => detail.innerHTML = "");
+}
+
 // function for generating and inserting html list elements from an array into a container //
 function generateListFromArray(arr, container){
-	container.innerHTML = "";
 	for(const item of arr){
 		container.insertAdjacentHTML("beforeend", `<li>${item}</li>`);
 	}

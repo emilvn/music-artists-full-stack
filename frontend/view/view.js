@@ -36,12 +36,12 @@ function displayArtist(artist, containerID){
                 <p>Date of birth: ${artist.birthdate}</p>
             </div>
 			<div class="artist-buttons">
-                <button class="artist-website">
+                <button class="website-button">
                 	<a href="${artist.website}"><img src="icons/website-icon.png" alt="Website"></a>
 				</button>
+				<button class="favorite-button">${(containerID === "#favorites")?"<img src=\"icons/remove-favorite-icon.png\" alt=\"Remove from favorites\">":"<img src=\"icons/add-favorite-icon.png\" alt=\"Add to favorites\">"}</button>
 				<button class="edit-button"><img src="icons/edit-icon.png" alt="Edit"></button>
 				<button class="delete-button"><img src="icons/delete-icon.png" alt="Delete"></button>
-				<button class="favorite-button">${(containerID === "#favorites")?"<img src=\"icons/remove-favorite-icon.png\" alt=\"Remove from favorites\">":"<img src=\"icons/add-favorite-icon.png\" alt=\"Add to favorites\">"}</button>
 			</div>
         </article>
 	`;
@@ -56,7 +56,7 @@ function addArtistTooltips(artistArticle, artist, containerID){
 	const editButton = artistArticle.querySelector(".edit-button");
 	const deleteButton = artistArticle.querySelector(".delete-button");
 	const favouriteButton = artistArticle.querySelector(".favorite-button");
-	const websiteButton = artistArticle.querySelector(".artist-website");
+	const websiteButton = artistArticle.querySelector(".website-button");
 	addToolTip(artistArticle, "Show more details", false);
 	addToolTip(editButton, "Edit artist details", true);
 	addToolTip(deleteButton, "Delete artist", true);

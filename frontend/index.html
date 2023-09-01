@@ -57,8 +57,8 @@
         </div>
 
         <!-- ========== ARTIST CREATION DIALOG ========== -->
-        <dialog>
-            <form action="" id="form-create">
+        <dialog class="form-dialog">
+            <form action="" id="form-create" class="artist-form">
                 <h2>Add artist</h2>
                 <fieldset>
                     <label for="name-create">Name</label>
@@ -82,13 +82,13 @@
                 <button>Submit</button>
                 <button type="reset">Clear</button>
                 </fieldset>
+                <button class="dialog-close-button" type="button"><img src="icons/close-icon.png" alt="Close"></button>
             </form>
-            <button class="dialog-close-button"><img src="icons/close-icon.png" alt="Close"></button>
         </dialog>
 
         <!-- ========== ARTIST UPDATE DIALOG ========== -->
-        <dialog>
-            <form action="" id="form-update">
+        <dialog class="form-dialog">
+            <form action="" id="form-update" class="artist-form">
                 <h2>Update artist</h2>
                 <fieldset>
                     <label for="name-update">Name</label>
@@ -112,8 +112,8 @@
                     <button>Submit</button>
                     <button type="reset">Clear</button>
                 </fieldset>
+                <button class="dialog-close-button" type="button"><img src="icons/close-icon.png" alt="Close"></button>
             </form>
-            <button class="dialog-close-button"><img src="icons/close-icon.png" alt="Close"></button>
         </dialog>
 
         <!-- ========== ARTIST DETAIL DIALOG ========== -->
@@ -143,7 +143,7 @@
                     </div>
                 </div>
                 <div id="detail-dialog__buttons">
-                    <button><a href="" id="detail-artist__website" class="artist-detail"><img
+                    <button class="website-button"><a href="" id="detail-artist__website" class="artist-detail"><img
                             src="icons/website-icon.png" alt=""></a></button>
                     <button id="detail-dialog__close-button" class="dialog-close-button"><img src="icons/close-icon.png" alt="Close"></button>
                 </div>

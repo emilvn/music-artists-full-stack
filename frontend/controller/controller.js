@@ -66,7 +66,7 @@ export function setArtistEventListeners(artistArticle, artist, containerID){
 			e.stopPropagation();
 			(containerID === "#favorites") ? submitRemoveFromFavorites(artist) : submitFavoriteArtist(artist);
 		});
-	artistArticle.querySelector(".artist-website")
+	artistArticle.querySelector(".website-button")
 		.addEventListener("click", (e) => {
 			e.stopPropagation();
 		})

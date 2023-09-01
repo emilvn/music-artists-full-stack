@@ -19,6 +19,11 @@ body{
     color: var(--dark-blue);
 }
 
+a{
+    text-decoration: none;
+    color: var(--dark-blue);
+}
+
 /* ========== BUTTON STYLES ========== */
 
 button{
@@ -29,7 +34,7 @@ button{
 }
 button:hover{
     box-shadow: 0 0 2px 0 black inset;
-    filter: grayscale(0.5);
+    background-color: var(--light-grey);
 }
 
 
@@ -182,16 +187,6 @@ form fieldset{
 .grid-container article button img{
     width: 100%;
 }
-.artist-website{
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    display: grid;
-    grid-template-rows: auto auto;
-    text-shadow: 0 0 0;
-    background-color: rgba(255, 255, 255, 0.51);
-}
 .artist-website div{
     text-align: center;
 }
@@ -201,7 +196,7 @@ form fieldset{
     right: 0.5em;
     display: grid;
     gap: 0.5em;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: repeat(4, auto);
 }
 .artist-info{
     margin-top: 2.5em;

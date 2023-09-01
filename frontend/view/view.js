@@ -35,12 +35,10 @@ function displayArtist(artist, containerID){
                 <p>${artist.shortDescription}</p>
                 <p>Date of birth: ${artist.birthdate}</p>
             </div>
-            <div class="artist-website">
-            	<div>
-                	<a href="${artist.website}">${artist.website}</a>
-				</div>
-			</div>
 			<div class="artist-buttons">
+                <button class="artist-website">
+                	<a href="${artist.website}"><img src="icons/website-icon.png" alt="Website"></a>
+				</button>
 				<button class="edit-button"><img src="icons/edit-icon.png" alt="Edit"></button>
 				<button class="delete-button"><img src="icons/delete-icon.png" alt="Delete"></button>
 				<button class="favorite-button">${(containerID === "#favorites")?"<img src=\"icons/remove-favorite-icon.png\" alt=\"Remove from favorites\">":"<img src=\"icons/add-favorite-icon.png\" alt=\"Add to favorites\">"}</button>
@@ -50,14 +48,20 @@ function displayArtist(artist, containerID){
 	container.insertAdjacentHTML("beforeend", myHTML);
 	const artistArticle = container.querySelector("article:last-child");
 	artistArticle.style.backgroundImage = `url(${artist.image})`;
+	setArtistEventListeners(artistArticle, artist, containerID);
+	addArtistTooltips(artistArticle, artist, containerID);
+}
+
+function addArtistTooltips(artistArticle, artist, containerID){
 	const editButton = artistArticle.querySelector(".edit-button");
 	const deleteButton = artistArticle.querySelector(".delete-button");
 	const favouriteButton = artistArticle.querySelector(".favorite-button");
-	setArtistEventListeners(artistArticle, artist, containerID);
+	const websiteButton = artistArticle.querySelector(".artist-website");
 	addToolTip(artistArticle, "Show more details", false);
 	addToolTip(editButton, "Edit artist details", true);
 	addToolTip(deleteButton, "Delete artist", true);
 	addToolTip(favouriteButton, (containerID === "#favorites")?"Remove from favourites":"Add to favourites", true);
+	addToolTip(websiteButton, artist.website.replace(/https?:\/\/www\./, ""), true);
 }
 
 // scroll to top of page. //

@@ -50,7 +50,7 @@ export function setEventListeners(){
 
 // sets event listeners for artist articles //
 export function setArtistEventListeners(artistArticle, artist, containerID){
-	// edit, delete, and favorite buttons. //
+	// edit, delete, website and favorite buttons. //
 	artistArticle.querySelector(".edit-button")
 		.addEventListener("click", (e)=> {
 			e.stopPropagation();
@@ -66,6 +66,10 @@ export function setArtistEventListeners(artistArticle, artist, containerID){
 			e.stopPropagation();
 			(containerID === "#favorites") ? submitRemoveFromFavorites(artist) : submitFavoriteArtist(artist);
 		});
+	artistArticle.querySelector(".artist-website")
+		.addEventListener("click", (e) => {
+			e.stopPropagation();
+		})
 
 	// display artist details when article clicked. //
 	artistArticle.addEventListener("click", async ()=> {

@@ -42,6 +42,7 @@ button:hover{
 header{
     position: fixed;
     width: 100%;
+    max-height: 15vh;
     height: 10vh;
     top: 0;
     left: 0;
@@ -67,6 +68,29 @@ header{
     background-color: var(--orange);
 }
 
+#artist-search-div{
+    background-color: var(--light-grey);
+    border-radius: 3em;
+    display: flex;
+    align-items: center;
+    padding: 0 1em 0 1em;
+}
+#artist-search{
+    height: 4em;
+    min-width: 30vw;
+    border-radius: 3em;
+    border: none;
+    background-color: transparent;
+}
+#artist-search:focus{
+    outline: none;
+}
+#filter-sort{
+    padding-top: 15vh;
+    width: 100%;
+    display: grid;
+    grid-template-rows: auto;
+}
 @media (max-width: 420px) {
     header {
         text-align: left;
@@ -86,35 +110,16 @@ header{
     #artist-search-div{
         grid-column: span 2;
     }
-}
-
-#artist-search-div{
-    background-color: var(--light-grey);
-    border-radius: 3em;
-    display: flex;
-    align-items: center;
-}
-#artist-search{
-    height: 2.5em;
-    width: 15em;
-    border-radius: 3em;
-    border: none;
-    background-color: transparent;
-}
-#artist-search:focus{
-    outline: none;
-}
-#filter-sort{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    #artist-search{
+        height: 3em;
+    }
+    #filter-sort{
+        padding-top: 17vh;
+    }
 }
 
 
 /* ========== MAIN CONTENT STYLES ========== */
-
-main{
-    margin-top: 5em;
-}
 
 #artist-detail-dialog{
     width: 100%;

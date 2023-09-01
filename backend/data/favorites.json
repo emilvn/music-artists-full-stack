@@ -1,1 +1,67 @@
-[]
+[
+  {
+    "id": "02",
+    "name": "Jimi Hendrix",
+    "birthdate": "1942-11-27",
+    "activeSince": "1963-01-01",
+    "genres": [
+      "Rock",
+      "Psychedelic Rock",
+      "Blues"
+    ],
+    "labels": [
+      "Experience Hendrix",
+      "MCA Records"
+    ],
+    "website": "https://www.jimihendrix.com/",
+    "image": "https://live.staticflickr.com/5612/31080158030_b1d5d137a7_b.jpg",
+    "roles": [
+      "Guitarist",
+      "Singer",
+      "Songwriter"
+    ],
+    "shortDescription": "Guitar virtuoso and rock icon"
+  },
+  {
+    "id": "06",
+    "name": "Roger Waters",
+    "birthdate": "1943-09-06",
+    "activeSince": "1965-03-01",
+    "genres": [
+      "Progressive Rock",
+      "Psychedelic Rock"
+    ],
+    "labels": [
+      "Harvest Records",
+      "Columbia Records"
+    ],
+    "website": "https://www.rogerwaters.com/",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Roger_Waters_en_el_Palau_Sant_Jordi_de_Barcelona_%28The_Wall_Live%29_-_04_%28crop%29.jpg",
+    "roles": [
+      "Singer",
+      "Bassist",
+      "Songwriter"
+    ],
+    "shortDescription": "Pink Floyd co-founder"
+  },
+  {
+    "id": "15",
+    "name": "Eddie Van Halen",
+    "birthdate": "1955-01-26",
+    "activeSince": "1972-02-01",
+    "genres": [
+      "Rock",
+      "Hard Rock"
+    ],
+    "labels": [
+      "Warner Bros. Records"
+    ],
+    "website": "https://www.van-halen.com/",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/a/a0/Eddie_Van_Halen_at_the_New_Haven_Coliseum_2.jpg",
+    "roles": [
+      "Guitarist",
+      "Songwriter"
+    ],
+    "shortDescription": "Guitar legend of Van Halen"
+  }
+]

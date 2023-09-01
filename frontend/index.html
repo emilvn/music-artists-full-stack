@@ -21,29 +21,29 @@
         <!-- Button to open the artist creation dialog -->
         <button id="add-artist-dialog-button"></button>
     </header>
+    <section id="filter-sort">
+        <!-- Sort select -->
+        <div>
+            <label for="artist-sort">Sort By</label>
+            <select id="artist-sort">
+                <option value="" selected></option>
+                <option value="name-ascending">Name (A-Z)</option>
+                <option value="name-descending">Name (Z-A)</option>
+                <option value="age-ascending">Age (ascending)</option>
+                <option value="age-descending">Age (descending)</option>
+            </select>
+        </div>
+        <!-- filter option -->
+        <div>
+            <label for="artist-filter-by__genre">Filter by genre</label>
+            <select id="artist-filter-by__genre">
+            </select>
+        </div>
+    </section>
 
     <!-- ========== MAIN CONTENT ========== -->
     <main>
         <!-- ========== SEARCH/SORT ========== -->
-        <section id="filter-sort">
-            <!-- Sort select -->
-            <div>
-                <label for="artist-sort">Sort By</label>
-                <select id="artist-sort">
-                    <option value="" selected></option>
-                    <option value="name-ascending">Name (A-Z)</option>
-                    <option value="name-descending">Name (Z-A)</option>
-                    <option value="age-ascending">Age (ascending)</option>
-                    <option value="age-descending">Age (descending)</option>
-                </select>
-            </div>
-            <!-- filter option -->
-            <div>
-                <label for="artist-filter-by__genre">Filter by genre</label>
-                <select id="artist-filter-by__genre">
-                </select>
-            </div>
-        </section>
 
         <!-- ========== FAVORITE ARTISTS SECTION ========== -->
         <div>

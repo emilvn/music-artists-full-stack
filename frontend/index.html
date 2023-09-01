@@ -13,20 +13,19 @@
     <!-- ========== HEADER ========== -->
     <header>
         <h1>Music Artists</h1>
-
+        <!-- Search input -->
+        <div id="artist-search-div">
+            <label for="artist-search"><img src="icons/search-icon.png" alt="" style="max-width: 1.5em;"></label>
+            <input type="search" id="artist-search" name="search" placeholder="Search artists by name..." />
+        </div>
         <!-- Button to open the artist creation dialog -->
-        <button id="add-artist-dialog-button">Add Artist</button>
+        <button id="add-artist-dialog-button"></button>
     </header>
 
     <!-- ========== MAIN CONTENT ========== -->
     <main>
         <!-- ========== SEARCH/SORT ========== -->
-        <section id="artist-search-div">
-            <!-- Search input -->
-            <div>
-                <label for="artist-search">Søg:</label>
-                <input type="search" id="artist-search" name="search" placeholder="Search by name" />
-            </div>
+        <section id="filter-sort">
             <!-- Sort select -->
             <div>
                 <label for="artist-sort">Sort By</label>

@@ -32,23 +32,25 @@ function displayArtist(artist, containerID){
 		<article>
             <div>
                 <h3>${artist.name}</h3>
-                <img src="${artist.image}" alt="">
-            </div>
-            <div>
                 <p>${artist.shortDescription}</p>
                 <p>Date of birth: ${artist.birthdate}</p>
-                <a href="${artist.website}">${artist.website}</a>
             </div>
-            <div>
-            	<button class="edit-button">Edit</button>
-            	<button class="delete-button">Delete</button>
-            	<button class="favorite-button">${(containerID === "#favorites")?"Remove from favorites":"Add to favorites"}</button>
+            <div class="artist-website">
+            	<div>
+                	<a href="${artist.website}">${artist.website}</a>
+				</div>
+			</div>
+			<div class="artist-buttons">
+				<button class="edit-button">Edit</button>
+				<button class="delete-button">Delete</button>
+				<button class="favorite-button">${(containerID === "#favorites")?"Remove from favorites":"Add to favorites"}</button>
 			</div>
         </article>
 	`;
 	container.insertAdjacentHTML("beforeend", myHTML);
-
 	const artistArticle = container.querySelector("article:last-child");
+	artistArticle.style.backgroundImage = `url(${artist.image})`;
+
 	setArtistEventListeners(artistArticle, artist, containerID);
 	addToolTip(artistArticle);
 }

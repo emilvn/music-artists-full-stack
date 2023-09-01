@@ -30,7 +30,7 @@ function displayArtist(artist, containerID){
 	const container = document.querySelector(containerID);
 	const myHTML = /*html*/`
 		<article>
-            <div>
+            <div class="artist-info">
                 <h3>${artist.name}</h3>
                 <p>${artist.shortDescription}</p>
                 <p>Date of birth: ${artist.birthdate}</p>

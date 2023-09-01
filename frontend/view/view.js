@@ -41,18 +41,23 @@ function displayArtist(artist, containerID){
 				</div>
 			</div>
 			<div class="artist-buttons">
-				<button class="edit-button">Edit</button>
-				<button class="delete-button">Delete</button>
-				<button class="favorite-button">${(containerID === "#favorites")?"Remove from favorites":"Add to favorites"}</button>
+				<button class="edit-button"><img src="icons/edit-icon.png" alt="Edit"></button>
+				<button class="delete-button"><img src="icons/delete-icon.png" alt="Delete"></button>
+				<button class="favorite-button">${(containerID === "#favorites")?"<img src=\"icons/remove-favorite-icon.png\" alt=\"Remove from favorites\">":"<img src=\"icons/add-favorite-icon.png\" alt=\"Add to favorites\">"}</button>
 			</div>
         </article>
 	`;
 	container.insertAdjacentHTML("beforeend", myHTML);
 	const artistArticle = container.querySelector("article:last-child");
 	artistArticle.style.backgroundImage = `url(${artist.image})`;
-
+	const editButton = artistArticle.querySelector(".edit-button");
+	const deleteButton = artistArticle.querySelector(".delete-button");
+	const favouriteButton = artistArticle.querySelector(".favorite-button");
 	setArtistEventListeners(artistArticle, artist, containerID);
-	addToolTip(artistArticle);
+	addToolTip(artistArticle, "Show more details");
+	addToolTip(editButton, "Edit artist details");
+	addToolTip(deleteButton, "Delete artist");
+	addToolTip(favouriteButton, (containerID === "#favorites")?"Remove from favourites":"Add to favourites");
 }
 
 // scroll to top of page. //
@@ -212,21 +217,22 @@ export function showToastMessage(message, mode="success") {
 }
 
 /* ========== TOOLTIP FOR DETAIL DIALOG ========== */
-function addToolTip(artistArticle) {
+function addToolTip(element, text) {
 	const tooltip = document.querySelector("#detail-tooltip");
-
 	function updateTooltipPos(event){
 		tooltip.style.top = event.clientY - 10 + "px";
 		tooltip.style.left = event.clientX + 10 + "px";
 	}
 
-	artistArticle.addEventListener("mouseenter", () => {
+	element.addEventListener("mouseenter", () => {
+		tooltip.textContent = text;
 		tooltip.style.display = "block";
-		artistArticle.addEventListener("mousemove", updateTooltipPos);
+		element.addEventListener("mousemove", updateTooltipPos);
 	});
-	artistArticle.addEventListener("mouseleave", () => {
-		tooltip.style.display = "none";
-		artistArticle.removeEventListener("mousemove", updateTooltipPos);
+	element.addEventListener("mouseleave", () => {
+		tooltip.textContent = "Show more details";
+		if(element.tagName === "ARTICLE") tooltip.style.display = "none";
+		element.removeEventListener("mousemove", updateTooltipPos);
 	});
 	window.addEventListener("scroll", updateTooltipPos);
 }

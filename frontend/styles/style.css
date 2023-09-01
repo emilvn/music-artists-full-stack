@@ -24,8 +24,6 @@ body{
 button{
     background-color: var(--white);
     border-radius: 0.5em;
-    min-height: 2em;
-    min-width: 4em;
     border: none;
     cursor: pointer;
 }
@@ -52,6 +50,8 @@ header{
     user-select: none;
 }
 #add-artist-dialog-button{
+    min-height: 2em;
+    min-width: 4em;
     height: 100%;
     width: auto;
     background-image: url("../icons/plus-icon.png");
@@ -159,7 +159,13 @@ form fieldset{
     color: var(--white);
     text-shadow: 1px 1px 0 var(--dark-blue), 0 0 0 var(--dark-blue);
 }
-
+.grid-container article button{
+    width: 3em;
+    height: 3em;
+}
+.grid-container article button img{
+    width: 100%;
+}
 .artist-website{
     position: absolute;
     bottom: 0;
@@ -172,6 +178,14 @@ form fieldset{
 }
 .artist-website div{
     text-align: center;
+}
+.artist-buttons{
+    position: absolute;
+    top: 0.5em;
+    right: 0.5em;
+    display: grid;
+    gap: 0.5em;
+    grid-template-columns: auto auto auto;
 }
 
 /* ========== TOAST MESSAGE STYLES ========== */

@@ -1,13 +1,14 @@
 /* ========== IMPORTS ========== */
-// controller functions from "./controller.js".//
+// artist route handlers //
 import {
-	addArtistData, addFavorite,
+	addArtistData,
 	deleteArtist,
 	getArtistsData,
-	getFavoritesData,
-	getSpecificArtist, removeFromFavorites,
+	getSpecificArtist,
 	updateArtistData
-} from "./controller.js";
+} from "./controllers/artistcontroller.js";
+// favorite artist route handlers //
+import {addFavorite, getFavoritesData, removeFromFavorites} from "./controllers/favoritescontroller.js";
 
 import express from "express";
 

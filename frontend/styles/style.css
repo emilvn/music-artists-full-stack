@@ -190,8 +190,11 @@ main{
     background-color: var(--green);
     color: var(--white);
     font-size: 1.2em;
-    border-radius: 3em;
     padding: 0 1em 0 1em;
+}
+.artist-form__clear-button{
+    height: 3em;
+    width: 6em;
 }
 #artist-detail-dialog article{
     position: relative;

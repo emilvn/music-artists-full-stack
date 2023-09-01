@@ -83,7 +83,7 @@
                 <button type="reset">Clear</button>
                 </fieldset>
             </form>
-            <button class="dialog-close-button">Close</button>
+            <button class="dialog-close-button"><img src="icons/close-icon.png" alt="Close"></button>
         </dialog>
 
         <!-- ========== ARTIST UPDATE DIALOG ========== -->
@@ -113,7 +113,7 @@
                     <button type="reset">Clear</button>
                 </fieldset>
             </form>
-            <button class="dialog-close-button">Close</button>
+            <button class="dialog-close-button"><img src="icons/close-icon.png" alt="Close"></button>
         </dialog>
 
         <!-- ========== ARTIST DETAIL DIALOG ========== -->
@@ -128,7 +128,6 @@
                         <p><span id="detail-artist__short-description" class="artist-detail"></span></p>
                         <p><b>Date of birth: </b><span id="detail-artist__date-of-birth" class="artist-detail"></span></p>
                         <p><b>Active since: </b><span id="detail-artist__active-since" class="artist-detail"></span></p>
-                        <a href="" id="detail-artist__website" class="artist-detail"></a>
                     </div>
                 </div>
                 <div>
@@ -147,7 +146,11 @@
                         </div>
                     </div>
                 </div>
-                <button id="detail-dialog__close-button">Close</button>
+                <div id="detail-dialog__buttons">
+                    <button><a href="" id="detail-artist__website" class="artist-detail"><img
+                            src="icons/website-icon.png" alt=""></a></button>
+                    <button id="detail-dialog__close-button" class="dialog-close-button"><img src="icons/close-icon.png" alt="Close"></button>
+                </div>
             </article>
         </dialog>
     </main>

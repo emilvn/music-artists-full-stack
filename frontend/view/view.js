@@ -103,8 +103,6 @@ export function showDetailDialog(artist){
 		.textContent = artist.activeSince;
 	dialog.querySelector("#detail-artist__website")
 		.href = artist.website;
-	dialog.querySelector("#detail-artist__website")
-		.textContent = artist.website;
 
 	// Generate lists for genres, roles, and labels. //
 	generateListFromArray(artist.genres, dialog.querySelector("#detail-artist__genres"));
@@ -116,7 +114,9 @@ export function showDetailDialog(artist){
 
 // function for clearing detail dialog info before showing new artist //
 function clearDetailDialog(){
-	document.querySelectorAll(".artist-detail").forEach(detail => detail.innerHTML = "");
+	document.querySelectorAll(".artist-detail").forEach(detail => {
+		if(detail.tagName !== "A") detail.innerHTML = "";
+	});
 }
 
 // function for generating and inserting html list elements from an array into a container //

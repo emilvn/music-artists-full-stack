@@ -126,6 +126,33 @@ form fieldset{
     text-align: left;
 }
 
+dialog{
+    width: 100%;
+    border: none;
+    position: fixed;
+    max-height: 100vh;
+    overflow: hidden;
+}
+dialog article{
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+dialog img{
+    width: 100%;
+}
+#detail-dialog__buttons{
+    position: absolute;
+    top: 0.5em;
+    right: 0.5em;
+    display: grid;
+    gap: 0.5em;
+    grid-template-columns: auto auto;
+}
+#detail-dialog__buttons button{
+
+}
+
 
 /* ========== GRID STYLES ========== */
 
@@ -182,11 +209,11 @@ form fieldset{
 .grid-container article:hover{
     box-shadow: 0 0 10px 0 var(--white) inset;
 }
-.grid-container article button{
+.grid-container article button, #detail-dialog__buttons button{
     width: 3em;
     height: 3em;
 }
-.grid-container article button img{
+.grid-container article button img, #detail-dialog__buttons button img{
     width: 100%;
 }
 .artist-website div{

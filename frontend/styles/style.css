@@ -132,14 +132,30 @@ dialog{
     position: fixed;
     max-height: 100vh;
     overflow: hidden;
+    background-color: var(--light-grey);
 }
 dialog article{
     position: relative;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    color: var(--dark-blue);
+}
+#detail-artist__lists{
+    margin-top: 3em;
+    padding: 1em;
+}
+#detail-artist__lists ul{
+    list-style-type: none;
+}
+#detail-artist__lists ul>li:before{
+    content: "-";
 }
 dialog img{
+    border-radius: 0.5em;
     width: 100%;
+}
+dialog::backdrop{
+    background-color: rgba(0, 0, 0, 0.63);
 }
 #detail-dialog__buttons{
     position: absolute;

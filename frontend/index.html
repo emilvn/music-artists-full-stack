@@ -59,30 +59,67 @@
         <!-- ========== ARTIST CREATION DIALOG ========== -->
         <dialog class="form-dialog">
             <form action="" id="form-create" class="artist-form">
-                <h2>Add artist</h2>
-                <fieldset>
-                    <label for="name-create">Name</label>
-                    <input type="text" name="name" id="name-create">
-                    <label for="birthdate-create">Date of birth</label>
-                    <input type="date" name="birthdate" id="birthdate-create">
-                    <label for="activeSince-create">Active since</label>
-                    <input type="date" name="activeSince" id="activeSince-create">
-                    <label for="genres-create">Genres</label>
-                    <textarea name="genres" id="genres-create" cols="20" rows="3" placeholder="Rock, Pop, etc."></textarea>
-                    <label for="labels-create">Labels</label>
-                    <textarea name="labels" id="labels-create" cols="20" rows="3" placeholder="Sony, Death Row, etc."></textarea>
-                    <label for="roles-create">Roles</label>
-                    <textarea name="roles" id="roles-create" cols="20" rows="3" placeholder="Guitarist, singer, etc."></textarea>
-                    <label for="shortDescription-create">Short description</label>
-                    <textarea name="shortDescription" id="shortDescription-create" cols="20" rows="3"></textarea>
-                    <label for="website-create">Website</label>
-                    <input type="url" name="website" id="website-create">
-                    <label for="image-create">Image URL</label>
-                    <input type="url" name="image" id="image-create">
-                <button>Submit</button>
-                <button type="reset">Clear</button>
+                <h2>Add a new artist</h2>
+                <fieldset class="form-dialog__artist-personal-info">
+                    <legend>Personal information</legend>
+                    <div>
+                        <label for="name-create">Name</label>
+                        <br>
+                        <input type="text" name="name" id="name-create">
+                    </div>
+                    <div>
+                        <label for="birthdate-create">Date of birth</label>
+                        <br>
+                        <input type="date" name="birthdate" id="birthdate-create">
+                    </div>
+                    <div class="artist-form-shortdescription-div">
+                        <label for="shortDescription-create">Short description</label>
+                        <br>
+                        <textarea name="shortDescription" id="shortDescription-create" cols="20" rows="3"></textarea>
+                    </div>
                 </fieldset>
-                <button class="dialog-close-button" type="button"><img src="icons/close-icon.png" alt="Close"></button>
+                <fieldset class="form-dialog__career-info">
+                    <legend>Career information</legend>
+                    <div>
+                        <label for="activeSince-create">Active since</label>
+                        <br>
+                        <input type="date" name="activeSince" id="activeSince-create">
+                    </div>
+                    <div>
+                        <label for="genres-create">Genres</label>
+                        <br>
+                        <textarea name="genres" id="genres-create" cols="20" rows="3" placeholder="Rock, Pop, etc."></textarea>
+                    </div>
+                    <div>
+                        <label for="labels-create">Labels</label>
+                        <br>
+                        <textarea name="labels" id="labels-create" cols="20" rows="3" placeholder="Sony, Death Row, etc."></textarea>
+                    </div>
+                    <div>
+                        <label for="roles-create">Roles</label>
+                        <br>
+                        <textarea name="roles" id="roles-create" cols="20" rows="3" placeholder="Guitarist, singer, etc."></textarea>
+                    </div>
+                </fieldset>
+                <fieldset class="form-dialog__artist-links">
+                    <legend>Links</legend>
+                    <div>
+                        <label for="website-create">Website</label>
+                        <br>
+                        <input type="url" name="website" id="website-create">
+                    </div>
+                    <div>
+                        <label for="image-create">Image URL</label>
+                        <br>
+                        <input type="url" name="image" id="image-create">
+                    </div>
+                </fieldset>
+                <div class="artist-form__buttons">
+                    <div></div>
+                    <button class="artist-form__submit-button">Add artist</button>
+                    <button type="reset" class="artist-form__clear-button">Clear form</button>
+                    <button class="dialog-close-button" type="button"><img src="icons/close-icon.png" alt="Close"></button>
+                </div>
             </form>
         </dialog>
 
@@ -109,8 +146,8 @@
                     <input type="url" name="website" id="website-update">
                     <label for="image-update">Image URL</label>
                     <input type="url" name="image" id="image-update">
-                    <button>Submit</button>
-                    <button type="reset">Clear</button>
+                    <button class="artist-form__submit-button">Submit</button>
+                    <button type="reset" class="artist-form__clear-button">Clear</button>
                 </fieldset>
                 <button class="dialog-close-button" type="button"><img src="icons/close-icon.png" alt="Close"></button>
             </form>

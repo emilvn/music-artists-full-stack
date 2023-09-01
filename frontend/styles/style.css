@@ -116,7 +116,6 @@ main{
     margin-top: 5em;
 }
 
-
 #artist-detail-dialog{
     width: 100%;
     max-width: 700px;
@@ -135,28 +134,64 @@ main{
 }
 .form-dialog{
     background-color: var(--white);
-
+    padding: 0 0 0.5em 0;
+    border: none;
+    border-radius: 0.5em;
+    overflow: hidden;
+    max-height: 100vh;
 }
 .artist-form{
     position: relative;
     width: 100%;
+    height: 100%;
     color: var(--dark-blue);
+}
+.artist-form input, .artist-form textarea{
+    width: 100%;
+    border: none;
+    min-height: 2em;
+    border-radius: 0.5em;
+}
+.artist-form-shortdescription-div{
+    grid-column: span 2;
+}
+.artist-form-shortdescription-div textarea{
+    width: 100%;
+}
+.artist-form h2{
+    text-align: center;
+    font-size: 1em;
 }
 .artist-form .dialog-close-button{
     position: absolute;
-    top: 0.5em;
-    right: 0.5em;
+    top: 0;
+    right: 1em;
 }
-
 .artist-form fieldset{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 0.5em;
+    row-gap: 0.5em;
+    column-gap: 1em;
     text-align: left;
     border: none;
     background-color: var(--light-grey);
     color: var(--dark-blue);
     border-radius: 0.5em;
+}
+.artist-form__buttons{
+    padding-top: 0.5em;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.artist-form__submit-button, .artist-form__clear-button{
+    min-height: 2em;
+}
+.artist-form__submit-button{
+    background-color: var(--green);
+    color: var(--white);
+    font-size: 1.2em;
+    border-radius: 3em;
+    padding: 0 1em 0 1em;
 }
 #artist-detail-dialog article{
     position: relative;

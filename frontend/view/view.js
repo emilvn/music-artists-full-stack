@@ -54,10 +54,10 @@ function displayArtist(artist, containerID){
 	const deleteButton = artistArticle.querySelector(".delete-button");
 	const favouriteButton = artistArticle.querySelector(".favorite-button");
 	setArtistEventListeners(artistArticle, artist, containerID);
-	addToolTip(artistArticle, "Show more details");
-	addToolTip(editButton, "Edit artist details");
-	addToolTip(deleteButton, "Delete artist");
-	addToolTip(favouriteButton, (containerID === "#favorites")?"Remove from favourites":"Add to favourites");
+	addToolTip(artistArticle, "Show more details", false);
+	addToolTip(editButton, "Edit artist details", true);
+	addToolTip(deleteButton, "Delete artist", true);
+	addToolTip(favouriteButton, (containerID === "#favorites")?"Remove from favourites":"Add to favourites", true);
 }
 
 // scroll to top of page. //
@@ -217,11 +217,11 @@ export function showToastMessage(message, mode="success") {
 }
 
 /* ========== TOOLTIP FOR DETAIL DIALOG ========== */
-function addToolTip(element, text) {
+export function addToolTip(element, text, isInsideAnotherElementWithTooltip) {
 	const tooltip = document.querySelector("#detail-tooltip");
 	function updateTooltipPos(event){
 		tooltip.style.top = event.clientY - 10 + "px";
-		tooltip.style.left = event.clientX + 10 + "px";
+		tooltip.style.left = event.clientX - 110 + "px";
 	}
 
 	element.addEventListener("mouseenter", () => {
@@ -231,7 +231,7 @@ function addToolTip(element, text) {
 	});
 	element.addEventListener("mouseleave", () => {
 		tooltip.textContent = "Show more details";
-		if(element.tagName === "ARTICLE") tooltip.style.display = "none";
+		if(!isInsideAnotherElementWithTooltip) tooltip.style.display = "none";
 		element.removeEventListener("mousemove", updateTooltipPos);
 	});
 	window.addEventListener("scroll", updateTooltipPos);

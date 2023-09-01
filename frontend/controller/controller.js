@@ -9,6 +9,7 @@ import {
 	updateArtist
 } from "../model/model.js";
 import {
+	addToolTip,
 	displayArtists, displayFavorites,
 	filterArtists,
 	inputSearchChanged,
@@ -24,8 +25,9 @@ export let selectedArtist;
 // set event listeners for buttons and search/sort //
 export function setEventListeners(){
 	// add artist button //
-	document.querySelector("#add-artist-dialog-button")
-		.addEventListener("click", showCreateDialog);
+	const addArtistButton = document.querySelector("#add-artist-dialog-button");
+	addArtistButton.addEventListener("click", showCreateDialog);
+	addToolTip(addArtistButton, "Add new artist", false);
 
 	// search bar //
 	const searchBar = document.querySelector("#artist-search");

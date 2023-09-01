@@ -50,19 +50,33 @@ header{
     user-select: none;
 }
 #add-artist-dialog-button{
-    min-height: 2em;
-    min-width: 4em;
+    aspect-ratio: 1;
+    min-height: 4em;
     height: 100%;
-    width: auto;
     background-image: url("../icons/plus-icon.png");
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
     background-color: var(--white);
 }
 
-@media (max-width: 600px) {
+@media (max-width: 420px) {
     header {
         text-align: left;
         height: auto;
+        display: grid;
+        grid-template-rows: auto auto;
+        grid-template-columns: auto auto;
+    }
+    header h1{
+        width: fit-content;
+    }
+    #add-artist-dialog-button{
+        grid-row: 1/2;
+        grid-column: 2/2;
+        height: unset;
+    }
+    #artist-search-div{
+        grid-column: span 2;
     }
 }
 
@@ -149,7 +163,6 @@ form fieldset{
 }
 
 .grid-container article{
-    box-shadow: 0 0 10px 0 black;
     padding: 1em 1em 0 1em;
     cursor: pointer;
     position: relative;
@@ -158,6 +171,9 @@ form fieldset{
     background-size: cover;
     color: var(--white);
     text-shadow: 1px 1px 0 var(--dark-blue), 0 0 0 var(--dark-blue);
+}
+.grid-container article:hover{
+    box-shadow: 0 0 10px 0 var(--white) inset;
 }
 .grid-container article button{
     width: 3em;
@@ -233,6 +249,8 @@ form fieldset{
 
 /* ========== DETAIL DIALOG TOOLTIP ========== */
 .tooltip {
+    transform-origin: bottom right;
+    float: right;
     position: fixed;
     top: 0;
     left: 0;
@@ -243,6 +261,7 @@ form fieldset{
     font-size: 12px;
     pointer-events: none;
     border-radius: 0.5em;
+    z-index: 99999;
 }
 
 /* ========== FOOTER STYLES ========== */

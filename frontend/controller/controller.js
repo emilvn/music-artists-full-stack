@@ -106,7 +106,6 @@ export async function submitArtistCreate(event){
 	const response = await addArtist(newArtist);
 	if(response.ok){
 		displayArtists(artists);
-		scrollToTop();
 		showToastMessage("Artist added successfully!" ,"success");
 		form.reset();
 		form.parentElement.close();
@@ -118,7 +117,6 @@ export async function submitFavoriteArtist(artist){
 	const response = await addToFavorites(artist);
 	if (response.ok){
 		displayFavorites(favoriteArtists);
-		scrollToTop();
 		showToastMessage(`${artist.name} added to favorites!`, "success");
 	}
 }
@@ -133,7 +131,6 @@ export async function submitArtistUpdate(event){
 	const response = await updateArtist(updatedArtist);
 	if(response.ok){
 		displayArtists(artists);
-		scrollToTop();
 		showToastMessage(`${selectedArtist.name} updated successfully!`,"success");
 		form.reset();
 		form.parentElement.close();

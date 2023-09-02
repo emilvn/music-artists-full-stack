@@ -119,10 +119,15 @@ export async function submitArtistCreate(event){
 
 // add to favorites clicked //
 export async function submitFavoriteArtist(artist){
-	const response = await addToFavorites(artist);
-	if (response.ok){
-		displayFavorites(favoriteArtists);
-		showToastMessage(`${artist.name} added to favorites!`, "success");
+	try{
+		const response = await addToFavorites(artist);
+		if (response.ok){
+			displayFavorites(favoriteArtists);
+			showToastMessage(`${artist.name} added to favorites!`, "success");
+		}
+	}
+	catch (err){
+		showToastMessage(`Something went wrong. Error: ${err}`, "error");
 	}
 }
 

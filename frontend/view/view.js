@@ -1,7 +1,7 @@
 /* ========== IMPORTS ========== */
 import {
 	removeSubmitEvent, setArtistEventListeners, setFormEventListeners,
-	submitArtistCreate,
+	submitArtistCreate, submitArtistDelete,
 	submitArtistUpdate,
 } from "../controller/controller.js";
 import { artists, favoriteArtists} from "../model/model.js";
@@ -82,6 +82,12 @@ export function showCreateDialog(){
 export function showUpdateDialog(){
 	const form = document.querySelector("#form-update");
 	setFormEventListeners(form, submitArtistUpdate);
+	form.parentElement.showModal();
+}
+
+export function showDeleteDialog(){
+	const form = document.querySelector("#form-delete");
+	setFormEventListeners(form, submitArtistDelete);
 	form.parentElement.showModal();
 }
 

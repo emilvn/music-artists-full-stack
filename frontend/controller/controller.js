@@ -13,7 +13,7 @@ import {
 	displayArtists, displayFavorites,
 	filterArtists,
 	inputSearchChanged,
-	showCreateDialog, showDetailDialog, showFilterMenu, showToastMessage,
+	showCreateDialog, showDeleteDialog, showDetailDialog, showFilterMenu, showToastMessage,
 	showUpdateDialog, sortAlphabetically, sortReverseAlphabetically
 } from "../view/view.js";
 
@@ -62,7 +62,8 @@ export function setArtistEventListeners(artistArticle, artist, containerID){
 	artistArticle.querySelector(".delete-button")
 		.addEventListener("click", (e)=> {
 			e.stopPropagation();
-			submitArtistDelete(artist);
+			document.querySelector("#form-delete").dataset.id = artist.id;
+			showDeleteDialog();
 		});
 	artistArticle.querySelector(".favorite-button")
 		.addEventListener("click", (e)=> {
@@ -143,7 +144,9 @@ export async function submitArtistUpdate(event){
 /* ========== DELETE ========== */
 
 // delete artist button clicked //
-export async function submitArtistDelete(artist){
+export async function submitArtistDelete(event){
+	const form = event.target;
+	const artist = artists.find(artist => artist.id === form.dataset.id);
 	const response = await deleteArtist(artist);
 	if(response.ok){
 		displayArtists(artists);

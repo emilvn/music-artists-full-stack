@@ -185,16 +185,14 @@
         <!-- ========== ARTIST DELETE DIALOG ========== -->
         <dialog id="dialog-delete" class="form-dialog">
             <form action="" id="form-delete" class="artist-form">
-                <div>
-                    <div>
-                        <span>Are you sure you want to delete <span id="name-delete"></span> from the site?</span>
-                    </div>
-                    <div class="artist-form__buttons">
-                        <button class="artist-form__submit-button">Yes</button>
-                        <button type="reset" class="artist-form__cancel-button">Cancel</button>
-                        <button class="dialog-close-button" type="button"><img src="icons/close-icon.png" alt="Close"></button>
-                    </div>
+                <div id="form-delete__text">
+                    <span>Are you sure you want to delete "<span id="name-delete"></span>" from the site?</span>
                 </div>
+                <div class="artist-form__buttons" id="form-delete__buttons">
+                    <button class="artist-form__submit-button">Yes</button>
+                    <button type="reset" class="artist-form__cancel-button" id="form-delete__cancel-button">Cancel</button>
+                </div>
+                <button class="dialog-close-button" type="button" id="form-delete__close-button"><img src="icons/close-icon.png" alt="Close"></button>
             </form>
         </dialog>
         <!-- ========== ARTIST DETAIL DIALOG ========== -->

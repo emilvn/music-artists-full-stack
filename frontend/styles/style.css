@@ -244,9 +244,50 @@ main{
     width: 6em;
 }
 #dialog-delete{
-    padding: 2em;
     min-height: 25vh;
     min-width: 50vw;
+    padding: 1em;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+#form-delete{
+    padding: 1em;
+    position: relative;
+    min-width: 50vw;
+    height: 25vh;
+}
+#form-delete__text{
+    margin-top: 10%;
+    font-size: 1.4em;
+}
+#form-delete__buttons{
+    position: absolute;
+    grid-template-columns: 1fr 1fr;
+    width: calc(50% - 1em);
+    bottom: 0;
+    left: 25%;
+    gap: 1em;
+}
+#form-delete__close-button{
+    top: 0;
+    right: 0;
+}
+#form-delete__cancel-button{
+    background-color: var(--light-grey);
+}
+@media (max-width: 420px) {
+    #dialog-delete{
+        height: 40vh;
+    }
+    #form-delete{
+        height: 80%;
+    }
+}
+@media (min-width: 1500px){
+    #form-delete__text{
+        font-size: 2em;
+    }
 }
 #artist-detail-dialog article{
     position: relative;

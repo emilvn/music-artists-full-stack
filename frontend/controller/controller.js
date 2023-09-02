@@ -63,6 +63,7 @@ export function setArtistEventListeners(artistArticle, artist, containerID){
 		.addEventListener("click", (e)=> {
 			e.stopPropagation();
 			document.querySelector("#form-delete").dataset.id = artist.id;
+			document.querySelector("#name-delete").textContent = artist.name;
 			showDeleteDialog();
 		});
 	artistArticle.querySelector(".favorite-button")

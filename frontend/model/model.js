@@ -138,10 +138,6 @@ export async function deleteArtist(artistToDelete){
 		});
 		if(response.ok){
 			artists = await response.json();
-			// if deleted artist in favorites, remove from favorites //
-			if(favoriteArtists.find(favorite => favorite.id === artistToDelete.id)){
-				submitRemoveFromFavorites(artistToDelete);
-			}
 		}
 		return response;
 	}

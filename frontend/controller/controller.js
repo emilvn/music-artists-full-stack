@@ -164,14 +164,19 @@ export async function submitArtistUpdate(event){
 
 // delete artist button clicked //
 export async function submitArtistDelete(event){
+	event.preventDefault();
 	const form = event.target;
 	const artist = artists.find(artist => artist.id === form.dataset.id);
 	try{
 		const response = await deleteArtist(artist);
 		if(response.ok){
 			displayArtists(artists);
-			displayFavorites(favoriteArtists);
+			// if deleted artist in favorites, remove from favorites //
+			if(favoriteArtists.find(favorite => favorite.id === artist.id)){
+				submitRemoveFromFavorites(artist);
+			}
 			showToastMessage( `${artist.name} deleted successfully!`, "success");
+			form.parentElement.close();
 		}
 	}
 	catch (err){

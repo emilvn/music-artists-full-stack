@@ -22,21 +22,13 @@
         <!-- Button to open the artist creation dialog -->
         <button id="add-artist-dialog-button"></button>
     </header>
-    <section id="filter-sort">
+    <section id="filter-sort" class="filter-sort hidden">
         <!-- Sort select -->
-        <div>
-            <label for="artist-sort">Sort By</label>
-            <select id="artist-sort">
-                <option value="" selected></option>
-                <option value="name-ascending">Name (A-Z)</option>
-                <option value="name-descending">Name (Z-A)</option>
-                <option value="age-ascending">Age (ascending)</option>
-                <option value="age-descending">Age (descending)</option>
-            </select>
-        </div>
+        <div id="alphabetical-sort"><img src="icons/alphabetical-icon.png" alt=""></div>
+        <div id="reverse-alphabetical-sort"><img src="icons/reverse-alphabetical-icon.png" alt=""></div>
         <!-- filter option -->
         <div>
-            <label for="artist-filter-by__genre">Filter by genre</label>
+            <label for="artist-filter-by__genre">Genre</label>
             <select id="artist-filter-by__genre">
             </select>
         </div>

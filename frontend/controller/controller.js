@@ -13,9 +13,8 @@ import {
 	displayArtists, displayFavorites,
 	filterArtists,
 	inputSearchChanged,
-	inputSortChanged,
-	showCreateDialog, showDetailDialog, showToastMessage,
-	showUpdateDialog
+	showCreateDialog, showDetailDialog, showFilterMenu, showToastMessage,
+	showUpdateDialog, sortAlphabetically, sortReverseAlphabetically
 } from "../view/view.js";
 
 export let selectedArtist;
@@ -35,10 +34,12 @@ export function setEventListeners(){
 	searchBar.addEventListener("keyup", inputSearchChanged);
 	const filterButton = document.querySelector("#filter-sort-button");
 	addToolTip(filterButton, "Show filter options", false);
+	filterButton.addEventListener("click", showFilterMenu);
 
-	// sort select //
-	document.querySelector("#artist-sort")
-		.addEventListener("change", inputSortChanged);
+	// sort buttons //
+	sortAlphabetically();
+	document.querySelector("#alphabetical-sort").addEventListener("click", sortAlphabetically);
+	document.querySelector("#reverse-alphabetical-sort").addEventListener("click", sortReverseAlphabetically);
 
 	document.querySelector("#artist-filter-by__genre")
 		.addEventListener("change", filterArtists);

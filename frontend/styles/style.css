@@ -24,7 +24,6 @@ a{
     text-decoration: none;
     color: var(--dark-blue);
 }
-
 /* ========== BUTTON STYLES ========== */
 
 button{
@@ -33,7 +32,8 @@ button{
     border: none;
     cursor: pointer;
 }
-button:hover{
+button:hover, #filter-sort-button:hover,
+#reverse-alphabetical-sort:hover, #alphabetical-sort:hover{
     box-shadow: 0 0 2px 0 black inset;
 }
 
@@ -42,7 +42,6 @@ button:hover{
 header{
     position: fixed;
     width: 100%;
-    max-height: 15vh;
     height: 10vh;
     top: 0;
     left: 0;
@@ -65,7 +64,7 @@ header{
     background-color: var(--white);
 }
 #add-artist-dialog-button:hover{
-    background-color: var(--orange);
+    background-color: var(--light-grey);
 }
 
 #artist-search-div{
@@ -81,6 +80,7 @@ header{
 #artist-search{
     height: 4em;
     min-width: 30vw;
+    width: 100%;
     border-radius: 3em;
     border: none;
     background-color: transparent;
@@ -88,16 +88,43 @@ header{
 #artist-search:focus{
     outline: none;
 }
-#filter-sort{
-    background-color: var(--white);
-    width: fit-content;
-    position: absolute;
-    height: 20vh;
-    top: 5em;
-
+.filter-sort{
+    display: flex;
+    background-color: rgba(255, 255, 255, 0.77);
+    width: 100%;
+    position: fixed;
+    top: calc(12vh + 0.5em);
+    padding: 0.5em 0.5em 0.5em;
     z-index: 999999;
-    display: grid;
-    grid-template-rows: auto;
+    gap: 1em;
+    justify-content: center;
+}
+#filter-sort img{
+    max-width: 1.5em;
+}
+#filter-sort-button{
+    cursor: pointer;
+    border-radius: 0.5em;
+    padding: 2px;
+    justify-self: right;
+    background-color: var(--light-grey);
+}
+#artist-filter-by__genre{
+    width: 5em;
+    height: 2em;
+    background-color: var(--light-grey);
+    border-radius: 0.5em;
+}
+#alphabetical-sort, #reverse-alphabetical-sort{
+    display: inline-block;
+    border-radius: 0.5em;
+    cursor: pointer;
+    width: fit-content;
+    padding: 2px;
+}
+.button-inset{
+    box-shadow: 0 0 2px 0 black inset;
+    background-color: var(--light-grey);
 }
 @media (max-width: 420px) {
     header {
@@ -121,16 +148,19 @@ header{
     #artist-search{
         height: 3em;
     }
+    #filter-sort{
+        top: 20vh;
+    }
 }
 
 
 /* ========== MAIN CONTENT STYLES ========== */
 main{
-    padding-top: 15vh;
+    padding-top: 12vh;
 }
 @media (max-width: 420px) {
     main{
-        padding-top: 17vh;
+        padding-top: 25vh;
     }
 }
 #artist-detail-dialog{
@@ -452,4 +482,8 @@ footer{
 }
 footer a{
     color: var(--cyan);
+}
+
+.hidden{
+    display: none;
 }

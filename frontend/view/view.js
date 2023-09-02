@@ -138,34 +138,27 @@ export function inputSearchChanged(event){
 
 /* ========== SORT ========== */
 // Function to handle input change for sorting select. //
-export function inputSortChanged(event){
-	const sortValue = event.target.value;
-	let sortedArtists = [];
-	let sortedFavorites = [];
-	if(sortValue === "name-ascending"){
-		sortedArtists = artists.toSorted((a,b) => a.name.localeCompare(b.name));
-		sortedFavorites = favoriteArtists.toSorted((a,b) => a.name.localeCompare(b.name));
-	}
-	else if(sortValue === "name-descending"){
-		sortedArtists = artists.toSorted((a,b) => b.name.localeCompare(a.name));
-		sortedFavorites = favoriteArtists.toSorted((a,b) => b.name.localeCompare(a.name));
-	}
-	else if(sortValue === "age-descending"){
-		sortedArtists = artists.toSorted((a,b) => new Date(a.birthdate).getTime() - new Date(b.birthdate).getTime());
-		sortedFavorites = favoriteArtists.toSorted((a,b) => new Date(a.birthdate).getTime() - new Date(b.birthdate).getTime());
-	}
-	else if(sortValue === "age-ascending"){
-		sortedArtists = artists.toSorted((a,b) => new Date(b.birthdate).getTime() - new Date(a.birthdate).getTime());
-		sortedFavorites = favoriteArtists.toSorted((a,b) => new Date(b.birthdate).getTime() - new Date(a.birthdate).getTime());
-	}
-	if(sortValue !== ""){
-		displayArtists(sortedArtists);
-		displayFavorites(sortedFavorites);
-	}
-	else{
-		displayArtists(artists);
-		displayFavorites(favoriteArtists);
-	}
+export function sortAlphabetically(event){
+	const sortAlphabeticallyButton = document.querySelector("#alphabetical-sort");
+	const sortReverseButton = document.querySelector("#reverse-alphabetical-sort");
+	sortAlphabeticallyButton.classList.add("button-inset");
+	sortReverseButton.classList.remove("button-inset");
+
+	artists.sort((a,b) => a.name.localeCompare(b.name));
+	favoriteArtists.sort((a,b) => a.name.localeCompare(b.name));
+	displayArtists(artists);
+	displayFavorites(favoriteArtists);
+}
+export function sortReverseAlphabetically(event){
+	const sortReverseButton = document.querySelector("#reverse-alphabetical-sort");
+	const sortAlphabeticallyButton = document.querySelector("#alphabetical-sort");
+	sortReverseButton.classList.add("button-inset");
+	sortAlphabeticallyButton.classList.remove("button-inset");
+
+	artists.sort((a,b) => b.name.localeCompare(a.name));
+	favoriteArtists.sort((a,b) => b.name.localeCompare(a.name));
+	displayArtists(artists);
+	displayFavorites(favoriteArtists);
 }
 
 /* ========== FILTER ========== */
@@ -241,6 +234,19 @@ export function addToolTip(element, text, isInsideAnotherElementWithTooltip) {
 	window.addEventListener("scroll", updateTooltipPos);
 }
 
-export function showFilterDialog(){
-
+export function showFilterMenu(){
+	const filterButton = document.querySelector("#filter-sort-button");
+	filterButton.removeEventListener("click", showFilterMenu);
+	filterButton.addEventListener("click", hideFilterMenu);
+	filterButton.classList.add("button-inset");
+	const filterMenu = document.querySelector("#filter-sort");
+	filterMenu.classList.remove("hidden");
+}
+function hideFilterMenu(){
+	const filterButton = document.querySelector("#filter-sort-button");
+	filterButton.removeEventListener("click", hideFilterMenu);
+	filterButton.addEventListener("click", showFilterMenu);
+	filterButton.classList.remove("button-inset");
+	const filterMenu = document.querySelector("#filter-sort");
+	filterMenu.classList.add("hidden");
 }

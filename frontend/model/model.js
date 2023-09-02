@@ -1,6 +1,6 @@
 /* ========== IMPORTS ========== */
 import {endpoint} from "../main.js";
-import {selectedArtist} from "../controller/controller.js";
+import {selectedArtist, submitRemoveFromFavorites} from "../controller/controller.js";
 
 // global variables for artists and favorite artists //
 export let favoriteArtists = [];
@@ -102,6 +102,18 @@ export async function updateArtist(updatedArtist){
 	artistToUpdate.website = updatedArtist.website;
 	artistToUpdate.shortDescription = updatedArtist.shortDescription;
 
+	const artistInFavorites = favoriteArtists.find(artist => artist.id ===selectedArtist.id);
+	if(artistInFavorites){
+		artistInFavorites.name = updatedArtist.name;
+		artistInFavorites.birthdate = updatedArtist.birthdate;
+		artistInFavorites.activeSince = updatedArtist.activeSince;
+		artistInFavorites.image = updatedArtist.image;
+		artistInFavorites.genres = updatedArtist.genres;
+		artistInFavorites.labels = updatedArtist.labels;
+		artistInFavorites.roles = updatedArtist.roles;
+		artistInFavorites.website = updatedArtist.website;
+		artistInFavorites.shortDescription = updatedArtist.shortDescription;
+	}
 	try{
 		return await fetch(endpoint + "/artists/" + selectedArtist.id, {
 			method: "PUT",
@@ -126,6 +138,10 @@ export async function deleteArtist(artistToDelete){
 		});
 		if(response.ok){
 			artists = await response.json();
+			// if deleted artist in favorites, remove from favorites //
+			if(favoriteArtists.find(favorite => favorite.id === artistToDelete.id)){
+				submitRemoveFromFavorites(artistToDelete);
+			}
 		}
 		return response;
 	}

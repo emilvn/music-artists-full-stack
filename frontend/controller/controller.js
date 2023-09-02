@@ -170,6 +170,7 @@ export async function submitArtistDelete(event){
 		const response = await deleteArtist(artist);
 		if(response.ok){
 			displayArtists(artists);
+			displayFavorites(favoriteArtists);
 			showToastMessage( `${artist.name} deleted successfully!`, "success");
 		}
 	}

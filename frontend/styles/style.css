@@ -247,7 +247,6 @@ main{
     min-height: 25vh;
     min-width: 50vw;
     padding: 1em;
-    display: flex;
     align-content: center;
     justify-content: center;
 }

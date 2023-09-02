@@ -13,7 +13,7 @@ import {
 	displayArtists, displayFavorites,
 	filterArtists,
 	inputSearchChanged,
-	inputSortChanged, scrollToTop,
+	inputSortChanged,
 	showCreateDialog, showDetailDialog, showToastMessage,
 	showUpdateDialog
 } from "../view/view.js";

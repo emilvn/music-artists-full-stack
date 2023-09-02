@@ -240,3 +240,7 @@ export function addToolTip(element, text, isInsideAnotherElementWithTooltip) {
 	});
 	window.addEventListener("scroll", updateTooltipPos);
 }
+
+export function showFilterDialog(){
+
+}

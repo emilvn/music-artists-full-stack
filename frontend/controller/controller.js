@@ -33,6 +33,8 @@ export function setEventListeners(){
 	const searchBar = document.querySelector("#artist-search");
 	searchBar.addEventListener("search", inputSearchChanged);
 	searchBar.addEventListener("keyup", inputSearchChanged);
+	const filterButton = document.querySelector("#filter-sort-button");
+	addToolTip(filterButton, "Show filter options", false);
 
 	// sort select //
 	document.querySelector("#artist-sort")

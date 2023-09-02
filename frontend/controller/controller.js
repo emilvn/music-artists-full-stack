@@ -108,12 +108,18 @@ export async function submitArtistCreate(event){
 	event.preventDefault();
 	const form = event.target;
 	const newArtist = getArtistDataFromInput(form);
-	const response = await addArtist(newArtist);
-	if(response.ok){
-		displayArtists(artists);
-		showToastMessage("Artist added successfully!" ,"success");
-		form.reset();
-		form.parentElement.close();
+	try{
+		const response = await addArtist(newArtist);
+		if(response.ok){
+			displayArtists(artists);
+			showToastMessage("Artist added successfully!" ,"success");
+			form.reset();
+			form.parentElement.close();
+		}
+	}
+	catch (err){
+		showToastMessage(`Oops, something went wrong.`, "error");
+		console.error(err);
 	}
 }
 
@@ -127,7 +133,8 @@ export async function submitFavoriteArtist(artist){
 		}
 	}
 	catch (err){
-		showToastMessage(`Something went wrong. Error: ${err}`, "error");
+		showToastMessage(`Oops, something went wrong.`, "error");
+		console.error(err);
 	}
 }
 
@@ -138,12 +145,18 @@ export async function submitArtistUpdate(event){
 	event.preventDefault();
 	const form = event.target;
 	const updatedArtist = getArtistDataFromInput(form);
-	const response = await updateArtist(updatedArtist);
-	if(response.ok){
-		displayArtists(artists);
-		showToastMessage(`${selectedArtist.name} updated successfully!`,"success");
-		form.reset();
-		form.parentElement.close();
+	try{
+		const response = await updateArtist(updatedArtist);
+		if(response.ok){
+			displayArtists(artists);
+			showToastMessage(`${selectedArtist.name} updated successfully!`,"success");
+			form.reset();
+			form.parentElement.close();
+		}
+	}
+	catch (err){
+		showToastMessage("Oops, something went wrong", "error");
+		console.error(err);
 	}
 }
 
@@ -153,19 +166,31 @@ export async function submitArtistUpdate(event){
 export async function submitArtistDelete(event){
 	const form = event.target;
 	const artist = artists.find(artist => artist.id === form.dataset.id);
-	const response = await deleteArtist(artist);
-	if(response.ok){
-		displayArtists(artists);
-		showToastMessage( `${artist.name} deleted successfully!`, "success");
+	try{
+		const response = await deleteArtist(artist);
+		if(response.ok){
+			displayArtists(artists);
+			showToastMessage( `${artist.name} deleted successfully!`, "success");
+		}
+	}
+	catch (err){
+		showToastMessage("Oops something went wrong.", "error");
+		console.error(err);
 	}
 }
 
 //remove from favorites clicked //
 export async function submitRemoveFromFavorites(artist){
-	const response = await removeFromFavorites(artist);
-	if(response.ok){
-		displayFavorites(favoriteArtists);
-		showToastMessage(`${artist.name} removed from favorites`, "success");
+	try{
+		const response = await removeFromFavorites(artist);
+		if(response.ok){
+			displayFavorites(favoriteArtists);
+			showToastMessage(`${artist.name} removed from favorites`, "success");
+		}
+	}
+	catch (err){
+		showToastMessage("Oops, something went wrong.", "error");
+		console.error(err);
 	}
 }
 

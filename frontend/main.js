@@ -1,5 +1,5 @@
 /* ========== IMPORTS ========== */
-import {displayArtists, displayFavorites, generateFilterOptions} from "./view/view.js";
+import {displayArtists, displayFavorites, generateFilterOptions, showToastMessage} from "./view/view.js";
 import {artists, favoriteArtists, getArtists, getFavorites} from "./model/model.js";
 import {setEventListeners} from "./controller/controller.js";
 
@@ -11,8 +11,14 @@ export const endpoint = "http://localhost:3333";
 // Main function to fetch data and set event listeners //
 async function main(){
 	// fetch artists and save locally //
-	await getFavorites();
-	await getArtists();
+	try{
+		await getFavorites();
+		await getArtists();
+	}
+	catch (err){
+		showToastMessage(`Oops, something went wrong.`, "error");
+		console.error(err);
+	}
 
 	// generate options for filter select //
 	generateFilterOptions();

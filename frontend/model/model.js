@@ -10,22 +10,37 @@ export let artists;
 
 // Function to fetch artists from the server //
 export async function getArtists(){
-	const response = await fetch(endpoint + "/artists")
-	if(response.ok){
-		artists = await response.json();
+	try{
+		const response = await fetch(endpoint + "/artists")
+		if(response.ok){
+			artists = await response.json();
+		}
+	}
+	catch (err){
+		throw err;
 	}
 }
 
 // function to fetch specific artist from the server //
 export async function getSpecificArtist(artist){
-	return await fetch(endpoint + "/artists/" + artist.id);
+	try{
+		return await fetch(endpoint + "/artists/" + artist.id);
+	}
+	catch (err){
+		throw err;
+	}
 }
 
 // Function to fetch favorite artists from the server //
 export async function getFavorites(){
-	const response = await fetch(endpoint + "/favorites");
-	if(response.ok){
-		favoriteArtists = await response.json();
+	try{
+		const response = await fetch(endpoint + "/favorites");
+		if(response.ok){
+			favoriteArtists = await response.json();
+		}
+	}
+	catch(err){
+		throw err;
 	}
 }
 
@@ -33,32 +48,42 @@ export async function getFavorites(){
 
 // Function to add a new artist to the server //
 export async function addArtist(artist){
-	const response = await fetch(endpoint + "/artists", {
-		method: "POST",
-		headers: {
-			"Content-Type":"application/json"
-		},
-		body: JSON.stringify(artist)
-	});
-	if(response.ok){
-		artists = await response.json();
+	try{
+		const response = await fetch(endpoint + "/artists", {
+			method: "POST",
+			headers: {
+				"Content-Type":"application/json"
+			},
+			body: JSON.stringify(artist)
+		});
+		if(response.ok){
+			artists = await response.json();
+		}
+		return response;
 	}
-	return response;
+	catch (err){
+		throw err;
+	}
 }
 
 // Function to add an artist to favorites on the server //
 export async function addToFavorites(artist){
-	const response = await fetch(endpoint + "/favorites", {
-		method: "POST",
-		headers: {
-			"Content-Type":"application/json"
-		},
-		body: JSON.stringify(artist)
-	});
-	if(response.ok){
-		favoriteArtists = await response.json();
+	try{
+		const response = await fetch(endpoint + "/favorites", {
+			method: "POST",
+			headers: {
+				"Content-Type":"application/json"
+			},
+			body: JSON.stringify(artist)
+		});
+		if(response.ok){
+			favoriteArtists = await response.json();
+		}
+		return response;
 	}
-	return response;
+	catch (err){
+		throw err;
+	}
 }
 
 /* ========== UPDATE ARTIST ========== */
@@ -77,37 +102,52 @@ export async function updateArtist(updatedArtist){
 	artistToUpdate.website = updatedArtist.website;
 	artistToUpdate.shortDescription = updatedArtist.shortDescription;
 
-	return await fetch(endpoint + "/artists/" + selectedArtist.id, {
-		method: "PUT",
-		headers: {
-			"Content-Type":"application/json"
-		},
-		body: JSON.stringify(artistToUpdate)
-	});
+	try{
+		return await fetch(endpoint + "/artists/" + selectedArtist.id, {
+			method: "PUT",
+			headers: {
+				"Content-Type":"application/json"
+			},
+			body: JSON.stringify(artistToUpdate)
+		});
+	}
+	catch (err){
+		throw err;
+	}
 }
 
 /* ========== DELETE ARTIST ========== */
 
 // Delete artist from server //
 export async function deleteArtist(artistToDelete){
-	const response = await fetch(endpoint + "/artists/" + artistToDelete.id, {
-		method: "DELETE"
-	});
-	if(response.ok){
-		artists = artists.filter(artist => artist.id !== artistToDelete.id);
+	try{
+		const response = await fetch(endpoint + "/artists/" + artistToDelete.id, {
+			method: "DELETE"
+		});
+		if(response.ok){
+			artists = await response.json();
+		}
+		return response;
 	}
-	return response;
+	catch (err){
+		throw err;
+	}
 }
 
 /* ========== REMOVE ARTIST FROM FAVORITES ========== */
 
 // Removes artist from favorites on the server //
 export async function removeFromFavorites(artistToRemove){
-	const response = await fetch(endpoint + "/favorites/" + artistToRemove.id, {
-		method: "DELETE"
-	});
-	if(response.ok){
-		favoriteArtists = favoriteArtists.filter(artist => artist.id !== artistToRemove.id);
+	try{
+		const response = await fetch(endpoint + "/favorites/" + artistToRemove.id, {
+			method: "DELETE"
+		});
+		if(response.ok){
+			favoriteArtists = await response.json();
+		}
+		return response;
 	}
-	return response;
+	catch (err){
+		throw err;
+	}
 }

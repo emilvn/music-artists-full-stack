@@ -269,12 +269,10 @@ main{
     left: 25%;
     gap: 1em;
 }
-#form-delete__close-button{
-    top: 0;
-    right: 0;
-}
 #form-delete__cancel-button{
     background-color: var(--light-grey);
+    width: 100%;
+    position: unset;
 }
 @media (max-width: 420px) {
     #dialog-delete{

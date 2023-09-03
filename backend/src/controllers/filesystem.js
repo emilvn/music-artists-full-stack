@@ -10,6 +10,6 @@ export async function getArtists(path){
 	return JSON.parse(String(data));
 }
 // Function to write artist data to a JSON file.//
-export function writeArtistsToFile(artistsArr, path){
-	fs.writeFile(path, JSON.stringify(artistsArr, null, 2));
+export async function writeArtistsToFile(artistsArr, path){
+	await fs.writeFile(path, JSON.stringify(artistsArr, null, 2));
 }

@@ -27,7 +27,7 @@ export async function addArtistData(req, res){
 	const newArtist = req.body;
 	newArtist.id = uuidv4();
 	artists.push(newArtist);
-	writeArtistsToFile(artists, "data/artists.json");
+	await writeArtistsToFile(artists, "data/artists.json");
 
 	res.json(artists);
 }
@@ -51,7 +51,7 @@ export async function updateArtistData(req, res){
 	artistToUpdate.image = body.image;
 	artistToUpdate.shortDescription = body.shortDescription;
 
-	writeArtistsToFile(artists, "data/artists.json");
+	await writeArtistsToFile(artists, "data/artists.json");
 	res.json(artists);
 }
 
@@ -64,6 +64,6 @@ export async function deleteArtist(req, res){
 	// Filter out the artist with the specified ID to delete.//
 	const updatedArtists = artists.filter(artist => artist.id !== id);
 
-	writeArtistsToFile(updatedArtists, "data/artists.json");
+	await writeArtistsToFile(updatedArtists, "data/artists.json");
 	res.json(updatedArtists);
 }

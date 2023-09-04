@@ -64,11 +64,6 @@ function addArtistTooltips(artistArticle, artist, containerID){
 	addToolTip(websiteButton, artist.website.replace(/https?:\/\/www\./, ""), true);
 }
 
-// scroll to top of page. //
-export function scrollToTop() {
-	window.scrollTo({ top: 0, behavior: "smooth" });
-}
-
 /* ========== CREATE DIALOG ========== */
 // Function to display the create artist dialog. //
 export function showCreateDialog(){

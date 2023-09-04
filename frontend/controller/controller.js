@@ -1,13 +1,11 @@
 /* ========== IMPORTS ========== */
 import {
 	addArtist,
-	addToFavorites,
 	artists,
 	deleteArtist,
-	favoriteArtists, getSpecificArtist,
-	removeFromFavorites,
+	getSpecificArtist,
 	updateArtist
-} from "../model/model.js";
+} from "../model/artists.js";
 import {
 	displayArtists, displayFavorites
 } from "../view/view.js";
@@ -21,6 +19,7 @@ import {filterArtists, showFilterMenu} from "./filter.js";
 import {addToolTip} from "../view/helpers/tooltip.js";
 import {showToastMessage} from "../view/helpers/toastmessages.js";
 import {sortAlphabetically, sortReverseAlphabetically} from "./sort.js";
+import {addToFavorites, favoriteArtists, removeFromFavorites} from "../model/favorites.js";
 
 export let selectedArtist;
 

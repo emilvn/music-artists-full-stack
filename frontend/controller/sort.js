@@ -1,7 +1,8 @@
 /* ========== SORT ========== */
 // Function to handle input change for sorting select. //
-import {artists, favoriteArtists} from "../model/model.js";
+import {artists} from "../model/artists.js";
 import {displayArtists, displayFavorites} from "../view/view.js";
+import {favoriteArtists} from "../model/favorites.js";
 
 export function sortAlphabetically() {
 	const sortAlphabeticallyButton = document.querySelector("#alphabetical-sort");

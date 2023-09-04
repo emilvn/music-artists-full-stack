@@ -7,9 +7,9 @@ import {
 	submitArtistDelete,
 	submitArtistUpdate
 } from "../controller/controller.js";
-import {favoriteArtists} from "../model/model.js";
 import {generateListFromArray} from "./view.js";
 import {formatDate} from "./helpers/formatting.js";
+import {favoriteArtists} from "../model/favorites.js";
 
 export function showCreateDialog() {
 	const form = document.querySelector("#form-create");

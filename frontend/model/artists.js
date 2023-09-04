@@ -1,13 +1,11 @@
 /* ========== IMPORTS ========== */
 import {endpoint} from "../main.js";
 import {selectedArtist} from "../controller/controller.js";
+import {favoriteArtists} from "./favorites.js";
 
-// global variables for artists and favorite artists //
-export let favoriteArtists = [];
 export let artists;
 
-/* ========== FETCH ARTISTS AND FAVORITES ========== */
-
+/* ========== FETCH ARTISTS ========== */
 // Function to fetch artists from the server //
 export async function getArtists(){
 	try{
@@ -31,21 +29,7 @@ export async function getSpecificArtist(artist){
 	}
 }
 
-// Function to fetch favorite artists from the server //
-export async function getFavorites(){
-	try{
-		const response = await fetch(endpoint + "/favorites");
-		if(response.ok){
-			favoriteArtists = await response.json();
-		}
-	}
-	catch(err){
-		throw err;
-	}
-}
-
-/* ========== ADD ARTIST AND FAVORITE ARTIST ========== */
-
+/* ========== ADD ARTIST ========== */
 // Function to add a new artist to the server //
 export async function addArtist(artist){
 	try{
@@ -66,28 +50,7 @@ export async function addArtist(artist){
 	}
 }
 
-// Function to add an artist to favorites on the server //
-export async function addToFavorites(artist){
-	try{
-		const response = await fetch(endpoint + "/favorites", {
-			method: "POST",
-			headers: {
-				"Content-Type":"application/json"
-			},
-			body: JSON.stringify(artist)
-		});
-		if(response.ok){
-			favoriteArtists = await response.json();
-		}
-		return response;
-	}
-	catch (err){
-		throw err;
-	}
-}
-
 /* ========== UPDATE ARTIST ========== */
-
 // Function to update artist details on server //
 export async function updateArtist(updatedArtist){
 	const artistToUpdate = artists.find(artist => artist.id === selectedArtist.id);
@@ -129,7 +92,6 @@ export async function updateArtist(updatedArtist){
 }
 
 /* ========== DELETE ARTIST ========== */
-
 // Delete artist from server //
 export async function deleteArtist(artistToDelete){
 	try{
@@ -138,24 +100,6 @@ export async function deleteArtist(artistToDelete){
 		});
 		if(response.ok){
 			artists = await response.json();
-		}
-		return response;
-	}
-	catch (err){
-		throw err;
-	}
-}
-
-/* ========== REMOVE ARTIST FROM FAVORITES ========== */
-
-// Removes artist from favorites on the server //
-export async function removeFromFavorites(artistToRemove){
-	try{
-		const response = await fetch(endpoint + "/favorites/" + artistToRemove.id, {
-			method: "DELETE"
-		});
-		if(response.ok){
-			favoriteArtists = await response.json();
 		}
 		return response;
 	}

@@ -1,9 +1,10 @@
 /* ========== IMPORTS ========== */
 import {displayArtists, displayFavorites} from "./view/view.js";
-import {artists, favoriteArtists, getArtists, getFavorites} from "./model/model.js";
+import {artists, getArtists} from "./model/artists.js";
 import {setEventListeners} from "./controller/controller.js";
 import {generateFilterOptions} from "./controller/filter.js";
 import {showToastMessage} from "./view/helpers/toastmessages.js";
+import {favoriteArtists, getFavorites} from "./model/favorites.js";
 
 window.addEventListener("load", main);
 

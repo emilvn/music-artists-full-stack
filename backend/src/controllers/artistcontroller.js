@@ -8,26 +8,33 @@ import {getArtists, writeArtistsToFile} from "./filesystem.js";
 /* ----- GET ALL ARTISTS ----- */
 // Handler for getting all artists' data.//
 export async function getArtistsData(req, res){
-	const artists = await getArtists("data/artists.json");
+	const type = req.params.type;
+	const artists = await getArtists(`data/${type}.json`);
 	res.json(artists);
 }
 
 /* ----- GET ONE ARTIST ----- */
 // Handler for getting data of a specific artist by ID.//
 export async function getSpecificArtist(req, res){
-	const id = req.params.id;
-	const artists = await getArtists("data/artists.json");
+	const {type, id} = req.params;
+	const artists = await getArtists(`data/${type}.json`);
 	res.json(artists.find(artist => artist.id === id));
 }
 
 /* ----- ADD ARTIST ----- */
 // Handler for adding a new artist's data.//
 export async function addArtistData(req, res){
-	const artists = await getArtists("data/artists.json");
+	const type = req.params.type;
+	const artists = await getArtists(`data/${type}.json`);
 	const newArtist = req.body;
-	newArtist.id = uuidv4();
-	artists.push(newArtist);
-	await writeArtistsToFile(artists, "data/artists.json");
+	if(type === "artists"){
+		newArtist.id = uuidv4();
+		artists.push(newArtist);
+	}
+	else if(type === "favorites" && !artists.find(favorite => favorite.id === newArtist.id)){
+		artists.push(newArtist);
+	}
+	await writeArtistsToFile(artists, `data/${type}.json`);
 
 	res.json(artists);
 }
@@ -58,12 +65,12 @@ export async function updateArtistData(req, res){
 /* ----- DELETE ARTIST ----- */
 // Handler for deleting an artist by ID.//
 export async function deleteArtist(req, res){
-	const id = req.params.id;
-	const artists = await getArtists("data/artists.json");
+	const {type, id} = req.params;
+	const artists = await getArtists(`data/${type}.json`);
 
 	// Filter out the artist with the specified ID to delete.//
 	const updatedArtists = artists.filter(artist => artist.id !== id);
 
-	await writeArtistsToFile(updatedArtists, "data/artists.json");
+	await writeArtistsToFile(updatedArtists, `data/${type}.json`);
 	res.json(updatedArtists);
 }

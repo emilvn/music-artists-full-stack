@@ -7,8 +7,6 @@ import {
 	getSpecificArtist,
 	updateArtistData
 } from "./controllers/artistcontroller.js";
-// favorite artist route handlers //
-import {addFavorite, getFavoritesData, removeFromFavorites} from "./controllers/favoritescontroller.js";
 
 import express from "express";
 
@@ -19,25 +17,16 @@ export const router = express.Router();
 // Define and map routes to controller functions using HTTP methods. //
 
 /* ----- GET ALL ARTISTS ----- */
-router.get("/artists", getArtistsData);
+router.get("/:type(artists|favorites)", getArtistsData);
 
 /* ----- GET SPECIFIC ARTIST BY ID ----- */
-router.get("/artists/:id", getSpecificArtist);
+router.get("/:type(artists|favorites)/:id", getSpecificArtist);
 
 /* ----- ADD NEW ARTIST ----- */
-router.post("/artists", addArtistData);
+router.post("/:type(artists|favorites)", addArtistData);
 
 /* ----- UPDATE ARTIST BY ID ----- */
 router.put("/:type(artists|favorites)/:id", updateArtistData);
 
 /* ----- DELETE ARTIST BY ID ----- */
-router.delete("/artists/:id", deleteArtist);
-
-/* ----- GET ALL FAVORITE ARTISTS ----- */
-router.get("/favorites", getFavoritesData);
-
-/* ----- ADD TO FAVORITES ----- */
-router.post("/favorites", addFavorite);
-
-/* ----- REMOVE FROM FAVORITES BY ID ----- */
-router.delete("/favorites/:id", removeFromFavorites);
+router.delete("/:type(artists|favorites)/:id", deleteArtist);

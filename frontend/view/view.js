@@ -1,7 +1,7 @@
 /* ========== IMPORTS ========== */
 import {setArtistEventListeners,} from "../controller/controller.js";
 import {formatDate} from "./helpers/formatting.js";
-import {addArtistTooltips} from "./helpers/tooltip.js";
+import {setArtistTooltips} from "../controller/controller.js";
 
 /* ========== DISPLAY ARTISTS ========== */
 
@@ -46,7 +46,7 @@ function displayArtist(artist, containerID){
 	const artistArticle = container.querySelector("article:last-child");
 	artistArticle.style.backgroundImage = `url(${artist.image})`;
 	setArtistEventListeners(artistArticle, artist, containerID);
-	addArtistTooltips(artistArticle, artist, containerID);
+	setArtistTooltips(artistArticle, artist, containerID);
 }
 
 // function for generating and inserting html list elements from an array into a container //

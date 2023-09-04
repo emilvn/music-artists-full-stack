@@ -75,29 +75,8 @@ export function setFormEventListeners(form, submitFunction){
 		.addEventListener("click", () => form.parentElement.close());
 }
 
-export function setToolTips(){
-	const addArtistButton = document.querySelector("#add-artist-dialog-button");
-	addToolTip(addArtistButton, "Add new artist", false);
-	const filterButton = document.querySelector("#filter-sort-button");
-	addToolTip(filterButton, "Show filter options", false);
-}
-
-// Helper function to extract artist data from form input fields //
-export function getArtistDataFromInput(form){
-	return {
-		name: form.name.value,
-		birthdate: form.birthdate.value,
-		activeSince: form.activeSince.value,
-		genres: form.genres.value.split(",").map(genre => genre.trim()),
-		labels: form.labels.value.split(",").map(genre => genre.trim()),
-		roles: form.roles.value.split(",").map(genre => genre.trim()),
-		website: form.website.value,
-		image: form.image.value,
-		shortDescription: form.shortDescription.value
-	}
-}
-
-export function addDetailDialogEventListeners(artist){
+// event listeners for detail dialog //
+export function setDetailDialogEventListeners(artist){
 	const dialog = document.querySelector("#artist-detail-dialog");
 	dialog.querySelector(".favorite-button")
 		.addEventListener("click", submitFavoriteLocal);
@@ -134,4 +113,46 @@ export function addDetailDialogEventListeners(artist){
 		showDeleteDialog();
 	}
 }
+export function setTooltips(){
+	const tooltip = document.querySelector("#detail-tooltip");
+	const addArtistButton = document.querySelector("#add-artist-dialog-button");
+	const filterButton = document.querySelector("#filter-sort-button");
+	addToolTip(tooltip, addArtistButton, "Add new artist", false);
+	addToolTip(tooltip, filterButton, "Show filter options", false);
 
+}
+
+export function setArtistTooltips(artistArticle, artist, containerID) {
+	const tooltip = document.querySelector("#detail-tooltip");
+	const editButton = artistArticle.querySelector(".edit-button");
+	const deleteButton = artistArticle.querySelector(".delete-button");
+	const favouriteButton = artistArticle.querySelector(".favorite-button");
+	const websiteButton = artistArticle.querySelector(".website-button");
+	addToolTip(tooltip, artistArticle, "Show more details", false);
+	addToolTip(tooltip, editButton, "Edit artist details", true);
+	addToolTip(tooltip, deleteButton, "Delete artist", true);
+	addToolTip(tooltip, favouriteButton, (containerID === "#favorites") ? "Remove from favourites" : "Add to favourites", true);
+	addToolTip(tooltip, websiteButton, artist.website.replace(/https?:\/\/www\./, ""), true);
+}
+export function setDetailDialogTooltips(){
+	const tooltip = document.querySelector("#detail-dialog__tooltip");
+	const websiteButton = document.querySelector("#artist-detail-dialog .website-button");
+	const artistURLShortForm = websiteButton.querySelector("a")
+		.href.replace(/https?:\/\/www\./, "");
+	addToolTip(tooltip, websiteButton, artistURLShortForm, false);
+}
+
+// Helper function to extract artist data from form input fields //
+export function getArtistDataFromInput(form){
+	return {
+		name: form.name.value,
+		birthdate: form.birthdate.value,
+		activeSince: form.activeSince.value,
+		genres: form.genres.value.split(",").map(genre => genre.trim()),
+		labels: form.labels.value.split(",").map(genre => genre.trim()),
+		roles: form.roles.value.split(",").map(genre => genre.trim()),
+		website: form.website.value,
+		image: form.image.value,
+		shortDescription: form.shortDescription.value
+	}
+}

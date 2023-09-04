@@ -1,7 +1,7 @@
 /* ========== IMPORTS ========== */
 import {displayArtists, displayFavorites} from "./view/view.js";
 import {artists, getArtists} from "./model/artists.js";
-import {setInitialEventListeners, setToolTips} from "./controller/controller.js";
+import {setInitialEventListeners, setTooltips} from "./controller/controller.js";
 import {generateFilterOptions} from "./controller/filter.js";
 import {showToastMessage} from "./view/helpers/toastmessages.js";
 import {favoriteArtists, getFavorites} from "./model/favorites.js";
@@ -10,7 +10,7 @@ import {sortAlphabetically} from "./controller/sort.js";
 window.addEventListener("load", main);
 
 // API endpoint for the server //
-export const endpoint = "http://www.emilvn-ubuntu.dk:3333";
+export const endpoint = "http://localhost:3333";
 
 // Main function to fetch data and set event listeners //
 async function main(){
@@ -30,8 +30,10 @@ async function main(){
 	displayArtists(artists);
 	displayFavorites(favoriteArtists);
 
-	// set event listeners for user interactions //
+	// initial event listeners and tooltips //
 	setInitialEventListeners();
-	setToolTips();
+	setTooltips();
+
+	// initial sorting //
 	sortAlphabetically();
 }

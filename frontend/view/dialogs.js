@@ -1,7 +1,7 @@
 /* ========== CREATE DIALOG ========== */
 // Function to display the create artist dialog. //
 import {
-	addDetailDialogEventListeners,
+	setDetailDialogEventListeners, setDetailDialogTooltips,
 	setFormEventListeners
 } from "../controller/controller.js";
 import {generateListFromArray} from "./view.js";
@@ -57,7 +57,8 @@ export function showDetailDialog(artist) {
 
 	setDetailFavoriteButtonIcon(artist);
 
-	addDetailDialogEventListeners(artist);
+	setDetailDialogEventListeners(artist);
+	setDetailDialogTooltips();
 	dialog.showModal();
 }
 

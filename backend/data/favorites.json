@@ -1,25 +1,5 @@
 [
   {
-    "id": "15",
-    "name": "Eddie Van Halen",
-    "birthdate": "1955-01-26",
-    "activeSince": "1972-02-01",
-    "genres": [
-      "Rock",
-      "Hard Rock"
-    ],
-    "labels": [
-      "Warner Bros. Records"
-    ],
-    "website": "https://www.van-halen.com/",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/a/a0/Eddie_Van_Halen_at_the_New_Haven_Coliseum_2.jpg",
-    "roles": [
-      "Guitarist",
-      "Songwriter"
-    ],
-    "shortDescription": "Guitar legend of Van Halen"
-  },
-  {
     "id": "02",
     "name": "Jimi Hendrix",
     "birthdate": "1942-11-27",

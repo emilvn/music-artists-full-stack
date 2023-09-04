@@ -126,20 +126,28 @@ export function setArtistTooltips(artistArticle, artist, containerID) {
 	const tooltip = document.querySelector("#detail-tooltip");
 	const editButton = artistArticle.querySelector(".edit-button");
 	const deleteButton = artistArticle.querySelector(".delete-button");
-	const favouriteButton = artistArticle.querySelector(".favorite-button");
+	const favoriteButton = artistArticle.querySelector(".favorite-button");
 	const websiteButton = artistArticle.querySelector(".website-button");
 	addToolTip(tooltip, artistArticle, "Show more details", false);
 	addToolTip(tooltip, editButton, "Edit artist details", true);
 	addToolTip(tooltip, deleteButton, "Delete artist", true);
-	addToolTip(tooltip, favouriteButton, (containerID === "#favorites") ? "Remove from favourites" : "Add to favourites", true);
+	addToolTip(tooltip, favoriteButton, (containerID === "#favorites") ? "Remove from favorites" : "Add to favorites", true);
 	addToolTip(tooltip, websiteButton, artist.website.replace(/https?:\/\/www\./, ""), true);
 }
 export function setDetailDialogTooltips(){
 	const tooltip = document.querySelector("#detail-dialog__tooltip");
 	const websiteButton = document.querySelector("#artist-detail-dialog .website-button");
+	const favoriteButton = document.querySelector("#artist-detail-dialog .favorite-button");
+	const editButton = document.querySelector("#artist-detail-dialog .edit-button");
+	const deleteButton = document.querySelector("#artist-detail-dialog .delete-button");
 	const artistURLShortForm = websiteButton.querySelector("a")
 		.href.replace(/https?:\/\/www\./, "");
+	const favoriteButtonText = favoriteButton.querySelector("img")
+		.alt;
 	addToolTip(tooltip, websiteButton, artistURLShortForm, false);
+	addToolTip(tooltip, favoriteButton, favoriteButtonText, false);
+	addToolTip(tooltip, editButton, "Edit artist details", false);
+	addToolTip(tooltip, deleteButton, "Delete artist", false);
 }
 
 // Helper function to extract artist data from form input fields //

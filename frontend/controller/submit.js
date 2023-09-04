@@ -39,6 +39,7 @@ export async function submitFavoriteArtist(artist) {
 			displayFavorites(favoriteArtists);
 			showToastMessage(`${artist.name} added to favorites!`, "success");
 			setDetailFavoriteButtonIcon(artist);
+			document.querySelector("#artist-detail-dialog").close();
 		}
 	} catch (err) {
 		showToastMessage(`Oops, something went wrong.`, "error");
@@ -98,6 +99,7 @@ export async function submitRemoveFromFavorites(artist) {
 			displayFavorites(favoriteArtists);
 			showToastMessage(`${artist.name} removed from favorites`, "success");
 			setDetailFavoriteButtonIcon(artist);
+			document.querySelector("#artist-detail-dialog").close();
 		}
 	} catch (err) {
 		showToastMessage("Oops, something went wrong.", "error");

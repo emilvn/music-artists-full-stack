@@ -9,11 +9,7 @@ import {
 	updateArtist
 } from "../model/model.js";
 import {
-	addToolTip,
-	displayArtists, displayFavorites,
-	filterArtists,
-	inputSearchChanged, showFilterMenu, showToastMessage,
-	sortAlphabetically, sortReverseAlphabetically
+	displayArtists, displayFavorites
 } from "../view/view.js";
 import {
 	setDetailFavoriteButtonIcon, showCreateDialog,
@@ -21,6 +17,10 @@ import {
 	showDetailDialog,
 	showUpdateDialog
 } from "../view/dialogs.js";
+import {filterArtists, showFilterMenu} from "./filter.js";
+import {addToolTip} from "../view/helpers/tooltip.js";
+import {showToastMessage} from "../view/helpers/toastmessages.js";
+import {sortAlphabetically, sortReverseAlphabetically} from "./sort.js";
 
 export let selectedArtist;
 
@@ -270,4 +270,14 @@ export function addDetailDialogEventListeners(artist){
 		document.querySelector("#name-delete").textContent = artist.name;
 		showDeleteDialog();
 	}
+}
+
+/* ========== SEARCH ========== */
+// Function to handle input change for artist search bar. //
+function inputSearchChanged(event){
+	const searchValue = event.target.value;
+	const filteredFavorites = favoriteArtists.filter(artist => artist.name.toLowerCase().includes(searchValue.toLowerCase()));
+	const filteredArtists = artists.filter(artist => artist.name.toLowerCase().includes(searchValue.toLowerCase()));
+	displayFavorites(filteredFavorites);
+	displayArtists(filteredArtists);
 }

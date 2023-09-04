@@ -1,6 +1,6 @@
 /* ========== IMPORTS ========== */
 import {endpoint} from "../main.js";
-import {selectedArtist, submitRemoveFromFavorites} from "../controller/controller.js";
+import {selectedArtist} from "../controller/controller.js";
 
 // global variables for artists and favorite artists //
 export let favoriteArtists = [];

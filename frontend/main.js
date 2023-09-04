@@ -1,7 +1,9 @@
 /* ========== IMPORTS ========== */
-import {displayArtists, displayFavorites, generateFilterOptions, showToastMessage} from "./view/view.js";
+import {displayArtists, displayFavorites} from "./view/view.js";
 import {artists, favoriteArtists, getArtists, getFavorites} from "./model/model.js";
 import {setEventListeners} from "./controller/controller.js";
+import {generateFilterOptions} from "./controller/filter.js";
+import {showToastMessage} from "./view/helpers/toastmessages.js";
 
 window.addEventListener("load", main);
 

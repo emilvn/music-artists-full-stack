@@ -1,5 +1,6 @@
 /* ========== IMPORTS ========== */
 import {
+	addDetailDialogEventListeners,
 	removeSubmitEvent, setArtistEventListeners, setFormEventListeners,
 	submitArtistCreate, submitArtistDelete,
 	submitArtistUpdate,
@@ -116,6 +117,7 @@ export function showDetailDialog(artist){
 	generateListFromArray(artist.roles, dialog.querySelector("#detail-artist__roles"));
 	generateListFromArray(artist.labels, dialog.querySelector("#detail-artist__labels"));
 
+	addDetailDialogEventListeners(artist);
 	dialog.showModal();
 }
 

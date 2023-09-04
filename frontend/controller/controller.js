@@ -43,12 +43,6 @@ export function setEventListeners(){
 
 	document.querySelector("#artist-filter-by__genre")
 		.addEventListener("change", filterArtists);
-
-	// detail dialog close button event listener //
-	document.querySelector("#detail-dialog__close-button")
-		.addEventListener("click", () => {
-			document.querySelector("#artist-detail-dialog").close();
-		});
 }
 
 // sets event listeners for artist articles //
@@ -177,6 +171,7 @@ export async function submitArtistDelete(event){
 			}
 			showToastMessage( `${artist.name} deleted successfully!`, "success");
 			form.parentElement.close();
+			document.querySelector("#artist-detail-dialog").close();
 		}
 	}
 	catch (err){
@@ -229,4 +224,39 @@ export function selectArtist(artist){
 	form.website.value = artist.website;
 	form.shortDescription.value = artist.shortDescription;
 	showUpdateDialog();
+}
+
+export function addDetailDialogEventListeners(artist){
+	const dialog = document.querySelector("#artist-detail-dialog");
+	dialog.querySelector(".favorite-button")
+		.addEventListener("click", submitFavoriteLocal);
+
+	dialog.querySelector(".edit-button")
+		.addEventListener("click", selectArtistLocal);
+
+	dialog.querySelector(".delete-button")
+		.addEventListener("click", submitDeleteLocal);
+
+	// detail dialog close button event listener //
+	document.querySelector("#detail-dialog__close-button")
+		.addEventListener("click", () => {
+			dialog.querySelector(".favorite-button")
+				.removeEventListener("click", submitFavoriteLocal);
+			dialog.querySelector(".edit-button")
+				.removeEventListener("click", selectArtistLocal);
+			dialog.querySelector(".delete-button")
+				.removeEventListener("click", submitDeleteLocal);
+			dialog.close();
+		});
+	async function submitFavoriteLocal(){
+		await submitFavoriteArtist(artist);
+	}
+	function selectArtistLocal(){
+		selectArtist(artist);
+	}
+	function submitDeleteLocal(){
+		document.querySelector("#form-delete").dataset.id = artist.id;
+		document.querySelector("#name-delete").textContent = artist.name;
+		showDeleteDialog();
+	}
 }

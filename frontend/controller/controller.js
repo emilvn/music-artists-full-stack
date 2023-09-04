@@ -12,10 +12,15 @@ import {
 	addToolTip,
 	displayArtists, displayFavorites,
 	filterArtists,
-	inputSearchChanged, setDetailFavoriteButtonIcon,
-	showCreateDialog, showDeleteDialog, showDetailDialog, showFilterMenu, showToastMessage,
-	showUpdateDialog, sortAlphabetically, sortReverseAlphabetically
+	inputSearchChanged, showFilterMenu, showToastMessage,
+	sortAlphabetically, sortReverseAlphabetically
 } from "../view/view.js";
+import {
+	setDetailFavoriteButtonIcon, showCreateDialog,
+	showDeleteDialog,
+	showDetailDialog,
+	showUpdateDialog
+} from "../view/dialogs.js";
 
 export let selectedArtist;
 

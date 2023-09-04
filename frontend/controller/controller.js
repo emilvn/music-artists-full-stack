@@ -12,7 +12,7 @@ import {
 	addToolTip,
 	displayArtists, displayFavorites,
 	filterArtists,
-	inputSearchChanged,
+	inputSearchChanged, setDetailFavoriteButtonIcon,
 	showCreateDialog, showDeleteDialog, showDetailDialog, showFilterMenu, showToastMessage,
 	showUpdateDialog, sortAlphabetically, sortReverseAlphabetically
 } from "../view/view.js";
@@ -124,6 +124,7 @@ export async function submitFavoriteArtist(artist){
 		if (response.ok){
 			displayFavorites(favoriteArtists);
 			showToastMessage(`${artist.name} added to favorites!`, "success");
+			setDetailFavoriteButtonIcon(artist);
 		}
 	}
 	catch (err){
@@ -146,6 +147,7 @@ export async function submitArtistUpdate(event){
 			showToastMessage(`${selectedArtist.name} updated successfully!`,"success");
 			form.reset();
 			form.parentElement.close();
+			document.querySelector("#artist-detail-dialog").close();
 		}
 	}
 	catch (err){
@@ -187,6 +189,7 @@ export async function submitRemoveFromFavorites(artist){
 		if(response.ok){
 			displayFavorites(favoriteArtists);
 			showToastMessage(`${artist.name} removed from favorites`, "success");
+			setDetailFavoriteButtonIcon(artist);
 		}
 	}
 	catch (err){
@@ -249,7 +252,10 @@ export function addDetailDialogEventListeners(artist){
 			dialog.close();
 		});
 	async function submitFavoriteLocal(){
-		await submitFavoriteArtist(artist);
+		if(favoriteArtists.find(favorite => favorite.id === artist.id)){
+			submitRemoveFromFavorites(artist);
+		}
+		else await submitFavoriteArtist(artist);
 	}
 	function selectArtistLocal(){
 		selectArtist(artist);

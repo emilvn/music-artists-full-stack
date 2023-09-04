@@ -35,8 +35,8 @@ export async function addArtistData(req, res){
 /* ----- UPDATE ARTIST----- */
 // Handler for updating an artist's data by ID.//
 export async function updateArtistData(req, res){
-	const id = req.params.id;
-	const artists = await getArtists("data/artists.json");
+	const {type, id} = req.params;
+	const artists = await getArtists(`data/${type}.json`);
 	const artistToUpdate = artists.find(artist => artist.id === id);
 	const body = req.body;
 
@@ -51,7 +51,7 @@ export async function updateArtistData(req, res){
 	artistToUpdate.image = body.image;
 	artistToUpdate.shortDescription = body.shortDescription;
 
-	await writeArtistsToFile(artists, "data/artists.json");
+	await writeArtistsToFile(artists, `data/${type}.json`);
 	res.json(artists);
 }
 

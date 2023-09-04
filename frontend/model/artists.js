@@ -1,7 +1,7 @@
 /* ========== IMPORTS ========== */
 import {endpoint} from "../main.js";
-import {favoriteArtists} from "./favorites.js";
-import {selectedArtist} from "../controller/selectartist.js";
+import {favoriteArtists, updateFavoriteArtist} from "./favorites.js";
+import {selectedArtist} from "../controller/helpers/selectartist.js";
 
 export let artists;
 
@@ -66,18 +66,10 @@ export async function updateArtist(updatedArtist){
 	artistToUpdate.shortDescription = updatedArtist.shortDescription;
 
 	const artistInFavorites = favoriteArtists.find(artist => artist.id ===selectedArtist.id);
-	if(artistInFavorites){
-		artistInFavorites.name = updatedArtist.name;
-		artistInFavorites.birthdate = updatedArtist.birthdate;
-		artistInFavorites.activeSince = updatedArtist.activeSince;
-		artistInFavorites.image = updatedArtist.image;
-		artistInFavorites.genres = updatedArtist.genres;
-		artistInFavorites.labels = updatedArtist.labels;
-		artistInFavorites.roles = updatedArtist.roles;
-		artistInFavorites.website = updatedArtist.website;
-		artistInFavorites.shortDescription = updatedArtist.shortDescription;
-	}
 	try{
+		if(artistInFavorites){
+			await updateFavoriteArtist(artistToUpdate);
+		}
 		return await fetch(endpoint + "/artists/" + selectedArtist.id, {
 			method: "PUT",
 			headers: {

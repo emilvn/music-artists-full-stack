@@ -1,8 +1,8 @@
 /* ========== FILTER ========== */
 // Filter artists //
-import {artists} from "../model/artists.js";
-import {displayArtists, displayFavorites} from "../view/view.js";
-import {favoriteArtists} from "../model/favorites.js";
+import {artists} from "../../model/artists.js";
+import {displayArtists, displayFavorites} from "../../view/view.js";
+import {favoriteArtists} from "../../model/favorites.js";
 
 export function filterArtists() {
 	const selectElement = document.querySelector("#artist-filter-by__genre");

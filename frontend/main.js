@@ -1,11 +1,12 @@
 /* ========== IMPORTS ========== */
 import {displayArtists, displayFavorites} from "./view/view.js";
 import {artists, getArtists} from "./model/artists.js";
-import {setInitialEventListeners, setTooltips} from "./controller/controller.js";
-import {generateFilterOptions} from "./controller/filter.js";
+import {setInitialEventListeners} from "./controller/seteventlisteners.js";
+import {generateFilterOptions} from "./controller/search-filter-sort/filter.js";
 import {showToastMessage} from "./view/helpers/toastmessages.js";
 import {favoriteArtists, getFavorites} from "./model/favorites.js";
-import {sortAlphabetically} from "./controller/sort.js";
+import {sortAlphabetically} from "./controller/search-filter-sort/sort.js";
+import {setTooltips} from "./controller/settooltips.js";
 
 window.addEventListener("load", main);
 

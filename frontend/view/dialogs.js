@@ -1,13 +1,13 @@
 /* ========== CREATE DIALOG ========== */
 // Function to display the create artist dialog. //
 import {
-	setDetailDialogEventListeners, setDetailDialogTooltips,
-	setFormEventListeners
-} from "../controller/controller.js";
+	setDetailDialogEventListeners, setFormEventListeners
+} from "../controller/seteventlisteners.js";
 import {generateListFromArray} from "./view.js";
 import {formatDate} from "./helpers/formatting.js";
 import {favoriteArtists} from "../model/favorites.js";
 import {submitArtistCreate, submitArtistDelete, submitArtistUpdate} from "../controller/submit.js";
+import {setDetailDialogTooltips} from "../controller/settooltips.js";
 
 export function showCreateDialog() {
 	const form = document.querySelector("#form-create");

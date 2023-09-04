@@ -28,7 +28,7 @@ router.get("/artists/:id", getSpecificArtist);
 router.post("/artists", addArtistData);
 
 /* ----- UPDATE ARTIST BY ID ----- */
-router.put("/artists/:id", updateArtistData);
+router.put("/:type(artists|favorites)/:id", updateArtistData);
 
 /* ----- DELETE ARTIST BY ID ----- */
 router.delete("/artists/:id", deleteArtist);

@@ -4,8 +4,8 @@ import {displayArtists, displayFavorites} from "../view/view.js";
 import {addToFavorites, favoriteArtists, removeFromFavorites} from "../model/favorites.js";
 import {showToastMessage} from "../view/helpers/toastmessages.js";
 import {setDetailFavoriteButtonIcon} from "../view/dialogs.js";
-import {getArtistDataFromInput} from "./controller.js";
-import {selectedArtist} from "./selectartist.js";
+import {selectedArtist} from "./helpers/selectartist.js";
+import {getArtistDataFromInput} from "./helpers/getdatafrominput.js";
 
 export function removeSubmitEvent(form, functionToRemove) {
 	form.reset();
@@ -57,6 +57,7 @@ export async function submitArtistUpdate(event) {
 		const response = await updateArtist(updatedArtist);
 		if (response.ok) {
 			displayArtists(artists);
+			displayFavorites(favoriteArtists);
 			showToastMessage(`${selectedArtist.name} updated successfully!`, "success");
 			form.reset();
 			form.parentElement.close();

@@ -1,4 +1,4 @@
-import {showUpdateDialog} from "../view/dialogs.js";
+import {showUpdateDialog} from "../../view/dialogs.js";
 
 export let selectedArtist;
 

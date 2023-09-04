@@ -1,7 +1,8 @@
 /* ========== IMPORTS ========== */
-import {setArtistEventListeners,} from "../controller/controller.js";
+import {setArtistEventListeners,} from "../controller/seteventlisteners.js";
 import {formatDate} from "./helpers/formatting.js";
-import {setArtistTooltips} from "../controller/controller.js";
+
+import {setArtistTooltips} from "../controller/settooltips.js";
 
 /* ========== DISPLAY ARTISTS ========== */
 

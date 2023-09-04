@@ -1,7 +1,7 @@
 /* ========== IMPORTS ========== */
 import {endpoint} from "../main.js";
-import {selectedArtist} from "../controller/controller.js";
 import {favoriteArtists} from "./favorites.js";
+import {selectedArtist} from "../controller/selectartist.js";
 
 export let artists;
 

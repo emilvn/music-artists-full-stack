@@ -1,10 +1,11 @@
 /* ========== IMPORTS ========== */
 import {displayArtists, displayFavorites} from "./view/view.js";
 import {artists, getArtists} from "./model/artists.js";
-import {setEventListeners} from "./controller/controller.js";
+import {setInitialEventListeners, setToolTips} from "./controller/controller.js";
 import {generateFilterOptions} from "./controller/filter.js";
 import {showToastMessage} from "./view/helpers/toastmessages.js";
 import {favoriteArtists, getFavorites} from "./model/favorites.js";
+import {sortAlphabetically} from "./controller/sort.js";
 
 window.addEventListener("load", main);
 
@@ -22,7 +23,6 @@ async function main(){
 		showToastMessage(`Oops, something went wrong.`, "error");
 		console.error(err);
 	}
-
 	// generate options for filter select //
 	generateFilterOptions();
 
@@ -31,5 +31,7 @@ async function main(){
 	displayFavorites(favoriteArtists);
 
 	// set event listeners for user interactions //
-	setEventListeners();
+	setInitialEventListeners();
+	setToolTips();
+	sortAlphabetically();
 }

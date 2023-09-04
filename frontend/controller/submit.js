@@ -4,7 +4,8 @@ import {displayArtists, displayFavorites} from "../view/view.js";
 import {addToFavorites, favoriteArtists, removeFromFavorites} from "../model/favorites.js";
 import {showToastMessage} from "../view/helpers/toastmessages.js";
 import {setDetailFavoriteButtonIcon} from "../view/dialogs.js";
-import {getArtistDataFromInput, selectedArtist} from "./controller.js";
+import {getArtistDataFromInput} from "./controller.js";
+import {selectedArtist} from "./selectartist.js";
 
 export function removeSubmitEvent(form, functionToRemove) {
 	form.reset();

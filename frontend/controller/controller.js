@@ -1,34 +1,29 @@
 /* ========== IMPORTS ========== */
-import {artists, getSpecificArtist} from "../model/artists.js";
-import {displayArtists, displayFavorites} from "../view/view.js";
-import {showCreateDialog, showDeleteDialog, showDetailDialog, showUpdateDialog} from "../view/dialogs.js";
+import {getSpecificArtist} from "../model/artists.js";
+import {showCreateDialog, showDeleteDialog, showDetailDialog} from "../view/dialogs.js";
 import {filterArtists, showFilterMenu} from "./filter.js";
 import {addToolTip} from "../view/helpers/tooltip.js";
 import {sortAlphabetically, sortReverseAlphabetically} from "./sort.js";
 import {favoriteArtists} from "../model/favorites.js";
 import {removeSubmitEvent, submitFavoriteArtist, submitRemoveFromFavorites} from "./submit.js";
-
-export let selectedArtist;
+import {inputSearchChanged} from "./search.js";
+import {selectArtist} from "./selectartist.js";
 
 /* ========== EVENT LISTENERS ========== */
-
 // set event listeners for buttons and search/sort //
-export function setEventListeners(){
+export function setInitialEventListeners(){
 	// add artist button //
 	const addArtistButton = document.querySelector("#add-artist-dialog-button");
 	addArtistButton.addEventListener("click", showCreateDialog);
-	addToolTip(addArtistButton, "Add new artist", false);
 
 	// search bar //
 	const searchBar = document.querySelector("#artist-search");
 	searchBar.addEventListener("search", inputSearchChanged);
 	searchBar.addEventListener("keyup", inputSearchChanged);
 	const filterButton = document.querySelector("#filter-sort-button");
-	addToolTip(filterButton, "Show filter options", false);
 	filterButton.addEventListener("click", showFilterMenu);
 
 	// sort buttons //
-	sortAlphabetically();
 	document.querySelector("#alphabetical-sort").addEventListener("click", sortAlphabetically);
 	document.querySelector("#reverse-alphabetical-sort").addEventListener("click", sortReverseAlphabetically);
 
@@ -80,6 +75,13 @@ export function setFormEventListeners(form, submitFunction){
 		.addEventListener("click", () => form.parentElement.close());
 }
 
+export function setToolTips(){
+	const addArtistButton = document.querySelector("#add-artist-dialog-button");
+	addToolTip(addArtistButton, "Add new artist", false);
+	const filterButton = document.querySelector("#filter-sort-button");
+	addToolTip(filterButton, "Show filter options", false);
+}
+
 // Helper function to extract artist data from form input fields //
 export function getArtistDataFromInput(form){
 	return {
@@ -93,22 +95,6 @@ export function getArtistDataFromInput(form){
 		image: form.image.value,
 		shortDescription: form.shortDescription.value
 	}
-}
-
-// Selects an artist and populates the update form with artist details. //
-export function selectArtist(artist){
-	selectedArtist = artist;
-	const form = document.querySelector("#form-update");
-	form.name.value = artist.name;
-	form.birthdate.value = artist.birthdate;
-	form.activeSince.value = artist.activeSince;
-	form.image.value = artist.image;
-	form.genres.value = String(artist.genres);
-	form.labels.value = String(artist.labels);
-	form.roles.value = String(artist.roles);
-	form.website.value = artist.website;
-	form.shortDescription.value = artist.shortDescription;
-	showUpdateDialog();
 }
 
 export function addDetailDialogEventListeners(artist){
@@ -149,12 +135,3 @@ export function addDetailDialogEventListeners(artist){
 	}
 }
 
-/* ========== SEARCH ========== */
-// Function to handle input change for artist search bar. //
-function inputSearchChanged(event){
-	const searchValue = event.target.value;
-	const filteredFavorites = favoriteArtists.filter(artist => artist.name.toLowerCase().includes(searchValue.toLowerCase()));
-	const filteredArtists = artists.filter(artist => artist.name.toLowerCase().includes(searchValue.toLowerCase()));
-	displayFavorites(filteredFavorites);
-	displayArtists(filteredArtists);
-}

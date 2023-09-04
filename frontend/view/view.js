@@ -34,7 +34,7 @@ function displayArtist(artist, containerID){
             <div class="artist-info">
                 <h3>${artist.name}</h3>
                 <p>${artist.shortDescription}</p>
-                <p>Date of birth: ${formatDate(artist.birthdate)}</p>
+                <p>Born: ${formatDate(artist.birthdate)}</p>
             </div>
 			<div class="artist-buttons">
                 <button class="website-button">

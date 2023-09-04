@@ -330,10 +330,7 @@ main{
     background-color: var(--orange);
 }
 #detail-artist__lists ul{
-    list-style-type: none;
-}
-#detail-artist__lists ul>li:before{
-    content: "-";
+    list-style: "-";
 }
 #artist-detail-dialog img{
     border-radius: 0.5em;

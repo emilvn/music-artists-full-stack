@@ -2,14 +2,12 @@
 // Function to display the create artist dialog. //
 import {
 	addDetailDialogEventListeners,
-	setFormEventListeners,
-	submitArtistCreate,
-	submitArtistDelete,
-	submitArtistUpdate
+	setFormEventListeners
 } from "../controller/controller.js";
 import {generateListFromArray} from "./view.js";
 import {formatDate} from "./helpers/formatting.js";
 import {favoriteArtists} from "../model/favorites.js";
+import {submitArtistCreate, submitArtistDelete, submitArtistUpdate} from "../controller/submit.js";
 
 export function showCreateDialog() {
 	const form = document.querySelector("#form-create");

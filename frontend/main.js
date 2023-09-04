@@ -6,7 +6,7 @@ import {setEventListeners} from "./controller/controller.js";
 window.addEventListener("load", main);
 
 // API endpoint for the server //
-export const endpoint = "http://localhost:3333";
+export const endpoint = "http://www.emilvn-ubuntu.dk:3333";
 
 // Main function to fetch data and set event listeners //
 async function main(){

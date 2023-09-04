@@ -187,21 +187,21 @@ export function filterArtists(){
 export function generateFilterOptions(){
 	const selectElement = document.querySelector("#artist-filter-by__genre");
 	selectElement.innerHTML = "";
-	const genres = [];
+	const genres = new Set();
 	const noneOption = document.createElement("option");
 	noneOption.value = "";
 	noneOption.textContent = "All";
 	selectElement.insertAdjacentElement("beforeend", noneOption);
 	for(const artist of artists){
 		for(const genre of artist.genres){
-			if(!genres.includes(genre)){
-				const option = document.createElement("option");
-				option.value = genre;
-				option.textContent = genre;
-				genres.push(genre);
-				selectElement.insertAdjacentElement("beforeend", option);
-			}
+			genres.add(genre.toLowerCase());
 		}
+	}
+	for(const genre of genres){
+		const option = document.createElement("option");
+		option.value = genre;
+		option.textContent = genre;
+		selectElement.insertAdjacentElement("beforeend", option);
 	}
 }
 

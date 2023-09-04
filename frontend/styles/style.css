@@ -345,7 +345,7 @@ dialog::backdrop{
     right: 0.5em;
     display: grid;
     gap: 0.5em;
-    grid-template-columns: auto auto;
+    grid-template-columns: repeat(5, auto);
 }
 
 /* ========== GRID STYLES ========== */

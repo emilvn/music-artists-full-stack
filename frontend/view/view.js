@@ -105,6 +105,12 @@ export function showDetailDialog(artist){
 	dialog.querySelector("#detail-artist__website")
 		.href = artist.website;
 
+	const favoriteButton = dialog.querySelector(".favorite-button");
+	favoriteButton.innerHTML =
+	(favoriteArtists.find(favorite => favorite.id === artist.id))
+		? "<img src=\"icons/remove-favorite-icon.png\" alt=\"Remove from favorites\">"
+		:"<img src=\"icons/add-favorite-icon.png\" alt=\"Add to favorites\">";
+
 	// Generate lists for genres, roles, and labels. //
 	generateListFromArray(artist.genres, dialog.querySelector("#detail-artist__genres"));
 	generateListFromArray(artist.roles, dialog.querySelector("#detail-artist__roles"));

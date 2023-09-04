@@ -33,7 +33,7 @@ function displayArtist(artist, containerID){
             <div class="artist-info">
                 <h3>${artist.name}</h3>
                 <p>${artist.shortDescription}</p>
-                <p>Date of birth: ${artist.birthdate}</p>
+                <p>Date of birth: ${formatDate(artist.birthdate)}</p>
             </div>
 			<div class="artist-buttons">
                 <button class="website-button">
@@ -104,9 +104,9 @@ export function showDetailDialog(artist){
 	dialog.querySelector("#detail-artist__short-description")
 		.textContent = artist.shortDescription;
 	dialog.querySelector("#detail-artist__date-of-birth")
-		.textContent = artist.birthdate;
+		.textContent = formatDate(artist.birthdate);
 	dialog.querySelector("#detail-artist__active-since")
-		.textContent = artist.activeSince;
+		.textContent = formatDate(artist.activeSince);
 	dialog.querySelector("#detail-artist__website")
 		.href = artist.website;
 
@@ -255,4 +255,14 @@ function hideFilterMenu(){
 	filterButton.classList.remove("button-inset");
 	const filterMenu = document.querySelector("#filter-sort");
 	filterMenu.classList.add("hidden");
+}
+
+function formatDate(dateString){
+	const date = new Date(dateString);
+	const dateFormatter = new Intl.DateTimeFormat("da-DK", {
+		year: "numeric",
+		month: "long",
+		day: "numeric"
+	});
+	return dateFormatter.format(date);
 }

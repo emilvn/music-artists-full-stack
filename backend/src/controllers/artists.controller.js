@@ -11,6 +11,7 @@ export async function getArtistsData(req, res, next){
 	try{
 		const type = req.params.type;
 		const artists = await getArtists(`data/${type}.json`);
+		// if artists/favorites array is empty, responds with an error //
 		if(artists.length === 0){
 			res.status(404).json({error: `${type} not found`});
 		}
@@ -31,6 +32,7 @@ export async function getSpecificArtist(req, res, next){
 		const {type, id} = req.params;
 		const artists = await getArtists(`data/${type}.json`);
 		const artist = artists.find(artist => artist.id === id);
+		// if no artist exists with given id, responds with an error //
 		if(!artist){
 			res.status(404).json({"error" : "Not found"});
 		}
@@ -52,7 +54,7 @@ export async function addArtistData(req, res, next){
 		const newArtist = req.body;
 		// if URI is /artists //
 		if(type === "artists"){
-			// If artist already exists on database, responds with 400 Artist already exists //
+			// If artist already exists on database, responds with an error //
 			if(artists.find(artist => artist.name.toLowerCase() === newArtist.name.toLowerCase())){
 				res.status(400).json({"error":"Artist already exists"});
 			}
@@ -81,6 +83,7 @@ export async function updateArtistData(req, res, next){
 		const artists = await getArtists(`data/${type}.json`);
 		const artistToUpdate = artists.find(artist => artist.id === id);
 		const body = req.body;
+		// if no artist could be found with given id, responds with an error //
 		if(!artistToUpdate){
 			res.status(404).json({error: "Artist not found"});
 		}
@@ -111,6 +114,7 @@ export async function deleteArtist(req, res, next){
 	try{
 		const {type, id} = req.params;
 		const artists = await getArtists(`data/${type}.json`);
+		// If no artist could be found with given id, responds with an error //
 		if(!artists.find(artist => artist.id === id)){
 			res.status(404).json({error: "Artist not found"});
 		}

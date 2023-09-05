@@ -80,6 +80,7 @@ export async function removeFromFavorites(artistToRemove) {
 	return response;
 }
 
+// function to change the cached favorite artists to match the filter option selected //
 export function filterFavorites(filterValue){
 	favoriteArtists = favoriteArtists.filter(artist =>
 		artist.genres.map(genre => genre.toLowerCase()).includes(filterValue));

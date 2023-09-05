@@ -92,6 +92,7 @@ export async function deleteArtist(artistToDelete){
 	return response;
 }
 
+// function to change the cached artists to match the filter option selected //
 export function filterArtists(filterValue){
 	artists = artists.filter(artist => artist.genres.map(genre =>
 		genre.toLowerCase()).includes(filterValue));

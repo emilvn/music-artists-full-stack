@@ -4,20 +4,17 @@ import {artists, filterArtists, getArtists} from "../../model/artists.js";
 import {displayArtists, displayFavorites} from "../../view/view.js";
 import {favoriteArtists, filterFavorites, getFavorites} from "../../model/favorites.js";
 
+// function to filter the artists when a filter option is selected //
 export async function filterArtistsChanged() {
 	const selectElement = document.querySelector("#artist-filter-by__genre");
 	await getArtists();
 	await getFavorites();
-	if (selectElement.value === "") {
-		displayArtists(artists);
-		displayFavorites(favoriteArtists);
-	}
-	else {
+	if (selectElement.value !== "") {
 		filterArtists(selectElement.value);
 		filterFavorites(selectElement.value);
-		displayArtists(artists);
-		displayFavorites(favoriteArtists);
 	}
+	displayArtists(artists);
+	displayFavorites(favoriteArtists);
 }
 
 // Generate options for genrefilter //
@@ -42,6 +39,7 @@ export function generateFilterOptions() {
 	}
 }
 
+// function to show the filter menu when filter button is clicked //
 export function showFilterMenu() {
 	const filterButton = document.querySelector("#filter-sort-button");
 	filterButton.removeEventListener("click", showFilterMenu);
@@ -51,6 +49,7 @@ export function showFilterMenu() {
 	filterMenu.classList.remove("hidden");
 }
 
+// function to hide the filter menu when filter button is clicked //
 function hideFilterMenu() {
 	const filterButton = document.querySelector("#filter-sort-button");
 	filterButton.removeEventListener("click", hideFilterMenu);

@@ -63,6 +63,10 @@ export async function submitArtistUpdate(event) {
 			form.parentElement.close();
 			document.querySelector("#artist-detail-dialog").close();
 		}
+		else{
+			showToastMessage("Something went wrong", "error");
+			console.error(response.json());
+		}
 	} catch (err) {
 		showToastMessage("Oops, something went wrong", "error");
 		console.error(err);

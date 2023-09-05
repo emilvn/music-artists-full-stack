@@ -3,6 +3,7 @@ import express from "express";
 import morgan from "morgan";
 import {router} from "./src/routers/artists.js";
 import cors from "cors";
+import {errorHandler} from "./src/middlewares/errorhandler.js";
 
 /* ========== EXPRESS ========== */
 // instance of an Express application. //
@@ -22,10 +23,11 @@ app.use(morgan("tiny"));
 // Enable CORS to allow cross-origin requests. //
 app.use(cors());
 
-/* ========== ROUTER SETUP ========== */
-
 // Use the router defined in "./artists.js" //
 app.use("/", router);
+
+// use custom error handler middleware //
+app.use(errorHandler);
 
 /* ========== START SERVER ========== */
 

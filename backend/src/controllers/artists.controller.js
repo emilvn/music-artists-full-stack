@@ -4,8 +4,9 @@ import {v4 as uuidv4} from "uuid";
 import {getArtists, writeArtistsToFile} from "../helpers/filesystem.js";
 
 /* ========== ROUTE HANDLERS ========== */
-/* ----- GET ALL ARTISTS ----- */
-// Handler for getting all artists' data.//
+
+/* ----- GET ALL ----- */
+// Handler for getting all artists/favorites data.//
 export async function getArtistsData(req, res, next){
 	try{
 		const type = req.params.type;
@@ -22,8 +23,8 @@ export async function getArtistsData(req, res, next){
 	}
 }
 
-/* ----- GET ONE ARTIST ----- */
-// Handler for getting data of a specific artist by ID.//
+/* ----- GET ONE ----- */
+// Handler for getting data of a specific artist/favorite by ID.//
 export async function getSpecificArtist(req, res, next){
 	try{
 		const {type, id} = req.params;
@@ -41,8 +42,8 @@ export async function getSpecificArtist(req, res, next){
 	}
 }
 
-/* ----- ADD ARTIST ----- */
-// Handler for adding a new artist's data.//
+/* ----- ADD ----- */
+// Handler for adding a new artist's/favorites data.//
 export async function addArtistData(req, res, next){
 	try{
 		const type = req.params.type;
@@ -69,8 +70,8 @@ export async function addArtistData(req, res, next){
 	}
 }
 
-/* ----- UPDATE ARTIST----- */
-// Handler for updating an artist's data by ID.//
+/* ----- UPDATE ----- */
+// Handler for updating an artist's/favorites data by ID.//
 export async function updateArtistData(req, res, next){
 	try{
 		const {type, id} = req.params;
@@ -101,8 +102,8 @@ export async function updateArtistData(req, res, next){
 	}
 }
 
-/* ----- DELETE ARTIST ----- */
-// Handler for deleting an artist by ID.//
+/* ----- DELETE ----- */
+// Handler for deleting an artist/favorite by ID.//
 export async function deleteArtist(req, res, next){
 	try{
 		const {type, id} = req.params;

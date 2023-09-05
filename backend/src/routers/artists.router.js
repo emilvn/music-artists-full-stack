@@ -6,7 +6,7 @@ import {
 	getArtistsData,
 	getSpecificArtist,
 	updateArtistData
-} from "../controllers/artists.js";
+} from "../controllers/artists.controller.js";
 
 import express from "express";
 

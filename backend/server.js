@@ -1,7 +1,7 @@
 /* ========== IMPORTS ========== */
 import express from "express";
 import morgan from "morgan";
-import {router} from "./src/routers/artists.js";
+import {router} from "./src/routers/artists.router.js";
 import cors from "cors";
 import {errorHandler} from "./src/middlewares/errorhandler.js";
 
@@ -23,7 +23,7 @@ app.use(morgan("tiny"));
 // Enable CORS to allow cross-origin requests. //
 app.use(cors());
 
-// Use the router defined in "./artists.js" //
+// Use the router defined in "./artists.controller.js" //
 app.use("/", router);
 
 // use custom error handler middleware //

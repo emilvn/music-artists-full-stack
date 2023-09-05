@@ -1,7 +1,7 @@
 /* ========== IMPORTS ========== */
 import express from "express";
 import morgan from "morgan";
-import {router} from "./src/router.js";
+import {router} from "./src/routers/artists.js";
 import cors from "cors";
 
 /* ========== EXPRESS ========== */
@@ -24,7 +24,7 @@ app.use(cors());
 
 /* ========== ROUTER SETUP ========== */
 
-// Use the router defined in "./router.js" //
+// Use the router defined in "./artists.js" //
 app.use("/", router);
 
 /* ========== START SERVER ========== */

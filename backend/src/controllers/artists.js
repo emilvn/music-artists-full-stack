@@ -1,7 +1,7 @@
 /* ========== IMPORTS ========== */
 // 'uuidv4' function for generating unique IDs.//
 import {v4 as uuidv4} from "uuid";
-import {getArtists, writeArtistsToFile} from "./filesystem.js";
+import {getArtists, writeArtistsToFile} from "../helpers/filesystem.js";
 
 /* ========== ROUTE HANDLERS ========== */
 

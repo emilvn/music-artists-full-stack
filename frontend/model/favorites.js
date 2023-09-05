@@ -8,13 +8,12 @@ export let favoriteArtists = [];
 /* ========== FETCH FAVORITE ARTISTS ========== */
 // Function to fetch favorite artists from the server //
 export async function getFavorites() {
-	try {
-		const response = await fetch(endpoint + "/favorites");
-		if (response.ok) {
-			favoriteArtists = await response.json();
-		}
-	} catch (err) {
-		throw err;
+	const response = await fetch(endpoint + "/favorites");
+	if (response.ok) {
+		favoriteArtists = await response.json();
+	}
+	else {
+		console.error(await response.json());
 	}
 }
 

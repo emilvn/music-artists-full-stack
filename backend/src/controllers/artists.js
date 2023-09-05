@@ -11,7 +11,7 @@ export async function getArtistsData(req, res, next){
 		const type = req.params.type;
 		const artists = await getArtists(`data/${type}.json`);
 		if(artists.length === 0){
-			res.status(404).json({error: "Artists not found"});
+			res.status(404).json({error: `${type} not found`});
 		}
 		else{
 			res.status(200).json(artists);

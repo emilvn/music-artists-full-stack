@@ -1,7 +1,7 @@
 /* ========== IMPORTS ========== */
 import {getSpecificArtist} from "../model/artists.js";
 import {showCreateDialog, showDeleteDialog, showDetailDialog} from "../view/dialogs.js";
-import {filterArtists, showFilterMenu} from "./search-filter-sort/filter.js";
+import {filterArtistsChanged, showFilterMenu} from "./search-filter-sort/filter.js";
 import {sortAlphabetically, sortReverseAlphabetically} from "./search-filter-sort/sort.js";
 import {favoriteArtists} from "../model/favorites.js";
 import {removeSubmitEvent, submitFavoriteArtist, submitRemoveFromFavorites} from "./submit.js";
@@ -27,7 +27,7 @@ export function setInitialEventListeners(){
 	document.querySelector("#reverse-alphabetical-sort").addEventListener("click", sortReverseAlphabetically);
 
 	document.querySelector("#artist-filter-by__genre")
-		.addEventListener("change", filterArtists);
+		.addEventListener("change", filterArtistsChanged);
 }
 
 // sets event listeners for artist articles //

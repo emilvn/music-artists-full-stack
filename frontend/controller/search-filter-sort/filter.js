@@ -1,19 +1,22 @@
 /* ========== FILTER ========== */
 // Filter artists //
-import {artists} from "../../model/artists.js";
+import {artists, filterArtists, getArtists} from "../../model/artists.js";
 import {displayArtists, displayFavorites} from "../../view/view.js";
-import {favoriteArtists} from "../../model/favorites.js";
+import {favoriteArtists, filterFavorites, getFavorites} from "../../model/favorites.js";
 
-export function filterArtists() {
+export async function filterArtistsChanged() {
 	const selectElement = document.querySelector("#artist-filter-by__genre");
+	await getArtists();
+	await getFavorites();
 	if (selectElement.value === "") {
 		displayArtists(artists);
 		displayFavorites(favoriteArtists);
-	} else {
-		const filteredArtists = artists.filter(artist => artist.genres.includes(selectElement.value));
-		const filteredFavorites = favoriteArtists.filter(artist => artist.genres.includes(selectElement.value));
-		displayArtists(filteredArtists);
-		displayFavorites(filteredFavorites);
+	}
+	else {
+		filterArtists(selectElement.value);
+		filterFavorites(selectElement.value);
+		displayArtists(artists);
+		displayFavorites(favoriteArtists);
 	}
 }
 

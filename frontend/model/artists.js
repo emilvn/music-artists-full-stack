@@ -91,3 +91,8 @@ export async function deleteArtist(artistToDelete){
 	}
 	return response;
 }
+
+export function filterArtists(filterValue){
+	artists = artists.filter(artist => artist.genres.map(genre =>
+		genre.toLowerCase()).includes(filterValue));
+}

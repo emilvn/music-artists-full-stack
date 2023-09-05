@@ -79,3 +79,8 @@ export async function removeFromFavorites(artistToRemove) {
 	}
 	return response;
 }
+
+export function filterFavorites(filterValue){
+	favoriteArtists = favoriteArtists.filter(artist =>
+		artist.genres.map(genre => genre.toLowerCase()).includes(filterValue));
+}

@@ -19,6 +19,7 @@ export async function getArtistsData(req, res, next){
 		}
 	}
 	catch (err){
+		//forwards the error to the error handler middleware //
 		next(err);
 	}
 }
@@ -49,6 +50,7 @@ export async function addArtistData(req, res, next){
 		const type = req.params.type;
 		const artists = await getArtists(`data/${type}.json`);
 		const newArtist = req.body;
+		// if URI is /artists //
 		if(type === "artists"){
 			// If artist already exists on database, responds with 400 Artist already exists //
 			if(artists.find(artist => artist.name.toLowerCase() === newArtist.name.toLowerCase())){
@@ -59,6 +61,7 @@ export async function addArtistData(req, res, next){
 				artists.push(newArtist);
 			}
 		}
+		// if URI is /favorites //
 		else if(type === "favorites" && !artists.find(favorite => favorite.id === newArtist.id)){
 			artists.push(newArtist);
 		}

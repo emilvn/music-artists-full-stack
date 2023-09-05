@@ -36,7 +36,6 @@ export async function submitFavoriteArtist(artist) {
 	try {
 		const response = await addToFavorites(artist);
 		if (response.ok) {
-			console.error(await response.json());
 			displayFavorites(favoriteArtists);
 			showToastMessage(`${artist.name} added to favorites!`, "success");
 			setDetailFavoriteButtonIcon(artist);
@@ -63,10 +62,6 @@ export async function submitArtistUpdate(event) {
 			form.reset();
 			form.parentElement.close();
 			document.querySelector("#artist-detail-dialog").close();
-		}
-		else{
-			showToastMessage("Something went wrong", "error");
-			console.error(response.json());
 		}
 	} catch (err) {
 		showToastMessage("Oops, something went wrong", "error");

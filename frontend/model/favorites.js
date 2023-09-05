@@ -21,21 +21,20 @@ export async function getFavorites() {
 /* ========== ADD ARTIST AND FAVORITE ARTIST ========== */
 // Function to add an artist to favorites on the server //
 export async function addToFavorites(artist) {
-	try {
-		const response = await fetch(endpoint + "/favorites", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json"
-			},
-			body: JSON.stringify(artist)
-		});
-		if (response.ok) {
-			favoriteArtists = await response.json();
-		}
-		return response;
-	} catch (err) {
-		throw err;
+	const response = await fetch(endpoint + "/favorites", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify(artist)
+	});
+	if (response.ok) {
+		favoriteArtists = await response.json();
 	}
+	else {
+		console.error(await response.json());
+	}
+	return response;
 }
 
 /* ========== UPDATE ARTIST IN FAVORITES ========== */
@@ -53,32 +52,31 @@ export async function updateFavoriteArtist(updatedArtist){
 	artistToUpdate.roles = updatedArtist.roles;
 	artistToUpdate.website = updatedArtist.website;
 	artistToUpdate.shortDescription = updatedArtist.shortDescription;
-	try{
-		return await fetch(endpoint + "/favorites/" + updatedArtist.id, {
-			method: "PUT",
-			headers: {
-				"Content-Type":"application/json"
-			},
-			body: JSON.stringify(updatedArtist)
-		});
+
+	const response = await fetch(endpoint + "/favorites/" + updatedArtist.id, {
+		method: "PUT",
+		headers: {
+			"Content-Type":"application/json"
+		},
+		body: JSON.stringify(updatedArtist)
+	});
+	if(!response.ok){
+		console.error(await response.json());
 	}
-	catch (err){
-		throw err;
-	}
+	return response;
 }
 
 /* ========== REMOVE ARTIST FROM FAVORITES ========== */
 // Removes artist from favorites on the server //
 export async function removeFromFavorites(artistToRemove) {
-	try {
-		const response = await fetch(endpoint + "/favorites/" + artistToRemove.id, {
-			method: "DELETE"
-		});
-		if (response.ok) {
-			favoriteArtists = await response.json();
-		}
-		return response;
-	} catch (err) {
-		throw err;
+	const response = await fetch(endpoint + "/favorites/" + artistToRemove.id, {
+		method: "DELETE"
+	});
+	if (response.ok) {
+		favoriteArtists = await response.json();
 	}
+	else {
+		console.error(await response.json());
+	}
+	return response;
 }

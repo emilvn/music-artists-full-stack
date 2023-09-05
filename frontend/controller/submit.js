@@ -36,6 +36,7 @@ export async function submitFavoriteArtist(artist) {
 	try {
 		const response = await addToFavorites(artist);
 		if (response.ok) {
+			console.error(await response.json());
 			displayFavorites(favoriteArtists);
 			showToastMessage(`${artist.name} added to favorites!`, "success");
 			setDetailFavoriteButtonIcon(artist);

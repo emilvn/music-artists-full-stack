@@ -32,22 +32,20 @@ export async function getSpecificArtist(artist){
 /* ========== ADD ARTIST ========== */
 // Function to add a new artist to the server //
 export async function addArtist(artist){
-	try{
-		const response = await fetch(endpoint + "/artists", {
-			method: "POST",
-			headers: {
-				"Content-Type":"application/json"
-			},
-			body: JSON.stringify(artist)
-		});
-		if(response.ok){
-			artists = await response.json();
-		}
-		return response;
+	const response = await fetch(endpoint + "/artists", {
+		method: "POST",
+		headers: {
+			"Content-Type":"application/json"
+		},
+		body: JSON.stringify(artist)
+	});
+	if(response.ok){
+		artists = await response.json();
 	}
-	catch (err){
-		throw err;
+	else{
+		console.error(await response.json());
 	}
+	return response;
 }
 
 /* ========== UPDATE ARTIST ========== */

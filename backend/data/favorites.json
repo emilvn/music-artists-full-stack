@@ -66,26 +66,5 @@
       "Songwriter"
     ],
     "shortDescription": "Guitar virtuoso and rock icon"
-  },
-  {
-    "id": "14",
-    "name": "Billy Joel",
-    "birthdate": "1949-05-09",
-    "activeSince": "1971-11-01",
-    "genres": [
-      "Rock",
-      "Pop Rock"
-    ],
-    "labels": [
-      "Columbia Records"
-    ],
-    "website": "https://www.billyjoel.com/",
-    "image": "https://media.snl.no/media/242256/standard_compressed_billy-joel.jpg",
-    "roles": [
-      "Singer",
-      "Songwriter",
-      "Pianist"
-    ],
-    "shortDescription": "Piano Man"
   }
 ]

@@ -1,4 +1,4 @@
-export function errorHandler(err, req, res){
+export function errorHandler(err, req, res, _next){
 	console.log("Middleware error handling");
 	const status = err.statusCode || 500;
 	const message = err.message ||"Something went wrong";

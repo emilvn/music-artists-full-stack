@@ -1,9 +1,10 @@
 /* ========== IMPORTS ========== */
 import express from "express";
 import morgan from "morgan";
-import {router} from "./src/routers/artists.router.js";
+import {artistsRouter} from "./src/routers/artists.router.js";
 import cors from "cors";
 import {errorHandler} from "./src/middlewares/errorhandler.js";
+import {favoritesRouter} from "./src/routers/favorites.router.js";
 
 /* ========== EXPRESS ========== */
 // instance of an Express application. //
@@ -24,7 +25,8 @@ app.use(morgan("tiny"));
 app.use(cors());
 
 // Use the router defined in "./artists.controller.js" //
-app.use("/", router);
+app.use("/artists/", artistsRouter);
+app.use("/favorites/", favoritesRouter);
 
 // use custom error handler middleware //
 app.use(errorHandler);

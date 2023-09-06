@@ -1,7 +1,7 @@
 // function to remove submit events from forms. //
 import {addArtist, artists, deleteArtist, updateArtist} from "../model/artists.js";
 import {displayArtists, displayFavorites} from "../view/view.js";
-import {addToFavorites, favoriteArtists, removeFromFavorites} from "../model/favorites.js";
+import {addToFavorites, favoriteArtists, getFavorites, removeFromFavorites} from "../model/favorites.js";
 import {showToastMessage} from "../view/helpers/toastmessages.js";
 import {setDetailFavoriteButtonIcon} from "../view/dialogs.js";
 import {selectedArtist} from "./helpers/selectartist.js";
@@ -56,6 +56,7 @@ export async function submitArtistUpdate(event) {
 	try {
 		const response = await updateArtist(updatedArtist);
 		if (response.ok) {
+			await getFavorites();
 			displayArtists(artists);
 			displayFavorites(favoriteArtists);
 			showToastMessage(`${selectedArtist.name} updated successfully!`, "success");

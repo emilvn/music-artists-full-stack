@@ -7,9 +7,9 @@
  * @param {string} message error message for exception
  */
 export class ValidationError extends Error {
-	static name = "ValidationError";
-	static statusCode = 400;
 	constructor(message) {
 		super(message); //uses the constructor of Error class for messages
+		this.statusCode = 400;
+		this.name = "ValidationError";
 	}
 }

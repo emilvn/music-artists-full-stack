@@ -35,8 +35,8 @@ export async function submitArtistCreate(event) {
 			form.parentElement.close();
 		}
 	} catch (err) {
-		showToastMessage(err.message|"Failed to create artist", "error");
-		console.error(err);
+		showToastMessage(err.message||"Failed to create artist", "error");
+		console.error({"Error adding artist: ": err});
 	}
 }
 
@@ -55,8 +55,8 @@ export async function submitFavoriteArtist(artist) {
 			document.querySelector("#artist-detail-dialog").close();
 		}
 	} catch (err) {
-		showToastMessage(err.message |"Failed to add artist to favorites", "error");
-		console.error(err);
+		showToastMessage(err.message||"Failed to add artist to favorites", "error");
+		console.error({"Error adding artist to favorites: ": err});
 	}
 }
 
@@ -81,8 +81,8 @@ export async function submitArtistUpdate(event) {
 			document.querySelector("#artist-detail-dialog").close();
 		}
 	} catch (err) {
-		showToastMessage(err.message|"Failed to update artist", "error");
-		console.error(err);
+		showToastMessage(err.message||"Failed to update artist", "error");
+		console.error({"Error updating artist: ": err});
 	}
 }
 
@@ -107,8 +107,8 @@ export async function submitArtistDelete(event) {
 			document.querySelector("#artist-detail-dialog").close();
 		}
 	} catch (err) {
-		showToastMessage(err.message|"Failed to delete artist", "error");
-		console.error(err);
+		showToastMessage(err.message||"Failed to delete artist", "error");
+		console.error({"Error deleting artist: ": err});
 	}
 }
 
@@ -127,7 +127,7 @@ export async function submitRemoveFromFavorites(artist) {
 			document.querySelector("#artist-detail-dialog").close();
 		}
 	} catch (err) {
-		showToastMessage(err.message|"Failed to remove artist from favorites", "error");
-		console.error(err);
+		showToastMessage(err.message||"Failed to remove artist from favorites", "error");
+		console.error({"Error removing artist from favorites: ": err});
 	}
 }

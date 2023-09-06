@@ -10,12 +10,12 @@ export let favoriteArtists = [];
 /**
  * getFavorites
  * function to fetch favorite artists from the server and cache it in global variable
- * @throws {Error} if request didn't succeed
+ * @throws {Object} containing error data from the API errorhandler if request didn't succeed
  */
 export async function getFavorites() {
 	const response = await fetch(endpoint + "/favorites");
 	if (!response.ok) {
-		throw new Error(await response.json());
+		throw (JSON.parse(await response.json()));
 	}
 	favoriteArtists = await response.json();
 }
@@ -24,7 +24,7 @@ export async function getFavorites() {
  * addToFavorites
  * function to add an artist to favorites on the server, and update the cached favorites
  * @param {Artist} artist artist to add to favorites
- * @throws {Error} if request didn't succeed
+ * @throws {Object} containing error data from the API errorhandler if request didn't succeed
  * @returns {Response} response object from server
  */
 export async function addToFavorites(artist) {
@@ -36,7 +36,7 @@ export async function addToFavorites(artist) {
 		body: JSON.stringify(artist)
 	});
 	if (!response.ok) {
-		throw new Error(await response.json());
+		throw (JSON.parse(await response.json()));
 	}
 	favoriteArtists = await response.json();
 	return response;
@@ -46,7 +46,7 @@ export async function addToFavorites(artist) {
  * removeFromFavorites
  * function to remove an artist from favorites on the server, and update the cached favorites
  * @param {Artist} artistToRemove artist to remove from favorites
- * @throws {Error} if request didn't succeed
+ * @throws {Object} containing error data from the API errorhandler if request didn't succeed
  * @returns {Response} response object from server
  */
 export async function removeFromFavorites(artistToRemove) {
@@ -54,7 +54,7 @@ export async function removeFromFavorites(artistToRemove) {
 		method: "DELETE"
 	});
 	if (!response.ok) {
-		throw new Error(await response.json());
+		throw (JSON.parse(await response.json()));
 	}
 	favoriteArtists = await response.json();
 	return response;

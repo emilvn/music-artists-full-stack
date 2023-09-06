@@ -12,7 +12,7 @@ export let selectedArtist;
 export function selectArtist(artist) {
 	selectedArtist = artist;
 	const form = document.querySelector("#form-update");
-	form.name.value = artist.name;
+	form.artistName.value = artist.name;
 	form.birthdate.value = artist.birthdate;
 	form.activeSince.value = artist.activeSince;
 	form.image.value = artist.image;

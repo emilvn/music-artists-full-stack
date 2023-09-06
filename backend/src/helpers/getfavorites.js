@@ -1,8 +1,4 @@
 /**
- * @typedef {import(Artist)} Artist
- */
-
-/**
  * getFavorites
  * gets array of artists whose id's are in favoriteIds
  * @param {string[]} favoriteIDs array of artist id's

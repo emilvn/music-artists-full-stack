@@ -1,4 +1,4 @@
-export /**
+ /**
  * @typedef {Object} Artist
  * @property {string} id - unique id of the artist
  * @property {string} name - name of the artist

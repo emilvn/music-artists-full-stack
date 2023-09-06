@@ -3,6 +3,7 @@
 import {v4 as uuidv4} from "uuid";
 import {getArtists, writeArtistsToFile} from "../helpers/filesystem.js";
 import {HTTPException} from "../middlewares/errorhandler.js";
+import {validateArtist} from "../model/artist.js";
 
 /* ========== ROUTE HANDLERS ========== */
 
@@ -49,33 +50,52 @@ export async function getSpecificArtist(req, res, next){
 /* ----- ADD ----- */
 // Handler for adding a new artist's/favorites data.//
 export async function addArtistData(req, res, next){
+	const type = req.params.type;
+	if(type === "favorites"){
+		addFavorite(req, res, next);
+	}
+	else if(type === "artists"){
+		addArtist(req, res, next);
+	}
+}
+async function addArtist(req, res, next){
 	try{
-		const type = req.params.type;
-		const artists = await getArtists(`data/${type}.json`);
+		const artists = await getArtists("data/artists.json");
 		const newArtist = req.body;
-		// if URI is /artists //
-		if(type === "artists"){
-			// If artist already exists on database, responds with an error //
-			if(artists.find(artist => artist.name.toLowerCase() === newArtist.name.toLowerCase())){
-				next(new HTTPException("Artist already exists", 400));
-			}
-			else{
-				newArtist.id = uuidv4();
-				artists.push(newArtist);
-			}
-		}
-		// if URI is /favorites //
-		else if(type === "favorites" && !artists.find(favorite => favorite.id === newArtist.id)){
+		if(validateArtist(newArtist)){
+			newArtist.id = uuidv4();
 			artists.push(newArtist);
+			await writeArtistsToFile(artists, `data/artists.json`);
+			res.status(201).json(artists);
 		}
-		await writeArtistsToFile(artists, `data/${type}.json`);
-		res.status(201).json(artists);
+		else{
+			next(new HTTPException("Bad request", 400));
+		}
 	}
 	catch(err){
 		next(err);
 	}
 }
-
+async function addFavorite(req, res, next){
+	try{
+		const favorites = await getArtists("data/favorites.json");
+		const artists = await getArtists("data/artists.json");
+		const favoriteArtist = req.body;
+		if(!favorites.find(favorite => favorite.id === favoriteArtist.id) // artist cant be already in favorites
+			&& artists.find(artist => artist.id === favoriteArtist.id) // artist has to be in artists already
+			&& validateArtist(favoriteArtist)){
+			favorites.push(favoriteArtist);
+			await writeArtistsToFile(favorites, `data/artists.json`);
+			res.status(201).json(favorites);
+		}
+		else{
+			next(new HTTPException("Bad request", 400));
+		}
+	}
+	catch(err){
+		next(err);
+	}
+}
 /* ----- UPDATE ----- */
 // Handler for updating an artist's/favorites data by ID.//
 export async function updateArtistData(req, res, next){

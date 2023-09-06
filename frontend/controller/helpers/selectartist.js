@@ -1,7 +1,7 @@
 import {showUpdateDialog} from "../../view/dialogs.js";
 /**
  * The artist currently selected for updating
- * @type {Object | null}
+ * @type {Artist | null}
  */
 export let selectedArtist;
 

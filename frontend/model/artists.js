@@ -10,27 +10,27 @@ export let artists = [];
 /**
  * getArtists
  * function to fetch array of artists from the server and cache it in global variable
+ * @throws {Error} if request didn't succeed
  */
 export async function getArtists(){
 	const response = await fetch(endpoint + "/artists")
-	if(response.ok){
-		artists = await response.json();
+	if(!response.ok){
+		throw new Error(await response.json());
 	}
-	else{
-		console.error(await response.json());
-	}
+	artists = await response.json();
 }
 
 /**
  *  getSpecificArtist
  *  function to fetch a specific artist from the server
  *  @param {Artist} artist artist to fetch
+ *  @throws {Error} if request didn't succeed
  *  @returns {Response} response object from the server
  */
 export async function getSpecificArtist(artist){
 	const response = await fetch(endpoint + "/artists/" + artist.id);
 	if(!response.ok){
-		console.error(await response.json());
+		throw new Error(await response.json());
 	}
 	return response;
 }
@@ -38,7 +38,8 @@ export async function getSpecificArtist(artist){
 /**
  *  addArtist
  *  function to add an artist on the server, and update the cached artists
- *  @param {Artist} artist artist to add
+ *  @param {Object} artist object with artist details to add as an artists
+ *  @throws {Error} if request didn't succeed
  *  @returns {Response} response object from the server
  */
 export async function addArtist(artist){
@@ -49,12 +50,10 @@ export async function addArtist(artist){
 		},
 		body: JSON.stringify(artist)
 	});
-	if(response.ok){
-		artists = await response.json();
+	if(!response.ok){
+		throw new Error(await response.json());
 	}
-	else{
-		console.error(await response.json());
-	}
+	artists = await response.json();
 	return response;
 }
 
@@ -62,6 +61,7 @@ export async function addArtist(artist){
  * updateArtist
  * function to update a specific artist on the server, and update the cached artists
  * @param {Object} updatedArtist Artist object without the id
+ * @throws {Error} if request didn't succeed
  * @returns {Response} response object from the server
  */
 export async function updateArtist(updatedArtist){
@@ -80,7 +80,7 @@ export async function updateArtist(updatedArtist){
 		body: JSON.stringify(artistToUpdate)
 	});
 	if(!response.ok){
-		console.error(await response.json());
+		throw new Error(await response.json());
 	}
 	return response;
 }
@@ -89,18 +89,17 @@ export async function updateArtist(updatedArtist){
  * deleteArtist
  * function to delete a specific artist on the server, and update the cached artists
  * @param {Artist} artistToDelete Artist to delete from the server
+ * @throws {Error} if request didn't succeed
  * @returns {Response} response object from the server
  */
 export async function deleteArtist(artistToDelete){
 	const response = await fetch(endpoint + "/artists/" + artistToDelete.id, {
 		method: "DELETE"
 	});
-	if(response.ok){
-		artists = await response.json();
+	if(!response.ok){
+		throw new Error(await response.json());
 	}
-	else{
-		console.error(await response.json());
-	}
+	artists = await response.json();
 	return response;
 }
 

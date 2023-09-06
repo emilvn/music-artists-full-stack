@@ -1,7 +1,8 @@
-import {v4 as uuidv4} from "uuid"; // 'uuidv4' for generating unique artist ids
-import {getArtists, writeArtistsToFile} from "../helpers/filesystem.js";
+import {v4 as uuidv4} from "uuid"; // 'uuid4' for generating unique artist ids
+import {getArtists, writeArtistsToFile} from "../models/filesystem.js";
 import {validateArtist} from "../validation/artist.validation.js";
 import {HTTPException} from "../errors/HTTPException.js";
+// noinspection ES6UnusedImports
 import express from "express";
 
 /**

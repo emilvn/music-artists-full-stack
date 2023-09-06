@@ -35,7 +35,7 @@ export async function submitArtistCreate(event) {
 			form.parentElement.close();
 		}
 	} catch (err) {
-		showToastMessage(`Oops, something went wrong.`, "error");
+		showToastMessage(err.message|"Failed to create artist", "error");
 		console.error(err);
 	}
 }
@@ -55,7 +55,7 @@ export async function submitFavoriteArtist(artist) {
 			document.querySelector("#artist-detail-dialog").close();
 		}
 	} catch (err) {
-		showToastMessage(`Oops, something went wrong.`, "error");
+		showToastMessage(err.message |"Failed to add artist to favorites", "error");
 		console.error(err);
 	}
 }
@@ -81,7 +81,7 @@ export async function submitArtistUpdate(event) {
 			document.querySelector("#artist-detail-dialog").close();
 		}
 	} catch (err) {
-		showToastMessage("Oops, something went wrong", "error");
+		showToastMessage(err.message|"Failed to update artist", "error");
 		console.error(err);
 	}
 }
@@ -99,16 +99,15 @@ export async function submitArtistDelete(event) {
 		const response = await deleteArtist(artist);
 		if (response.ok) {
 			displayArtists(artists);
-			// if deleted artist in favorites, remove from favorites //
-			if (favoriteArtists.find(favorite => favorite.id === artist.id)) {
-				submitRemoveFromFavorites(artist);
+			if (favoriteArtists.find(favorite => favorite.id === artist.id)) { // also remove from favorites
+				await submitRemoveFromFavorites(artist);
 			}
 			showToastMessage(`${artist.name} deleted successfully!`, "success");
 			form.parentElement.close();
 			document.querySelector("#artist-detail-dialog").close();
 		}
 	} catch (err) {
-		showToastMessage("Oops something went wrong.", "error");
+		showToastMessage(err.message|"Failed to delete artist", "error");
 		console.error(err);
 	}
 }
@@ -128,7 +127,7 @@ export async function submitRemoveFromFavorites(artist) {
 			document.querySelector("#artist-detail-dialog").close();
 		}
 	} catch (err) {
-		showToastMessage("Oops, something went wrong.", "error");
+		showToastMessage(err.message|"Failed to remove artist from favorites", "error");
 		console.error(err);
 	}
 }

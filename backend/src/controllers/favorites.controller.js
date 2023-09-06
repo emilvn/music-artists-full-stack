@@ -1,6 +1,7 @@
-import {getArtists, writeArtistsToFile} from "../helpers/filesystem.js";
-import {getFavorites} from "../helpers/getfavorites.js";
+import {getArtists, writeArtistsToFile} from "../models/filesystem.js";
+import {getFavorites} from "../models/helpers/getfavorites.js";
 import {HTTPException} from "../errors/HTTPException.js";
+// noinspection ES6UnusedImports
 import express from "express";
 
 /**

@@ -1,21 +1,24 @@
-/* ========== IMPORTS ========== */
 import {setArtistEventListeners,} from "../controller/seteventlisteners.js";
 import {formatDate} from "./helpers/formatting.js";
-
 import {setArtistTooltips} from "../controller/settooltips.js";
 
-/* ========== DISPLAY ARTISTS ========== */
-
-// Function to display a list of artists. //
+/**
+ * displayArtists
+ * function to display all artists
+ * @param {Artist[]} artists array of artists to display
+ */
 export function displayArtists(artists){
 	document.querySelector("#artists").innerHTML = "";
 	for(const artist of artists){
 		displayArtist(artist, "#artists");
 	}
 }
-/* ========== DISPLAY FAVORITES ========== */
 
-// Function to display a list of favorite artists. //
+/**
+ * displayFavorites
+ * function to display all favorites
+ * @param {Artist[]} favorites array of favorites to display
+ */
 export function displayFavorites(favorites){
 	document.querySelector("#favorites").innerHTML = "";
 	for(const artist of favorites){
@@ -23,7 +26,12 @@ export function displayFavorites(favorites){
 	}
 }
 
-// Function to display a single artist. //
+/**
+ * displayArtist
+ * function to display a single artist
+ * @param {Artist} artist artist to display
+ * @param {string} containerID id of html container to put artist into(#favorites/#artists)
+ */
 function displayArtist(artist, containerID){
 	const container = document.querySelector(containerID);
 	const myHTML = /*html*/`
@@ -50,7 +58,12 @@ function displayArtist(artist, containerID){
 	setArtistTooltips(artistArticle, artist, containerID);
 }
 
-// function for generating and inserting html list elements from an array into a container //
+/**
+ * generateListFromArray
+ * helper function to generate li elements for each item in an array
+ * @param {string[]} arr array of roles/genres/labels to display in list
+ * @param {HTMLUListElement|HTMLOListElement} container html ul/ol element to put list into
+ */
 export function generateListFromArray(arr, container){
 	for(const item of arr){
 		container.insertAdjacentHTML("beforeend", `<li>${item}</li>`);

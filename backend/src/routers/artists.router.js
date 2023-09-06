@@ -1,5 +1,3 @@
-/* ========== IMPORTS ========== */
-// artist route handlers //
 import {
 	addArtist,
 	deleteArtist,
@@ -7,26 +5,44 @@ import {
 	getSpecificArtist,
 	updateArtistData
 } from "../controllers/artists.controller.js";
-
 import express from "express";
 
-// Express router to define and handle routes. //
+/**
+ * Express router for artists routes
+ */
 export const artistsRouter = express.Router();
 
-/* ========== ROUTES ========== */
-// Define and map routes to controller functions using HTTP methods. //
-
-/* ----- GET ALL ARTISTS ----- */
+/**
+ * Route to get list of all artists
+ * @name GET /artists
+ * @function
+ */
 artistsRouter.get("/", getArtistsData);
 
-/* ----- GET SPECIFIC ARTIST BY ID ----- */
+/**
+ * Route to get specific artist by id
+ * @name GET /artists/:id
+ * @function
+ */
 artistsRouter.get("/:id", getSpecificArtist);
 
-/* ----- ADD NEW ARTIST ----- */
+/**
+ * Route to add an artist
+ * @name POST /artists
+ * @function
+ */
 artistsRouter.post("/", addArtist);
 
-/* ----- UPDATE ARTIST BY ID ----- */
+/**
+ * Route to update a specific artist by id
+ * @name PUT /artists/:id
+ * @function
+ */
 artistsRouter.put("/:id", updateArtistData);
 
-/* ----- DELETE ARTIST BY ID ----- */
+/**
+ * Route to delete a specific artist by id
+ * @name DELETE /artists/:id
+ * @function
+ */
 artistsRouter.delete("/:id", deleteArtist);

@@ -8,20 +8,35 @@ import {
 	removeFavorite
 } from "../controllers/favorites.controller.js";
 
-// Express router to define and handle routes. //
+/**
+ * Express router for favorites routes
+ */
 export const favoritesRouter = express.Router();
 
-/* ========== ROUTES ========== */
-// Define and map routes to controller functions using HTTP methods. //
-
-/* ----- GET ALL ARTISTS ----- */
+/**
+ * Route to get favorite artists
+ * @name GET /favorites
+ * @function
+ */
 favoritesRouter.get("/", getFavoritesData);
 
-/* ----- GET SPECIFIC ARTIST BY ID ----- */
+/**
+ * Route to get specific favorite artist by id
+ * @name GET /favorites/:id
+ * @function
+ */
 favoritesRouter.get("/:id", getSpecificFavorite);
 
-/* ----- ADD NEW ARTIST ----- */
+/**
+ * Route to add an artist to favorites
+ * @name POST /favorites
+ * @function
+ */
 favoritesRouter.post("/", addFavorite);
 
-/* ----- DELETE ARTIST BY ID ----- */
+/**
+ * Route to get remove specific artist by id
+ * @name DELETE /favorites/:id
+ * @function
+ */
 favoritesRouter.delete("/:id", removeFavorite);

@@ -42,15 +42,12 @@ export async function addToFavorites(artist) {
 // Function to update artist details on server //
 export async function updateFavoriteArtist(updatedArtist){
 	const artistToUpdate = favoriteArtists.find(artist => artist.id === updatedArtist.id);
-	artistToUpdate.name = updatedArtist.name;
-	artistToUpdate.birthdate = updatedArtist.birthdate;
-	artistToUpdate.activeSince = updatedArtist.activeSince;
-	artistToUpdate.image = updatedArtist.image;
-	artistToUpdate.genres = updatedArtist.genres;
-	artistToUpdate.labels = updatedArtist.labels;
-	artistToUpdate.roles = updatedArtist.roles;
-	artistToUpdate.website = updatedArtist.website;
-	artistToUpdate.shortDescription = updatedArtist.shortDescription;
+
+	for(const key in artistToUpdate){
+		if(key !== "id"){
+			artistToUpdate[key] = updatedArtist[key];
+		}
+	}
 
 	const response = await fetch(endpoint + "/favorites/" + updatedArtist.id, {
 		method: "PUT",

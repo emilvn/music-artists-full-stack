@@ -50,15 +50,11 @@ export async function addArtist(artist){
 export async function updateArtist(updatedArtist){
 	const artistToUpdate = artists.find(artist => artist.id === selectedArtist.id);
 
-	artistToUpdate.name = updatedArtist.name;
-	artistToUpdate.birthdate = updatedArtist.birthdate;
-	artistToUpdate.activeSince = updatedArtist.activeSince;
-	artistToUpdate.image = updatedArtist.image;
-	artistToUpdate.genres = updatedArtist.genres;
-	artistToUpdate.labels = updatedArtist.labels;
-	artistToUpdate.roles = updatedArtist.roles;
-	artistToUpdate.website = updatedArtist.website;
-	artistToUpdate.shortDescription = updatedArtist.shortDescription;
+	for(const key in artistToUpdate){
+		if(key !== "id"){
+			artistToUpdate[key] = updatedArtist[key];
+		}
+	}
 
 	const artistInFavorites = favoriteArtists.find(artist => artist.id ===selectedArtist.id);
 	if(artistInFavorites){

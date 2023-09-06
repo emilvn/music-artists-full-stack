@@ -1,4 +1,3 @@
-/* ========== IMPORTS ========== */
 import {displayArtists, displayFavorites} from "./view/view.js";
 import {artists, getArtists} from "./model/artists.js";
 import {setInitialEventListeners} from "./controller/seteventlisteners.js";
@@ -8,14 +7,23 @@ import {favoriteArtists, getFavorites} from "./model/favorites.js";
 import {sortAlphabetically} from "./controller/search-filter-sort/sort.js";
 import {setTooltips} from "./controller/settooltips.js";
 
+// main is run on page load
 window.addEventListener("load", main);
 
-// API endpoint for the server //
+/**
+ * Server endpoint
+ * @type string
+ */
 export const endpoint = "http://localhost:3333";
 
-// Main function to fetch data and set event listeners //
+/**
+ * Main function to initialize app
+ * gets artists and favorites, sets initial event listeners/tooltips,
+ * and sorts the artists alphabetically
+ *
+ */
 async function main(){
-	// fetch artists and save locally //
+	// fetch artists
 	try{
 		await getFavorites();
 		await getArtists();
@@ -24,17 +32,17 @@ async function main(){
 		showToastMessage(err.message||"Failed getting artists", "error");
 		console.error({"Error getting artist: ": err});
 	}
-	// generate options for filter select //
+	// generate options for filter select
 	generateFilterOptions();
 
-	// display artists on page //
+	// display artists on page
 	displayArtists(artists);
 	displayFavorites(favoriteArtists);
 
-	// initial event listeners and tooltips //
+	// initial event listeners and tooltips
 	setInitialEventListeners();
 	setTooltips();
 
-	// initial sorting //
+	// initial sorting
 	sortAlphabetically();
 }

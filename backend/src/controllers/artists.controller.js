@@ -90,15 +90,11 @@ export async function updateArtistData(req, res, next){
 		}
 		else{
 			// Update artist properties with new data from the request body.//
-			artistToUpdate.name = body.name;
-			artistToUpdate.birthdate = body.birthdate;
-			artistToUpdate.activeSince = body.activeSince;
-			artistToUpdate.genres = body.genres;
-			artistToUpdate.labels = body.labels;
-			artistToUpdate.website = body.website;
-			artistToUpdate.roles = body.roles;
-			artistToUpdate.image = body.image;
-			artistToUpdate.shortDescription = body.shortDescription;
+			for(const key in artistToUpdate){
+				if(key !== "id"){
+					artistToUpdate[key] = body[key];
+				}
+			}
 
 			await writeArtistsToFile(artists, `data/${type}.json`);
 			res.status(200).json(artists);

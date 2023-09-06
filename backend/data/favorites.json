@@ -86,5 +86,26 @@
       "Songwriter"
     ],
     "shortDescription": "Pink Floyd co-founder"
+  },
+  {
+    "id": "20",
+    "name": "Robert Plant",
+    "birthdate": "1948-08-20",
+    "activeSince": "1966-08-12",
+    "genres": [
+      "Rock",
+      "Blues Rock",
+      "Hard Rock"
+    ],
+    "labels": [
+      "Swan Song Records"
+    ],
+    "website": "https://www.robertplant.com/",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/c/cc/Robert_Plant_at_the_Palace_Theatre%2C_Manchester.jpg",
+    "roles": [
+      "Singer",
+      "Songwriter"
+    ],
+    "shortDescription": "Led Zeppelin's golden voice"
   }
 ]

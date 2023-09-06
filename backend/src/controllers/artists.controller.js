@@ -28,7 +28,7 @@ export async function getArtistsData(req, res, next){
 }
 
 /* ----- GET ONE ----- */
-// Handler for getting data of a specific artist/favorite by ID.//
+// Handler for getting data of a specific artist/favorite by ID.
 export async function getSpecificArtist(req, res, next){
 	try{
 		const {type, id} = req.params;
@@ -48,7 +48,7 @@ export async function getSpecificArtist(req, res, next){
 }
 
 /* ----- ADD ----- */
-// Handler for adding a new artist's/favorites data.//
+// Handler for adding a new artist's/favorites data.
 export async function addArtist(req, res, next){
 	try{
 		const artists = await getArtists("data/artists.json");
@@ -63,20 +63,24 @@ export async function addArtist(req, res, next){
 		next(err);
 	}
 }
+// handler for adding artist to favorites
 export async function addFavorite(req, res, next){
 	try{
 		const favorites = await getArtists("data/favorites.json");
 		const artists = await getArtists("data/artists.json");
 		const favoriteArtist = req.body;
-		if(!favorites.find(favorite => favorite.id === favoriteArtist.id) // artist cant be already in favorites
-			&& artists.find(artist => artist.id === favoriteArtist.id) // artist has to be in artists already
-			&& validateArtist(favoriteArtist)){
+
+		if(favorites.find(favorite => favorite.id === favoriteArtist.id)){ // artist cant be already in favorites
+			next(new HTTPException("Artist is already in favorites", 400));
+		}
+		else if(!artists.find(artist => artist.id === favoriteArtist.id)){ // artist must be in artists already
+			next(new HTTPException("Artist not found", 404));
+		}
+		else{
+			validateArtist(favoriteArtist);
 			favorites.push(favoriteArtist);
 			await writeArtistsToFile(favorites, `data/favorites.json`);
 			res.status(201).json(favorites);
-		}
-		else{
-			next(new HTTPException("Bad request", 400));
 		}
 	}
 	catch(err){
@@ -95,17 +99,14 @@ export async function updateArtistData(req, res, next){
 		if(!artistToUpdate){
 			next(new HTTPException("Artist not found", 404));
 		}
-		else if(!validateArtist(body)){
-			next(new HTTPException("Bad request", 400));
-		}
 		else{
+			validateArtist(body);
 			// Update artist properties with new data from the request body.//
 			for(const key in artistToUpdate){
 				if(key !== "id"){
 					artistToUpdate[key] = body[key];
 				}
 			}
-
 			await writeArtistsToFile(artists, `data/${type}.json`);
 			res.status(200).json(artists);
 		}

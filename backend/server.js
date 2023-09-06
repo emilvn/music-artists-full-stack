@@ -1,4 +1,3 @@
-/* ========== IMPORTS ========== */
 import express from "express";
 import morgan from "morgan";
 import {artistsRouter} from "./src/routers/artists.router.js";
@@ -6,34 +5,48 @@ import cors from "cors";
 import {errorHandler} from "./src/middleware/errorhandler.js";
 import {favoritesRouter} from "./src/routers/favorites.router.js";
 
-/* ========== EXPRESS ========== */
-// instance of an Express application. //
+/**
+ * instance of express application
+ */
 const app = express();
 
-// Port for server to listen on //
+/**
+ * Port for server to listen on
+ * @type {number}
+ */
 const port = 3333;
 
-/* ========== MIDDLEWARE SETUP ========== */
+/**
+ * Middleware setup
+ */
 
-// Parse incoming JSON data. //
+// Parse incoming json data
 app.use(express.json());
 
-// Use morgan middleware for request logging. //
+// use morgan for request logging
 app.use(morgan("tiny"));
 
-// Enable CORS to allow cross-origin requests. //
+// use CORS to allow all cross origin requests
 app.use(cors());
 
-// Use the router defined in "./artists.controller.js" //
+/**
+ * Define routes
+ */
+// use artistRouter from src/routers/artist.router.js for artists
 app.use("/artists/", artistsRouter);
+
+//use favoritesRouter from src/routers/favorites.router.js for favorites
 app.use("/favorites/", favoritesRouter);
 
-// use custom error handler middleware //
+/**
+ * Error handling middleware
+ * @middleware
+ */
 app.use(errorHandler);
 
-/* ========== START SERVER ========== */
-
-// Start the Express server and listen on the defined port. //
+/**
+ * start Express server
+ */
 app.listen(port, ()=>{
 	console.log(`Server running on http://localhost:${port}`);
 });

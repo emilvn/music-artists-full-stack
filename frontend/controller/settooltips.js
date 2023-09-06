@@ -1,14 +1,24 @@
 import {addToolTip} from "../view/helpers/tooltip.js";
 
+/**
+ * setToolTips
+ * sets initial tooltips on page load
+ */
 export function setTooltips() {
 	const tooltip = document.querySelector("#detail-tooltip");
 	const addArtistButton = document.querySelector("#add-artist-dialog-button");
 	const filterButton = document.querySelector("#filter-sort-button");
 	addToolTip(tooltip, addArtistButton, "Add new artist", false);
 	addToolTip(tooltip, filterButton, "Show filter options", false);
-
 }
 
+/**
+ * setArtistTooltips
+ * sets tooltips for artist article buttons and detail view click
+ * @param {HTMLElement} artistArticle artist article element displaying artist details
+ * @param {Artist} artist artist object containing artist details
+ * @param {string} containerID unique id of container for the artist articles("#favorites"/"#artists")
+ */
 export function setArtistTooltips(artistArticle, artist, containerID) {
 	const tooltip = document.querySelector("#detail-tooltip");
 	const editButton = artistArticle.querySelector(".edit-button");
@@ -22,6 +32,10 @@ export function setArtistTooltips(artistArticle, artist, containerID) {
 	addToolTip(tooltip, websiteButton, artist.website.replace(/https?:\/\/www\./, ""), true);
 }
 
+/**
+ * setDetailDialogTooltips
+ * sets tooltips for buttons in the detail dialog
+ */
 export function setDetailDialogTooltips() {
 	const tooltip = document.querySelector("#detail-dialog__tooltip");
 	const websiteButton = document.querySelector("#artist-detail-dialog .website-button");

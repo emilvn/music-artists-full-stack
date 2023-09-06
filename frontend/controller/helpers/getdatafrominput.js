@@ -1,7 +1,12 @@
-// Helper function to extract artist data from form input fields //
+/**
+ * getArtistDataFromInput
+ * extracts values from form input elements to an object
+ * @param {HTMLFormElement} form form to extract values from
+ * @returns {Object} an object containing artist information
+ */
 export function getArtistDataFromInput(form) {
 	return {
-		name: form.name.value,
+		name: form.artistName.value,
 		birthdate: form.birthdate.value,
 		activeSince: form.activeSince.value,
 		genres: form.genres.value.split(",").map(genre => genre.trim()),

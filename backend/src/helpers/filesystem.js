@@ -1,15 +1,33 @@
-/* ========== IMPORTS ========== */
-// 'fs' module for file system operations.//
-import fs from "fs/promises";
+import fs from "fs/promises";// 'fs' module for file system operations.
 
-/* ========== FUNCTIONS TO READ&WRITE ARTISTS DATA FROM A FILE ========== */
-
-// function to read artist data from a JSON file.//
+/**
+ * getArtists
+ * Reads json data from file and parses it to js
+ * @param {string} path path for file to read from
+ * @returns {Promise<any>} promise that resolves as parsed json from file
+ * @throws {Error} if there is an error reading or parsing the data
+ */
 export async function getArtists(path){
-	const data = await fs.readFile(path);
-	return JSON.parse(String(data));
+	try{
+		const data = await fs.readFile(path);
+		return JSON.parse(String(data));
+	}
+	catch (err){
+		throw new Error(`Error reading/parsing JSON file at ${path}: ${err.message}`);
+	}
 }
-// Function to write artist data to a JSON file.//
+/**
+ * writeArtistsToFile
+ * writes array of objects to file
+ * @param {Array} artistsArr array of artist objects
+ * @param {String} path path for file to write to
+ * @throws {Error} if there is an error writing to the file
+ * */
 export async function writeArtistsToFile(artistsArr, path){
-	await fs.writeFile(path, JSON.stringify(artistsArr, null, 2));
+	try{
+		await fs.writeFile(path, JSON.stringify(artistsArr, null, 2));
+	}
+	catch (err){
+		throw new Error(`Error writing to JSON file at ${path}: ${err.message}`);
+	}
 }

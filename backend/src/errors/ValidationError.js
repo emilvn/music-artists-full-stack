@@ -4,7 +4,7 @@
  * statusCode 400 for bad request
  * @class
  * @extends Error
- * @param {String} message error message for exception
+ * @param {string} message error message for exception
  */
 export class ValidationError extends Error {
 	static name = "ValidationError";

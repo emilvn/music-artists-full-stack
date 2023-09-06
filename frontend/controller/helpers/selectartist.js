@@ -1,8 +1,14 @@
 import {showUpdateDialog} from "../../view/dialogs.js";
-
+/**
+ * The artist currently selected for updating
+ * @type {Object | null}
+ */
 export let selectedArtist;
 
-// Selects an artist and populates the update form with artist details. //
+/**
+ * Selects an artist and fills in update form inputs with artist data
+ * @param {Artist} artist artist object containing artist data
+ */
 export function selectArtist(artist) {
 	selectedArtist = artist;
 	const form = document.querySelector("#form-update");

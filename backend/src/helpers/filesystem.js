@@ -19,7 +19,7 @@ export async function getArtists(path){
 /**
  * writeArtistsToFile
  * writes array of objects to file
- * @param {Array} artistsArr array of artist objects
+ * @param {Artist[]} artistsArr array of artist objects
  * @param {String} path path for file to write to
  * @throws {Error} if there is an error writing to the file
  * */

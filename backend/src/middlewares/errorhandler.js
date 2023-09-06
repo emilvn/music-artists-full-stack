@@ -6,6 +6,14 @@ export function errorHandler(err, req, res, _next){
 	res.status(status).json({
 		success: false,
 		status: status,
-		message: message,
+		message: message
 	});
+}
+
+// custom error class for http errors //
+export class HTTPException extends Error{
+	constructor(message, statusCode) {
+		super(message);
+		this.statusCode = statusCode;
+	}
 }

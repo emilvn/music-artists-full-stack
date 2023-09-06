@@ -2,6 +2,7 @@
 // 'uuidv4' function for generating unique IDs.//
 import {v4 as uuidv4} from "uuid";
 import {getArtists, writeArtistsToFile} from "../helpers/filesystem.js";
+import {HTTPException} from "../middlewares/errorhandler.js";
 
 /* ========== ROUTE HANDLERS ========== */
 
@@ -13,7 +14,7 @@ export async function getArtistsData(req, res, next){
 		const artists = await getArtists(`data/${type}.json`);
 		// if artists/favorites array is empty, responds with an error //
 		if(artists.length === 0){
-			res.status(404).json({error: `${type} not found`});
+			next(new HTTPException(`${type} not found`, 404));
 		}
 		else{
 			res.status(200).json(artists);
@@ -34,7 +35,7 @@ export async function getSpecificArtist(req, res, next){
 		const artist = artists.find(artist => artist.id === id);
 		// if no artist exists with given id, responds with an error //
 		if(!artist){
-			res.status(404).json({"error" : "Not found"});
+			next(new HTTPException("Artist not found", 404));
 		}
 		else{
 			res.status(200).json(artist);
@@ -56,7 +57,7 @@ export async function addArtistData(req, res, next){
 		if(type === "artists"){
 			// If artist already exists on database, responds with an error //
 			if(artists.find(artist => artist.name.toLowerCase() === newArtist.name.toLowerCase())){
-				res.status(400).json({"error":"Artist already exists"});
+				next(new HTTPException("Artist already exists", 400));
 			}
 			else{
 				newArtist.id = uuidv4();
@@ -85,7 +86,7 @@ export async function updateArtistData(req, res, next){
 		const body = req.body;
 		// if no artist could be found with given id, responds with an error //
 		if(!artistToUpdate){
-			res.status(404).json({error: "Artist not found"});
+			next(new HTTPException("Artist not found", 404));
 		}
 		else{
 			// Update artist properties with new data from the request body.//
@@ -116,7 +117,7 @@ export async function deleteArtist(req, res, next){
 		const artists = await getArtists(`data/${type}.json`);
 		// If no artist could be found with given id, responds with an error //
 		if(!artists.find(artist => artist.id === id)){
-			res.status(404).json({error: "Artist not found"});
+			next(new HTTPException("Artist not found", 404));
 		}
 		else{
 			// Filter out the artist with the specified ID to delete.//

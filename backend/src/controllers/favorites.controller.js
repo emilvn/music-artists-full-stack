@@ -80,10 +80,7 @@ export async function removeFavorite(req, res, next){
 		const artists = await getArtists("data/artists.json");
 		const favoriteIds = await getArtists("data/favorites.json");
 		// If no artist could be found with given id, responds with an error //
-		if(!artists.find(artist => artist.id === id)){
-			next(new HTTPException("Artist not found", 404));
-		}
-		else if(!favoriteIds.includes(id)){
+		if(!favoriteIds.includes(id)){
 			next(new HTTPException("Artist not in favorites", 400));
 		}
 		else{

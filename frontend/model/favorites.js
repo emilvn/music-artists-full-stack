@@ -1,12 +1,16 @@
-// global variables for artists and favorite artists //
 import {endpoint} from "../main.js";
-import {selectedArtist} from "../controller/helpers/selectartist.js";
 
+/**
+ * global variable for locally caching favorite artists fetched from the database
+ * @type {Artist[]}
+ */
 export let favoriteArtists = [];
 
 
-/* ========== FETCH FAVORITE ARTISTS ========== */
-// Function to fetch favorite artists from the server //
+/**
+ * getFavorites
+ * function to fetch favorite artists from the server and cache it in global variable
+ */
 export async function getFavorites() {
 	const response = await fetch(endpoint + "/favorites");
 	if (response.ok) {
@@ -17,8 +21,12 @@ export async function getFavorites() {
 	}
 }
 
-/* ========== ADD ARTIST AND FAVORITE ARTIST ========== */
-// Function to add an artist to favorites on the server //
+/**
+ * addToFavorites
+ * function to add an artist to favorites on the server, and update the cached favorites
+ * @param {Artist} artist artist to add to favorites
+ * @returns {Response} response object from server
+ */
 export async function addToFavorites(artist) {
 	const response = await fetch(endpoint + "/favorites", {
 		method: "POST",
@@ -36,8 +44,12 @@ export async function addToFavorites(artist) {
 	return response;
 }
 
-/* ========== REMOVE ARTIST FROM FAVORITES ========== */
-// Removes artist from favorites on the server //
+/**
+ * removeFromFavorites
+ * function to remove an artist from favorites on the server, and update the cached favorites
+ * @param {Artist} artistToRemove artist to remove from favorites
+ * @returns {Response} response object from server
+ */
 export async function removeFromFavorites(artistToRemove) {
 	const response = await fetch(endpoint + "/favorites/" + artistToRemove.id, {
 		method: "DELETE"
@@ -51,7 +63,11 @@ export async function removeFromFavorites(artistToRemove) {
 	return response;
 }
 
-// function to change the cached favorite artists to match the filter option selected //
+/**
+ * filterFavorites
+ * function to filter the locally cached array of favorites based on the filter value
+ * @param {string} filterValue value of the option selected by the user
+ */
 export function filterFavorites(filterValue){
 	favoriteArtists = favoriteArtists.filter(artist =>
 		artist.genres.map(genre => genre.toLowerCase()).includes(filterValue));

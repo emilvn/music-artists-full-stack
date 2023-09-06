@@ -1,11 +1,16 @@
-/* ========== IMPORTS ========== */
 import {endpoint} from "../main.js";
 import {selectedArtist} from "../controller/helpers/selectartist.js";
 
-export let artists;
+/**
+ * global variable for locally caching artists fetched from the database
+ * @type {Artist[]}
+ */
+export let artists = [];
 
-/* ========== FETCH ARTISTS ========== */
-// Function to fetch artists from the server //
+/**
+ * getArtists
+ * function to fetch array of artists from the server and cache it in global variable
+ */
 export async function getArtists(){
 	const response = await fetch(endpoint + "/artists")
 	if(response.ok){
@@ -16,7 +21,12 @@ export async function getArtists(){
 	}
 }
 
-// function to fetch specific artist from the server //
+/**
+ *  getSpecificArtist
+ *  function to fetch a specific artist from the server
+ *  @param {Artist} artist artist to fetch
+ *  @returns {Response} response object from the server
+ */
 export async function getSpecificArtist(artist){
 	const response = await fetch(endpoint + "/artists/" + artist.id);
 	if(!response.ok){
@@ -25,8 +35,12 @@ export async function getSpecificArtist(artist){
 	return response;
 }
 
-/* ========== ADD ARTIST ========== */
-// Function to add a new artist to the server //
+/**
+ *  addArtist
+ *  function to add an artist on the server, and update the cached artists
+ *  @param {Artist} artist artist to add
+ *  @returns {Response} response object from the server
+ */
 export async function addArtist(artist){
 	const response = await fetch(endpoint + "/artists", {
 		method: "POST",
@@ -44,8 +58,12 @@ export async function addArtist(artist){
 	return response;
 }
 
-/* ========== UPDATE ARTIST ========== */
-// Function to update artist details on server //
+/**
+ * updateArtist
+ * function to update a specific artist on the server, and update the cached artists
+ * @param {Object} updatedArtist Artist object without the id
+ * @returns {Response} response object from the server
+ */
 export async function updateArtist(updatedArtist){
 	const artistToUpdate = artists.find(artist => artist.id === selectedArtist.id);
 
@@ -67,8 +85,12 @@ export async function updateArtist(updatedArtist){
 	return response;
 }
 
-/* ========== DELETE ARTIST ========== */
-// Delete artist from server //
+/**
+ * deleteArtist
+ * function to delete a specific artist on the server, and update the cached artists
+ * @param {Artist} artistToDelete Artist to delete from the server
+ * @returns {Response} response object from the server
+ */
 export async function deleteArtist(artistToDelete){
 	const response = await fetch(endpoint + "/artists/" + artistToDelete.id, {
 		method: "DELETE"
@@ -82,8 +104,12 @@ export async function deleteArtist(artistToDelete){
 	return response;
 }
 
-// function to change the cached artists to match the filter option selected //
+/**
+ * filterArtists
+ * function to filter the locally cached array of artists based on the filter value
+ * @param {string} filterValue value of the option selected by the user
+ */
 export function filterArtists(filterValue){
 	artists = artists.filter(artist => artist.genres.map(genre =>
-		genre.toLowerCase()).includes(filterValue));
+	genre.toLowerCase()).includes(filterValue));
 }

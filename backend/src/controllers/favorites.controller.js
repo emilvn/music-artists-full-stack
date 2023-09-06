@@ -1,6 +1,7 @@
 import {getArtists, writeArtistsToFile} from "../helpers/filesystem.js";
 import {getFavorites} from "../helpers/getfavorites.js";
 import {HTTPException} from "../errors/HTTPException.js";
+import {Request, Response, NextFunction} from "express";
 
 /**
  *  ========== ROUTE HANDLERS ==========
@@ -9,9 +10,9 @@ import {HTTPException} from "../errors/HTTPException.js";
 /**
  * ----- GET ALL FAVORITES -----
  * Route handler for GET
- * @param {import("express").Request} req Incoming request object
- * @param {import("express").Response} res Response object, for sending response to client
- * @param {import("express").NextFunction} next Callback function to pass control to next middleware
+ * @param {Request} req Incoming request object
+ * @param {Response} res Response object, for sending response to client
+ * @param {NextFunction} next Callback function to pass control to next middleware
  */
 export async function getFavoritesData(req, res, next){
 	try{
@@ -32,9 +33,9 @@ export async function getFavoritesData(req, res, next){
 /**
  * ----- GET ONE FAVORITE -----
  * Route handler for GET /:id
- * @param {import("express").Request} req Incoming request object
- * @param {import("express").Response} res Response object, for sending response to client
- * @param {import("express").NextFunction} next Callback function to pass control to next middleware
+ * @param {Request} req Incoming request object
+ * @param {Response} res Response object, for sending response to client
+ * @param {NextFunction} next Callback function to pass control to next middleware
  */
 export async function getSpecificFavorite(req, res, next){
 	try{
@@ -56,9 +57,9 @@ export async function getSpecificFavorite(req, res, next){
 /**
  * ----- ADD FAVORITE -----
  * Route handler for POST
- * @param {import("express").Request} req Incoming request object
- * @param {import("express").Response} res Response object, for sending response to client
- * @param {import("express").NextFunction} next Callback function to pass control to next middleware
+ * @param {Request} req Incoming request object
+ * @param {Response} res Response object, for sending response to client
+ * @param {NextFunction} next Callback function to pass control to next middleware
  */
 export async function addFavorite(req, res, next){
 	try{
@@ -86,9 +87,9 @@ export async function addFavorite(req, res, next){
 /**
  * ----- REMOVE FROM FAVORITES -----
  * Route handler for DELETE /:id
- * @param {import("express").Request} req Incoming request object
- * @param {import("express").Response} res Response object, for sending response to client
- * @param {import("express").NextFunction} next Callback function to pass control to next middleware
+ * @param {Request} req Incoming request object
+ * @param {Response} res Response object, for sending response to client
+ * @param {NextFunction} next Callback function to pass control to next middleware
  */
 export async function removeFavorite(req, res, next){
 	try{

@@ -2,6 +2,7 @@ import {v4 as uuidv4} from "uuid"; // 'uuidv4' for generating unique artist ids
 import {getArtists, writeArtistsToFile} from "../helpers/filesystem.js";
 import {validateArtist} from "../validation/artist.validation.js";
 import {HTTPException} from "../errors/HTTPException.js";
+import {Request, Response, NextFunction} from "express";
 
 /**
  *  ========== ROUTE HANDLERS ==========
@@ -10,9 +11,9 @@ import {HTTPException} from "../errors/HTTPException.js";
 /**
  * ----- GET ALL ARTISTS -----
  * Route handler for GET
- * @param {import("express").Request} req Incoming request object
- * @param {import("express").Response} res Response object, for sending response to client
- * @param {import("express").NextFunction} next Callback function to pass control to next middleware
+ * @param {Request} req Incoming request object
+ * @param {Response} res Response object, for sending response to client
+ * @param {NextFunction} next Callback function to pass control to next middleware
  */
 export async function getArtistsData(req, res, next){
 	try{
@@ -32,9 +33,9 @@ export async function getArtistsData(req, res, next){
 /**
  * ----- GET ONE ARTIST -----
  * Route handler for GET /:id
- * @param {import("express").Request} req Incoming request object
- * @param {import("express").Response} res Response object, for sending response to client
- * @param {import("express").NextFunction} next Callback function to pass control to next middleware
+ * @param {Request} req Incoming request object
+ * @param {Response} res Response object, for sending response to client
+ * @param {NextFunction} next Callback function to pass control to next middleware
  */
 export async function getSpecificArtist(req, res, next){
 	try{
@@ -56,9 +57,9 @@ export async function getSpecificArtist(req, res, next){
 /**
  * ----- ADD ARTIST -----
  * Route handler for POST
- * @param {import("express").Request} req Incoming request object
- * @param {import("express").Response} res Response object, for sending response to client
- * @param {import("express").NextFunction} next Callback function to pass control to next middleware
+ * @param {Request} req Incoming request object
+ * @param {Response} res Response object, for sending response to client
+ * @param {NextFunction} next Callback function to pass control to next middleware
  */
 export async function addArtist(req, res, next){
 	try{
@@ -78,9 +79,9 @@ export async function addArtist(req, res, next){
 /**
  * ----- UPDATE ARTIST -----
  * Route handler for PUT /:id
- * @param {import("express").Request} req Incoming request object
- * @param {import("express").Response} res Response object, for sending response to client
- * @param {import("express").NextFunction} next Callback function to pass control to next middleware
+ * @param {Request} req Incoming request object
+ * @param {Response} res Response object, for sending response to client
+ * @param {NextFunction} next Callback function to pass control to next middleware
  */
 export async function updateArtistData(req, res, next){
 	try{
@@ -110,9 +111,9 @@ export async function updateArtistData(req, res, next){
 /**
  * ----- DELETE ARTIST -----
  * Route handler for DELETE /:id
- * @param {import("express").Request} req Incoming request object
- * @param {import("express").Response} res Response object, for sending response to client
- * @param {import("express").NextFunction} next Callback function to pass control to next middleware
+ * @param {Request} req Incoming request object
+ * @param {Response} res Response object, for sending response to client
+ * @param {NextFunction} next Callback function to pass control to next middleware
  */
 export async function deleteArtist(req, res, next){
 	try{

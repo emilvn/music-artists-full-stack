@@ -1,6 +1,6 @@
 import {getArtists, writeArtistsToFile} from "../helpers/filesystem.js";
 import {HTTPException} from "../middlewares/errorhandler.js";
-import {validateArtist} from "../model/artist.validation.js";
+import {getFavorites} from "../helpers/getfavorites.js";
 
 /* ----- GET ALL ----- */
 // Handler for getting all favorites data.//
@@ -46,6 +46,7 @@ export async function getSpecificFavorite(req, res, next){
 	}
 }
 
+/* ----- POST ----- */
 // handler for adding artist to favorites
 export async function addFavorite(req, res, next){
 	try{
@@ -98,11 +99,3 @@ export async function removeFavorite(req, res, next){
 	}
 }
 
-function getFavorites(favoriteIDs, artists){
-	const favorites = [];
-	for(const id of favoriteIDs){
-		const favoriteArtist = artists.find(artist => artist.id === id);
-		favorites.push(favoriteArtist);
-	}
-	return favorites;
-}

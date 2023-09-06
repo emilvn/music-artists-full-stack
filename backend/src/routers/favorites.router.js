@@ -1,5 +1,3 @@
-/* ========== IMPORTS ========== */
-// favorites route handlers //
 import express from "express";
 import {
 	addFavorite,

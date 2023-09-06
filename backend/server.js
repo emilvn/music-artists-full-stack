@@ -3,7 +3,7 @@ import express from "express";
 import morgan from "morgan";
 import {artistsRouter} from "./src/routers/artists.router.js";
 import cors from "cors";
-import {errorHandler} from "./src/middlewares/errorhandler.js";
+import {errorHandler} from "./src/middleware/errorhandler.js";
 import {favoritesRouter} from "./src/routers/favorites.router.js";
 
 /* ========== EXPRESS ========== */

@@ -1,19 +1,20 @@
-/* ========== IMPORTS ========== */
-// 'uuidv4' function for generating unique IDs.//
-import {v4 as uuidv4} from "uuid";
+import {v4 as uuidv4} from "uuid"; // 'uuidv4' for generating unique artist ids
 import {getArtists, writeArtistsToFile} from "../helpers/filesystem.js";
 import {validateArtist} from "../validation/artist.validation.js";
 import {HTTPException} from "../errors/HTTPException.js";
 
-/* ========== ROUTE HANDLERS ========== */
-
-/* ----- GET ALL ----- */
-// Handler for getting all artists/favorites data.//
+/**
+ *  ========== ROUTE HANDLERS ==========
+ *  Route handlers for GET/POST/PUT/DELETE to /artists
+ */
+/**
+ * ----- GET ALL ARTISTS -----
+ * Route handler for GET
+ */
 export async function getArtistsData(req, res, next){
 	try{
 		const artists = await getArtists("data/artists.json");
-		// if artists/favorites array is empty, responds with an error //
-		if(artists.length === 0){
+		if(artists.length === 0){ // error if there are no artists
 			next(new HTTPException("Artists not found", 404));
 		}
 		else{
@@ -21,20 +22,20 @@ export async function getArtistsData(req, res, next){
 		}
 	}
 	catch (err){
-		//forwards the error to the error handler middleware //
-		next(err);
+		next(err);//forward the error to the error handler
 	}
 }
 
-/* ----- GET ONE ----- */
-// Handler for getting data of a specific artist/favorite by ID.
+/**
+ * ----- GET ONE ARTIST -----
+ * Route handler for GET /:id
+ */
 export async function getSpecificArtist(req, res, next){
 	try{
 		const id = req.params.id;
 		const artists = await getArtists("data/artists.json");
 		const artist = artists.find(artist => artist.id === id);
-		// if no artist exists with given id, respond with an error //
-		if(!artist){
+		if(!artist){ // error if artist doesn't exist in file
 			next(new HTTPException("Artist not found", 404));
 		}
 		else{
@@ -42,43 +43,45 @@ export async function getSpecificArtist(req, res, next){
 		}
 	}
 	catch (err){
-		next(err);
+		next(err);//forward the error to the error handler
 	}
 }
 
-/* ----- ADD ----- */
-// Handler for adding a new artist's/favorites data.
+/**
+ * ----- ADD ARTIST -----
+ * Route handler for POST
+ */
 export async function addArtist(req, res, next){
 	try{
 		const artists = await getArtists("data/artists.json");
 		const newArtist = req.body;
-		validateArtist(newArtist);
-		newArtist.id = uuidv4();
+		validateArtist(newArtist);//throws ValidationError if invalid properties in newArtist
+		newArtist.id = uuidv4();//give artist unique id
 		artists.push(newArtist);
 		await writeArtistsToFile(artists, `data/artists.json`);
 		res.status(201).json(artists);
 	}
 	catch(err){
-		next(err);
+		next(err);//forward the error to the error handler
 	}
 }
 
-/* ----- UPDATE ----- */
-// Handler for updating an artist's/favorites data by ID.//
+/**
+ * ----- UPDATE ARTIST -----
+ * Route handler for PUT /:id
+ */
 export async function updateArtistData(req, res, next){
 	try{
 		const id = req.params.id;
 		const artists = await getArtists("data/artists.json");
 		const artistToUpdate = artists.find(artist => artist.id === id);
 		const body = req.body;
-		// if no artist could be found with given id, responds with an error //
-		if(!artistToUpdate){
+		if(!artistToUpdate){//error if artist doesn't exist in file
 			next(new HTTPException("Artist not found", 404));
 		}
 		else{
-			validateArtist(body);
-			// Update artist properties with new data from the request body.//
-			for(const key in artistToUpdate){
+			validateArtist(body);//throws ValidationError if invalid properties in body
+			for(const key in artistToUpdate){ //update artist properties
 				if(key !== "id"){
 					artistToUpdate[key] = body[key];
 				}
@@ -88,28 +91,28 @@ export async function updateArtistData(req, res, next){
 		}
 	}
 	catch(err){
-		next(err);
+		next(err);//forward the error to the error handler
 	}
 }
 
-/* ----- DELETE ----- */
-// Handler for deleting an artist/favorite by ID.//
+/**
+ * ----- DELETE ARTIST -----
+ * Route handler for DELETE /:id
+ */
 export async function deleteArtist(req, res, next){
 	try{
 		const id = req.params.id;
 		const artists = await getArtists("data/artists.json");
-		// If no artist could be found with given id, responds with an error //
-		if(!artists.find(artist => artist.id === id)){
+		if(!artists.find(artist => artist.id === id)){ //error if artist doesn't exist in file
 			next(new HTTPException("Artist not found", 404));
 		}
 		else{
-			// Filter out the artist with the specified ID to delete.//
-			const updatedArtists = artists.filter(artist => artist.id !== id);
+			const updatedArtists = artists.filter(artist => artist.id !== id); //filter out artist to delete
 			await writeArtistsToFile(updatedArtists, "data/artists.json");
 			res.status(200).json(updatedArtists);
 		}
 	}
 	catch(err){
-		next(err);
+		next(err);//forward the error to the error handler
 	}
 }

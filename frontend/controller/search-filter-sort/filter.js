@@ -1,10 +1,11 @@
-/* ========== FILTER ========== */
-// Filter artists //
 import {artists, filterArtists, getArtists} from "../../model/artists.js";
 import {displayArtists, displayFavorites} from "../../view/view.js";
 import {favoriteArtists, filterFavorites, getFavorites} from "../../model/favorites.js";
 
-// function to filter the artists when a filter option is selected //
+/**
+ * filterArtistsChanged
+ * function to filter the displayed artists from user selected filter options
+ */
 export async function filterArtistsChanged() {
 	const selectElement = document.querySelector("#artist-filter-by__genre");
 	await getArtists();
@@ -17,7 +18,10 @@ export async function filterArtistsChanged() {
 	displayFavorites(favoriteArtists);
 }
 
-// Generate options for genrefilter //
+/**
+ * generateFilterOptions
+ * function to generate options for the filter select, from the artist data
+ */
 export function generateFilterOptions() {
 	const selectElement = document.querySelector("#artist-filter-by__genre");
 	selectElement.innerHTML = "";
@@ -39,7 +43,10 @@ export function generateFilterOptions() {
 	}
 }
 
-// function to show the filter menu when filter button is clicked //
+/**
+ * showFilterMenu
+ * function to show the filter menu when the filter button is clicked
+ */
 export function showFilterMenu() {
 	const filterButton = document.querySelector("#filter-sort-button");
 	filterButton.removeEventListener("click", showFilterMenu);
@@ -49,7 +56,10 @@ export function showFilterMenu() {
 	filterMenu.classList.remove("hidden");
 }
 
-// function to hide the filter menu when filter button is clicked //
+/**
+ * showFilterMenu
+ * function to hide the filter menu when the filter button is clicked again
+ */
 function hideFilterMenu() {
 	const filterButton = document.querySelector("#filter-sort-button");
 	filterButton.removeEventListener("click", hideFilterMenu);

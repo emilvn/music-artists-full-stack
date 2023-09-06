@@ -1,9 +1,11 @@
-/* ========== SORT ========== */
-// Function to handle input change for sorting select. //
 import {artists} from "../../model/artists.js";
 import {displayArtists, displayFavorites} from "../../view/view.js";
 import {favoriteArtists} from "../../model/favorites.js";
 
+/**
+ * sortAlphabetically
+ * sorts the cached arrays of artists and favorites alphabetically and updates the view
+ */
 export function sortAlphabetically() {
 	const sortAlphabeticallyButton = document.querySelector("#alphabetical-sort");
 	const sortReverseButton = document.querySelector("#reverse-alphabetical-sort");
@@ -16,6 +18,10 @@ export function sortAlphabetically() {
 	displayFavorites(favoriteArtists);
 }
 
+/**
+ * sortReverseAlphabetically
+ * sorts the cached arrays of artists and favorites in reverse alphabetical order and updates the view
+ */
 export function sortReverseAlphabetically() {
 	const sortReverseButton = document.querySelector("#reverse-alphabetical-sort");
 	const sortAlphabeticallyButton = document.querySelector("#alphabetical-sort");

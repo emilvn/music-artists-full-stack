@@ -7,9 +7,9 @@
  * @param {Number} statusCode HTTP status code for exception
  */
 export class HTTPException extends Error {
+	static name = "HTTPException";
 	constructor(message, statusCode) {
 		super(message);
 		this.statusCode = statusCode;
-		this.name = "HTTPException";
 	}
 }

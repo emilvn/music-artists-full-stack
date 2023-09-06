@@ -3,7 +3,7 @@
 import {v4 as uuidv4} from "uuid";
 import {getArtists, writeArtistsToFile} from "../helpers/filesystem.js";
 import {HTTPException} from "../middlewares/errorhandler.js";
-import {validateArtist} from "../model/artist.js";
+import {validateArtist} from "../model/artist.validation.js";
 
 /* ========== ROUTE HANDLERS ========== */
 
@@ -53,15 +53,11 @@ export async function addArtist(req, res, next){
 	try{
 		const artists = await getArtists("data/artists.json");
 		const newArtist = req.body;
-		if(validateArtist(newArtist)){
-			newArtist.id = uuidv4();
-			artists.push(newArtist);
-			await writeArtistsToFile(artists, `data/artists.json`);
-			res.status(201).json(artists);
-		}
-		else{
-			next(new HTTPException("Bad request", 400));
-		}
+		validateArtist(newArtist);
+		newArtist.id = uuidv4();
+		artists.push(newArtist);
+		await writeArtistsToFile(artists, `data/artists.json`);
+		res.status(201).json(artists);
 	}
 	catch(err){
 		next(err);

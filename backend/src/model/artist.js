@@ -17,7 +17,7 @@ function validateName(name){
 }
 function validateDate(date){
 	return typeof date === "string"
-		&& /^\d{4}-\d{2}-\d{2}$/.match(date);
+		&& date.match(/^\d{4}-\d{2}-\d{2}$/);
 }
 function validateArr(arr){
 	return Array.isArray(arr)
@@ -25,7 +25,7 @@ function validateArr(arr){
 }
 function validateURL(url){
 	return typeof url === "string"
-		&& /^https?:\/\/[^\s/$.?#].\S*$/i.match(url);
+		&& url.match(/^https?:\/\/[^\s/$.?#].\S*$/i);
 }
 
 function validateDescription(description){

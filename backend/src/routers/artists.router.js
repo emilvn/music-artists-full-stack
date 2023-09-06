@@ -1,7 +1,7 @@
 /* ========== IMPORTS ========== */
 // artist route handlers //
 import {
-	addArtistData,
+	addArtist, addFavorite,
 	deleteArtist,
 	getArtistsData,
 	getSpecificArtist,
@@ -23,7 +23,8 @@ router.get("/:type(artists|favorites)", getArtistsData);
 router.get("/:type(artists|favorites)/:id", getSpecificArtist);
 
 /* ----- ADD NEW ARTIST ----- */
-router.post("/:type(artists|favorites)", addArtistData);
+router.post("/artists", addArtist);
+router.post("/favorites", addFavorite);
 
 /* ----- UPDATE ARTIST BY ID ----- */
 router.put("/:type(artists|favorites)/:id", updateArtistData);

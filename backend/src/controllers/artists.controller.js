@@ -49,16 +49,7 @@ export async function getSpecificArtist(req, res, next){
 
 /* ----- ADD ----- */
 // Handler for adding a new artist's/favorites data.//
-export async function addArtistData(req, res, next){
-	const type = req.params.type;
-	if(type === "favorites"){
-		addFavorite(req, res, next);
-	}
-	else if(type === "artists"){
-		addArtist(req, res, next);
-	}
-}
-async function addArtist(req, res, next){
+export async function addArtist(req, res, next){
 	try{
 		const artists = await getArtists("data/artists.json");
 		const newArtist = req.body;
@@ -76,7 +67,7 @@ async function addArtist(req, res, next){
 		next(err);
 	}
 }
-async function addFavorite(req, res, next){
+export async function addFavorite(req, res, next){
 	try{
 		const favorites = await getArtists("data/favorites.json");
 		const artists = await getArtists("data/artists.json");
@@ -85,7 +76,7 @@ async function addFavorite(req, res, next){
 			&& artists.find(artist => artist.id === favoriteArtist.id) // artist has to be in artists already
 			&& validateArtist(favoriteArtist)){
 			favorites.push(favoriteArtist);
-			await writeArtistsToFile(favorites, `data/artists.json`);
+			await writeArtistsToFile(favorites, `data/favorites.json`);
 			res.status(201).json(favorites);
 		}
 		else{

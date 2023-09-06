@@ -23,28 +23,6 @@
     "shortDescription": "Guitar virtuoso and rock icon"
   },
   {
-    "id": "06",
-    "name": "Roger Waters",
-    "birthdate": "1943-09-06",
-    "activeSince": "1965-03-01",
-    "genres": [
-      "Progressive Rock",
-      "Psychedelic Rock"
-    ],
-    "labels": [
-      "Harvest Records",
-      "Columbia Records"
-    ],
-    "website": "https://www.rogerwaters.com/",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Roger_Waters_en_el_Palau_Sant_Jordi_de_Barcelona_%28The_Wall_Live%29_-_04_%28crop%29.jpg",
-    "roles": [
-      "Singer",
-      "Bassist",
-      "Songwriter"
-    ],
-    "shortDescription": "Pink Floyd co-founder"
-  },
-  {
     "id": "05",
     "name": "Jimmy Page",
     "birthdate": "1944-01-09",
@@ -86,5 +64,27 @@
       "Songwriter"
     ],
     "shortDescription": "Guitar legend of Van Halen"
+  },
+  {
+    "id": "06",
+    "name": "Roger Waters",
+    "birthdate": "1943-09-06",
+    "activeSince": "1965-03-01",
+    "genres": [
+      "Progressive Rock",
+      "Psychedelic Rock"
+    ],
+    "labels": [
+      "Harvest Records",
+      "Columbia Records"
+    ],
+    "website": "https://www.rogerwaters.com/",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Roger_Waters_en_el_Palau_Sant_Jordi_de_Barcelona_%28The_Wall_Live%29_-_04_%28crop%29.jpg",
+    "roles": [
+      "Singer",
+      "Bassist",
+      "Songwriter"
+    ],
+    "shortDescription": "Pink Floyd co-founder"
   }
 ]

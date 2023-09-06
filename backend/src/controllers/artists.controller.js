@@ -99,6 +99,9 @@ export async function updateArtistData(req, res, next){
 		if(!artistToUpdate){
 			next(new HTTPException("Artist not found", 404));
 		}
+		else if(!validateArtist(body)){
+			next(new HTTPException("Bad request", 400));
+		}
 		else{
 			// Update artist properties with new data from the request body.//
 			for(const key in artistToUpdate){

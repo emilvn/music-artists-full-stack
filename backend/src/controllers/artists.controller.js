@@ -10,6 +10,9 @@ import {HTTPException} from "../errors/HTTPException.js";
 /**
  * ----- GET ALL ARTISTS -----
  * Route handler for GET
+ * @param {import("express").Request} req Incoming request object
+ * @param {import("express").Response} res Response object, for sending response to client
+ * @param {import("express").NextFunction} next Callback function to pass control to next middleware
  */
 export async function getArtistsData(req, res, next){
 	try{
@@ -29,6 +32,9 @@ export async function getArtistsData(req, res, next){
 /**
  * ----- GET ONE ARTIST -----
  * Route handler for GET /:id
+ * @param {import("express").Request} req Incoming request object
+ * @param {import("express").Response} res Response object, for sending response to client
+ * @param {import("express").NextFunction} next Callback function to pass control to next middleware
  */
 export async function getSpecificArtist(req, res, next){
 	try{
@@ -50,6 +56,9 @@ export async function getSpecificArtist(req, res, next){
 /**
  * ----- ADD ARTIST -----
  * Route handler for POST
+ * @param {import("express").Request} req Incoming request object
+ * @param {import("express").Response} res Response object, for sending response to client
+ * @param {import("express").NextFunction} next Callback function to pass control to next middleware
  */
 export async function addArtist(req, res, next){
 	try{
@@ -69,6 +78,9 @@ export async function addArtist(req, res, next){
 /**
  * ----- UPDATE ARTIST -----
  * Route handler for PUT /:id
+ * @param {import("express").Request} req Incoming request object
+ * @param {import("express").Response} res Response object, for sending response to client
+ * @param {import("express").NextFunction} next Callback function to pass control to next middleware
  */
 export async function updateArtistData(req, res, next){
 	try{
@@ -98,6 +110,9 @@ export async function updateArtistData(req, res, next){
 /**
  * ----- DELETE ARTIST -----
  * Route handler for DELETE /:id
+ * @param {import("express").Request} req Incoming request object
+ * @param {import("express").Response} res Response object, for sending response to client
+ * @param {import("express").NextFunction} next Callback function to pass control to next middleware
  */
 export async function deleteArtist(req, res, next){
 	try{

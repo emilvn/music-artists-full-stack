@@ -1,5 +1,3 @@
-/* ========== CREATE DIALOG ========== */
-// Function to display the create artist dialog. //
 import {
 	setDetailDialogEventListeners, setFormEventListeners
 } from "../controller/seteventlisteners.js";
@@ -9,30 +7,41 @@ import {favoriteArtists} from "../model/favorites.js";
 import {submitArtistCreate, submitArtistDelete, submitArtistUpdate} from "../controller/submit.js";
 import {setDetailDialogTooltips} from "../controller/settooltips.js";
 
+/**
+ * showCreateDialog
+ * function for showing the dialog with the create form
+ */
 export function showCreateDialog() {
 	const form = document.querySelector("#form-create");
 	setFormEventListeners(form, submitArtistCreate);
 	form.parentElement.showModal();
 }
 
-/* ========== UPDATE DIALOG ========== */
-
-// Function to display the update artist dialog. //
+/**
+ * showUpdateDialog
+ * function for showing the dialog with the update form
+ */
 export function showUpdateDialog() {
 	const form = document.querySelector("#form-update");
 	setFormEventListeners(form, submitArtistUpdate);
 	form.parentElement.showModal();
 }
 
+/**
+ * showDeleteDialog
+ * function for showing the delete confirmation form
+ */
 export function showDeleteDialog() {
 	const form = document.querySelector("#form-delete");
 	setFormEventListeners(form, submitArtistDelete);
 	form.parentElement.showModal();
 }
 
-/* ========== DETAIL DIALOG ========== */
-
-// Function to display the artist details in a dialog. //
+/**
+ * showDetailDialog
+ * function for filling in and displaying the detail dialog
+ * @param {Artist} artist artist object with details to be displayed
+ */
 export function showDetailDialog(artist) {
 	const dialog = document.querySelector("#artist-detail-dialog");
 	clearDetailDialog();
@@ -50,11 +59,12 @@ export function showDetailDialog(artist) {
 	dialog.querySelector("#detail-artist__website")
 		.href = artist.website;
 
-	// Generate lists for genres, roles, and labels. //
+	// Generate lists for genres, roles, and labels.
 	generateListFromArray(artist.genres, dialog.querySelector("#detail-artist__genres"));
 	generateListFromArray(artist.roles, dialog.querySelector("#detail-artist__roles"));
 	generateListFromArray(artist.labels, dialog.querySelector("#detail-artist__labels"));
 
+	// set add to/remove from favorites icon on favorite button
 	setDetailFavoriteButtonIcon(artist);
 
 	setDetailDialogEventListeners(artist);
@@ -62,13 +72,21 @@ export function showDetailDialog(artist) {
 	dialog.showModal();
 }
 
-// function for clearing detail dialog info before showing new artist //
+/**
+ * clearDetailDialog
+ * function for clearing the details from the detail dialog
+ */
 function clearDetailDialog() {
 	document.querySelectorAll(".artist-detail").forEach(detail => {
 		if (detail.tagName !== "A") detail.innerHTML = "";
 	});
 }
 
+/**
+ * setDetailFavoriteButtonIcon
+ * function for setting the icon of the favorite button (add to / remove from favorites icon)
+ * @param {Artist} artist artist the button is for
+ */
 export function setDetailFavoriteButtonIcon(artist) {
 	const favoriteButton = document.querySelector("#artist-detail-dialog .favorite-button");
 	favoriteButton.innerHTML =

@@ -1,6 +1,6 @@
 import {getArtists, writeArtistsToFile} from "../helpers/filesystem.js";
-import {HTTPException} from "../middlewares/errorhandler.js";
 import {getFavorites} from "../helpers/getfavorites.js";
+import {HTTPException} from "../errors/HTTPException.js";
 
 /* ----- GET ALL ----- */
 // Handler for getting all favorites data.//

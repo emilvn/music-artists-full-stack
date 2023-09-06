@@ -1,11 +1,5 @@
-// custom validation error //
-class ValidationError extends Error{
-	constructor(message) {
-		super(message);
-		this.name = "ValidationError";
-		this.statusCode = 400;
-	}
-}
+import {ValidationError} from "../errors/ValidationError.js";
+
 // throws an error if any artist detail is invalid //
 export function validateArtist(artist){
 	try{

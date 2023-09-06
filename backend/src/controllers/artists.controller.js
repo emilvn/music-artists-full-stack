@@ -2,8 +2,8 @@
 // 'uuidv4' function for generating unique IDs.//
 import {v4 as uuidv4} from "uuid";
 import {getArtists, writeArtistsToFile} from "../helpers/filesystem.js";
-import {HTTPException} from "../middlewares/errorhandler.js";
 import {validateArtist} from "../model/artist.validation.js";
+import {HTTPException} from "../errors/HTTPException.js";
 
 /* ========== ROUTE HANDLERS ========== */
 

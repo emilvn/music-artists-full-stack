@@ -1,4 +1,3 @@
-// function to remove submit events from forms. //
 import {addArtist, artists, deleteArtist, updateArtist} from "../model/artists.js";
 import {displayArtists, displayFavorites} from "../view/view.js";
 import {addToFavorites, favoriteArtists, getFavorites, removeFromFavorites} from "../model/favorites.js";
@@ -7,13 +6,22 @@ import {setDetailFavoriteButtonIcon} from "../view/dialogs.js";
 import {selectedArtist} from "./helpers/selectartist.js";
 import {getArtistDataFromInput} from "./helpers/getdatafrominput.js";
 
+/**
+ * removeSubmitEvent
+ * function to remove a submit event from a form
+ * @param {HTMLFormElement} form form to remove submit event from
+ * @param {function} functionToRemove callback function to remove
+ */
 export function removeSubmitEvent(form, functionToRemove) {
 	form.reset();
 	form.removeEventListener("submit", functionToRemove);
 }
 
-/* ========== CREATE ========== */
-// Function to handle the submission of a new artist //
+/**
+ * submitArtistCreate
+ * function to submit new artist details on form submit, and update the display
+ * @param {SubmitEvent} event submit event object from the create artist form
+ */
 export async function submitArtistCreate(event) {
 	event.preventDefault();
 	const form = event.target;
@@ -31,7 +39,12 @@ export async function submitArtistCreate(event) {
 		console.error(err);
 	}
 }
-// add to favorites clicked //
+
+/**
+ * submitFavoriteArtist
+ * function to add an artist to favorites on favorite button click
+ * @param {Artist} artist artist object to add to favorites
+ */
 export async function submitFavoriteArtist(artist) {
 	try {
 		const response = await addToFavorites(artist);
@@ -47,8 +60,11 @@ export async function submitFavoriteArtist(artist) {
 	}
 }
 
-/* ========== UPDATE ========== */
-// Function to handle the submission of artist updates //
+/**
+ * submitArtistUpdate
+ * function to submit update artist details on form submit, and update the display
+ * @param {SubmitEvent} event submit event object from the update artist form
+ */
 export async function submitArtistUpdate(event) {
 	event.preventDefault();
 	const form = event.target;
@@ -69,8 +85,12 @@ export async function submitArtistUpdate(event) {
 		console.error(err);
 	}
 }
-/* ========== DELETE ========== */
-// delete artist button clicked //
+
+/**
+ * submitArtistDelete
+ * function to delete artist on form submit, and update the display
+ * @param {SubmitEvent} event submit event object from the delete artist form
+ */
 export async function submitArtistDelete(event) {
 	event.preventDefault();
 	const form = event.target;
@@ -93,7 +113,11 @@ export async function submitArtistDelete(event) {
 	}
 }
 
-//remove from favorites clicked //
+/**
+ * submitRemoveFromFavorites
+ * function to remove artist from favorites, and update the display
+ * @param {Artist} artist artist object to remove from favorites
+ */
 export async function submitRemoveFromFavorites(artist) {
 	try {
 		const response = await removeFromFavorites(artist);

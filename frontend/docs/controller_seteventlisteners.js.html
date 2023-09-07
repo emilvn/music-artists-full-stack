@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: controller/seteventlisteners.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: controller/seteventlisteners.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import {getSpecificArtist} from "../model/artists.js";
+import {showCreateDialog, showDeleteDialog, showDetailDialog} from "../view/dialogs.js";
+import {filterArtistsChanged, showFilterMenu} from "./search-filter-sort/filter.js";
+import {sortAlphabetically, sortReverseAlphabetically} from "./search-filter-sort/sort.js";
+import {favoriteArtists} from "../model/favorites.js";
+import {removeSubmitEvent, submitFavoriteArtist, submitRemoveFromFavorites} from "./submit.js";
+import {inputSearchChanged} from "./search-filter-sort/search.js";
+import {selectArtist} from "./helpers/selectartist.js";
+
+/**
+ * Sets the initial event listeners on page load
+ */
+export function setInitialEventListeners(){
+	// add artist button
+	const addArtistButton = document.querySelector("#add-artist-dialog-button");
+	addArtistButton.addEventListener("click", showCreateDialog);
+
+	// search bar
+	const searchBar = document.querySelector("#artist-search");
+	searchBar.addEventListener("search", inputSearchChanged);
+	searchBar.addEventListener("keyup", inputSearchChanged);
+	const filterButton = document.querySelector("#filter-sort-button");
+	filterButton.addEventListener("click", showFilterMenu);
+
+	// sort buttons
+	document.querySelector("#alphabetical-sort").addEventListener("click", sortAlphabetically);
+	document.querySelector("#reverse-alphabetical-sort").addEventListener("click", sortReverseAlphabetically);
+
+	document.querySelector("#artist-filter-by__genre")
+		.addEventListener("change", filterArtistsChanged);
+}
+
+/**
+ * sets event listeners for click events regarding each artist article
+ * @param {HTMLElement} artistArticle article element displaying artist info
+ * @param {Artist} artist artist object containing artist details
+ * @param {string} containerID the identifier of the container the article is in(#favorites/#artists)
+ */
+export function setArtistEventListeners(artistArticle, artist, containerID){
+	// edit button
+	artistArticle.querySelector(".edit-button")
+		.addEventListener("click", (e)=> {
+			e.stopPropagation();
+			selectArtist(artist);
+		});
+
+	// delete button
+	artistArticle.querySelector(".delete-button")
+		.addEventListener("click", (e)=> {
+			e.stopPropagation();
+			document.querySelector("#form-delete").dataset.id = artist.id;
+			document.querySelector("#name-delete").textContent = artist.name;
+			showDeleteDialog();
+		});
+
+	// favorite button
+	artistArticle.querySelector(".favorite-button")
+		.addEventListener("click", (e)=> {
+			e.stopPropagation();
+			(containerID === "#favorites") ? submitRemoveFromFavorites(artist) : submitFavoriteArtist(artist);
+		});
+
+	// website button
+	artistArticle.querySelector(".website-button")
+		.addEventListener("click", (e) => {
+			e.stopPropagation();
+		})
+
+	// display artist details when article clicked
+	artistArticle.addEventListener("click", async ()=> {
+		const response = await getSpecificArtist(artist);
+		if(response.ok){
+			const artistToShow = await response.json();
+			showDetailDialog(artistToShow);
+		}
+	});
+}
+
+/**
+ * sets the relevant submit and close event listeners for forms
+ * @param {HTMLFormElement} form form to add event listeners to
+ * @param {function} submitFunction callback function for event listeners to add/remove
+ */
+export function setFormEventListeners(form, submitFunction){
+	form.addEventListener("submit", submitFunction);
+	form.parentElement
+		.addEventListener("close", ()=> removeSubmitEvent(form, submitFunction));
+	form.parentElement.querySelector(".dialog-close-button")
+		.addEventListener("click", () => form.parentElement.close());
+}
+
+/**
+ * sets the relevant event listeners for the detail dialog buttons and close
+ * @param {Artist} artist artist object containing artist details to be displayed
+ */
+export function setDetailDialogEventListeners(artist){
+	const dialog = document.querySelector("#artist-detail-dialog");
+
+	// favorite button
+	dialog.querySelector(".favorite-button")
+		.addEventListener("click", submitFavoriteLocal);
+
+	// edit button
+	dialog.querySelector(".edit-button")
+		.addEventListener("click", selectArtistLocal);
+
+	//delete button
+	dialog.querySelector(".delete-button")
+		.addEventListener("click", submitDeleteLocal);
+
+	// close button
+	document.querySelector("#detail-dialog__close-button")
+		.addEventListener("click", () => {
+			dialog.querySelector(".favorite-button")
+				.removeEventListener("click", submitFavoriteLocal);
+			dialog.querySelector(".edit-button")
+				.removeEventListener("click", selectArtistLocal);
+			dialog.querySelector(".delete-button")
+				.removeEventListener("click", submitDeleteLocal);
+			dialog.close();
+		});
+
+	// using closure to make removable callbacks for event listeners
+	async function submitFavoriteLocal(){
+		if(favoriteArtists.find(favorite => favorite.id === artist.id)){
+			await submitRemoveFromFavorites(artist);
+		}
+		else await submitFavoriteArtist(artist);
+	}
+	// using closure to make removable callbacks for event listeners
+	function selectArtistLocal(){
+		selectArtist(artist);
+	}
+	// using closure to make removable callbacks for event listeners
+	function submitDeleteLocal(){
+		document.querySelector("#form-delete").dataset.id = artist.id;
+		document.querySelector("#name-delete").textContent = artist.name;
+		showDeleteDialog();
+	}
+}
+
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addArtist">addArtist</a></li><li><a href="global.html#addToFavorites">addToFavorites</a></li><li><a href="global.html#addToolTip">addToolTip</a></li><li><a href="global.html#artists">artists</a></li><li><a href="global.html#clearDetailDialog">clearDetailDialog</a></li><li><a href="global.html#deleteArtist">deleteArtist</a></li><li><a href="global.html#displayArtist">displayArtist</a></li><li><a href="global.html#displayArtists">displayArtists</a></li><li><a href="global.html#displayFavorites">displayFavorites</a></li><li><a href="global.html#endpoint">endpoint</a></li><li><a href="global.html#favoriteArtists">favoriteArtists</a></li><li><a href="global.html#filterArtists">filterArtists</a></li><li><a href="global.html#filterArtistsChanged">filterArtistsChanged</a></li><li><a href="global.html#filterFavorites">filterFavorites</a></li><li><a href="global.html#formatDate">formatDate</a></li><li><a href="global.html#generateFilterOptions">generateFilterOptions</a></li><li><a href="global.html#generateListFromArray">generateListFromArray</a></li><li><a href="global.html#getArtistDataFromInput">getArtistDataFromInput</a></li><li><a href="global.html#getArtists">getArtists</a></li><li><a href="global.html#getFavorites">getFavorites</a></li><li><a href="global.html#getSpecificArtist">getSpecificArtist</a></li><li><a href="global.html#hideFilterMenu">hideFilterMenu</a></li><li><a href="global.html#inputSearchChanged">inputSearchChanged</a></li><li><a href="global.html#main">main</a></li><li><a href="global.html#removeFromFavorites">removeFromFavorites</a></li><li><a href="global.html#removeSubmitEvent">removeSubmitEvent</a></li><li><a href="global.html#selectArtist">selectArtist</a></li><li><a href="global.html#selectedArtist">selectedArtist</a></li><li><a href="global.html#setArtistEventListeners">setArtistEventListeners</a></li><li><a href="global.html#setArtistTooltips">setArtistTooltips</a></li><li><a href="global.html#setDetailDialogEventListeners">setDetailDialogEventListeners</a></li><li><a href="global.html#setDetailDialogTooltips">setDetailDialogTooltips</a></li><li><a href="global.html#setDetailFavoriteButtonIcon">setDetailFavoriteButtonIcon</a></li><li><a href="global.html#setFormEventListeners">setFormEventListeners</a></li><li><a href="global.html#setInitialEventListeners">setInitialEventListeners</a></li><li><a href="global.html#setTooltips">setTooltips</a></li><li><a href="global.html#showCreateDialog">showCreateDialog</a></li><li><a href="global.html#showDeleteDialog">showDeleteDialog</a></li><li><a href="global.html#showDetailDialog">showDetailDialog</a></li><li><a href="global.html#showFilterMenu">showFilterMenu</a></li><li><a href="global.html#showToastMessage">showToastMessage</a></li><li><a href="global.html#showUpdateDialog">showUpdateDialog</a></li><li><a href="global.html#sortAlphabetically">sortAlphabetically</a></li><li><a href="global.html#sortReverseAlphabetically">sortReverseAlphabetically</a></li><li><a href="global.html#submitArtistCreate">submitArtistCreate</a></li><li><a href="global.html#submitArtistDelete">submitArtistDelete</a></li><li><a href="global.html#submitArtistUpdate">submitArtistUpdate</a></li><li><a href="global.html#submitFavoriteArtist">submitFavoriteArtist</a></li><li><a href="global.html#submitRemoveFromFavorites">submitRemoveFromFavorites</a></li><li><a href="global.html#updateArtist">updateArtist</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Thu Sep 07 2023 13:55:22 GMT+0200 (Centraleuropæisk sommertid)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

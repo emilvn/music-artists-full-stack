@@ -28,7 +28,7 @@ async function main(){
 		await getArtists();
 	}
 	catch (err){
-		showToastMessage(err.message||"Failed getting artists", "error");
+		showToastMessage(err.message||"Failed getting artists", "error", null);
 		console.error({"Error getting artist: ": err});
 	}
 	// generate options for filter select

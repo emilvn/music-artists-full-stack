@@ -114,10 +114,11 @@
                     <button class="dialog-close-button" type="button"><img src="icons/close-icon.png" alt="Close"></button>
                 </div>
             </form>
+            <div class="toast-container"></div>
         </dialog>
 
         <!-- ========== ARTIST UPDATE DIALOG ========== -->
-        <dialog class="form-dialog">
+        <dialog class="form-dialog" >
             <form action="" id="form-update" class="artist-form">
                 <h2>Edit artist details</h2>
                 <fieldset class="form-dialog__artist-personal-info">
@@ -181,6 +182,8 @@
                     <button class="dialog-close-button" type="button"><img src="icons/close-icon.png" alt="Close"></button>
                 </div>
             </form>
+            <!-- ========== TOAST MESSAGES ========== -->
+            <div class="toast-container"></div>
         </dialog>
         <!-- ========== ARTIST DELETE DIALOG ========== -->
         <dialog id="dialog-delete" class="form-dialog">
@@ -193,6 +196,7 @@
                     <button type="reset" class="dialog-close-button" id="form-delete__cancel-button">Cancel</button>
                 </div>
             </form>
+            <div class="toast-container"></div>
         </dialog>
         <!-- ========== ARTIST DETAIL DIALOG ========== -->
         <dialog id="artist-detail-dialog">
@@ -229,11 +233,13 @@
                 </div>
             </article>
             <div id="detail-dialog__tooltip" class="tooltip"></div>
+            <!-- ========== TOAST MESSAGES ========== -->
+            <div class="toast-container"></div>
         </dialog>
     </main>
 
     <!-- ========== TOAST MESSAGES ========== -->
-    <div id="toast-container"></div>
+    <div id="toast-container" class="toast-container"></div>
 
     <!-- ========== TOOLTIP ========== -->
     <div id="detail-tooltip" class="tooltip">Show more details</div>

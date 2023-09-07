@@ -28,12 +28,12 @@ export async function submitArtistCreate(event) {
 		const response = await addArtist(newArtist);// can throw an error from the api
 		if (response.ok) {
 			displayArtists(artists);
-			showToastMessage("Artist added successfully!", "success");
 			form.reset();
 			form.parentElement.close();
+			showToastMessage("Artist added successfully!", "success", null);
 		}
 	} catch (err) {
-		showToastMessage(err.message||"Failed to create artist", "error");
+		showToastMessage(err.message||"Failed to create artist", "error", form.parentElement);
 		console.error({"Error adding artist: ": err});
 	}
 }
@@ -47,12 +47,12 @@ export async function submitFavoriteArtist(artist) {
 		const response = await addToFavorites(artist);// can throw an error from the api
 		if (response.ok) {
 			displayFavorites(favoriteArtists);
-			showToastMessage(`${artist.name} added to favorites!`, "success");
 			setDetailFavoriteButtonIcon(artist);
 			document.querySelector("#artist-detail-dialog").close();
+			showToastMessage(`${artist.name} added to favorites!`, "success", null);
 		}
 	} catch (err) {
-		showToastMessage(err.message||"Failed to add artist to favorites", "error");
+		showToastMessage(err.message||"Failed to add artist to favorites", "error", null);
 		console.error({"Error adding artist to favorites: ": err});
 	}
 }
@@ -71,13 +71,13 @@ export async function submitArtistUpdate(event) {
 			await getFavorites();
 			displayArtists(artists);
 			displayFavorites(favoriteArtists);
-			showToastMessage(`${selectedArtist.name} updated successfully!`, "success");
 			form.reset();
 			form.parentElement.close();
 			document.querySelector("#artist-detail-dialog").close();
+			showToastMessage(`${selectedArtist.name} updated successfully!`, "success", null);
 		}
 	} catch (err) {
-		showToastMessage(err.message||"Failed to update artist", "error");
+		showToastMessage(err.message||"Failed to update artist", "error", form.parentElement);
 		console.error({"Error updating artist: ": err});
 	}
 }
@@ -97,12 +97,12 @@ export async function submitArtistDelete(event) {
 			if (favoriteArtists.find(favorite => favorite.id === artist.id)) { // also remove from favorites
 				await submitRemoveFromFavorites(artist);
 			}
-			showToastMessage(`${artist.name} deleted successfully!`, "success");
 			form.parentElement.close();
 			document.querySelector("#artist-detail-dialog").close();
+			showToastMessage(`${artist.name} deleted successfully!`, "success", null);
 		}
 	} catch (err) {
-		showToastMessage(err.message||"Failed to delete artist", "error");
+		showToastMessage(err.message||"Failed to delete artist", "error", form.parentElement);
 		console.error({"Error deleting artist: ": err});
 	}
 }
@@ -116,12 +116,12 @@ export async function submitRemoveFromFavorites(artist) {
 		const response = await removeFromFavorites(artist);// can throw an error from the api
 		if (response.ok) {
 			displayFavorites(favoriteArtists);
-			showToastMessage(`${artist.name} removed from favorites`, "success");
 			setDetailFavoriteButtonIcon(artist);
 			document.querySelector("#artist-detail-dialog").close();
+			showToastMessage(`${artist.name} removed from favorites`, "success", null);
 		}
 	} catch (err) {
-		showToastMessage(err.message||"Failed to remove artist from favorites", "error");
+		showToastMessage(err.message||"Failed to remove artist from favorites", "error", null);
 		console.error({"Error removing artist from favorites: ": err});
 	}
 }

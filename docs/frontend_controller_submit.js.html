@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: frontend/controller/submit.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: frontend/controller/submit.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import {addArtist, artists, deleteArtist, updateArtist} from "../model/artists.js";
+import {displayArtists, displayFavorites} from "../view/view.js";
+import {addToFavorites, favoriteArtists, getFavorites, removeFromFavorites} from "../model/favorites.js";
+import {showToastMessage} from "../view/helpers/toastmessages.js";
+import {setDetailFavoriteButtonIcon} from "../view/dialogs.js";
+import {selectedArtist} from "./helpers/selectartist.js";
+import {getArtistDataFromInput} from "./helpers/getdatafrominput.js";
+
+/**
+ * function to remove a submit event from a form
+ * @param {HTMLFormElement} form form to remove submit event from
+ * @param {function} functionToRemove callback function to remove
+ */
+export function removeSubmitEvent(form, functionToRemove) {
+	form.reset();
+	form.removeEventListener("submit", functionToRemove);
+}
+
+/**
+ * function to submit new artist details on form submit, and update the display
+ * @param {SubmitEvent} event submit event object from the create artist form
+ */
+export async function submitArtistCreate(event) {
+	event.preventDefault();
+	const form = event.target;
+	const newArtist = getArtistDataFromInput(form);
+	try {
+		const response = await addArtist(newArtist);// can throw an error from the api
+		if (response.ok) {
+			displayArtists(artists);
+			showToastMessage("Artist added successfully!", "success");
+			form.reset();
+			form.parentElement.close();
+		}
+	} catch (err) {
+		showToastMessage(err.message||"Failed to create artist", "error");
+		console.error({"Error adding artist: ": err});
+	}
+}
+
+/**
+ * function to add an artist to favorites on favorite button click
+ * @param {Artist} artist artist object to add to favorites
+ */
+export async function submitFavoriteArtist(artist) {
+	try {
+		const response = await addToFavorites(artist);// can throw an error from the api
+		if (response.ok) {
+			displayFavorites(favoriteArtists);
+			showToastMessage(`${artist.name} added to favorites!`, "success");
+			setDetailFavoriteButtonIcon(artist);
+			document.querySelector("#artist-detail-dialog").close();
+		}
+	} catch (err) {
+		showToastMessage(err.message||"Failed to add artist to favorites", "error");
+		console.error({"Error adding artist to favorites: ": err});
+	}
+}
+
+/**
+ * function to submit update artist details on form submit, and update the display
+ * @param {SubmitEvent} event submit event object from the update artist form
+ */
+export async function submitArtistUpdate(event) {
+	event.preventDefault();
+	const form = event.target;
+	const updatedArtist = getArtistDataFromInput(form);
+	try {
+		const response = await updateArtist(updatedArtist);// can throw an error from the api
+		if (response.ok) {
+			await getFavorites();
+			displayArtists(artists);
+			displayFavorites(favoriteArtists);
+			showToastMessage(`${selectedArtist.name} updated successfully!`, "success");
+			form.reset();
+			form.parentElement.close();
+			document.querySelector("#artist-detail-dialog").close();
+		}
+	} catch (err) {
+		showToastMessage(err.message||"Failed to update artist", "error");
+		console.error({"Error updating artist: ": err});
+	}
+}
+
+/**
+ * function to delete artist on form submit, and update the display
+ * @param {SubmitEvent} event submit event object from the delete artist form
+ */
+export async function submitArtistDelete(event) {
+	event.preventDefault();
+	const form = event.target;
+	const artist = artists.find(artist => artist.id === form.dataset.id);
+	try {
+		const response = await deleteArtist(artist);// can throw an error from the api
+		if (response.ok) {
+			displayArtists(artists);
+			if (favoriteArtists.find(favorite => favorite.id === artist.id)) { // also remove from favorites
+				await submitRemoveFromFavorites(artist);
+			}
+			showToastMessage(`${artist.name} deleted successfully!`, "success");
+			form.parentElement.close();
+			document.querySelector("#artist-detail-dialog").close();
+		}
+	} catch (err) {
+		showToastMessage(err.message||"Failed to delete artist", "error");
+		console.error({"Error deleting artist: ": err});
+	}
+}
+
+/**
+ * function to remove artist from favorites, and update the display
+ * @param {Artist} artist artist object to remove from favorites
+ */
+export async function submitRemoveFromFavorites(artist) {
+	try {
+		const response = await removeFromFavorites(artist);// can throw an error from the api
+		if (response.ok) {
+			displayFavorites(favoriteArtists);
+			showToastMessage(`${artist.name} removed from favorites`, "success");
+			setDetailFavoriteButtonIcon(artist);
+			document.querySelector("#artist-detail-dialog").close();
+		}
+	} catch (err) {
+		showToastMessage(err.message||"Failed to remove artist from favorites", "error");
+		console.error({"Error removing artist from favorites: ": err});
+	}
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="HTTPException.html">HTTPException</a></li><li><a href="ValidationError.html">ValidationError</a></li></ul><h3>Global</h3><ul><li><a href="global.html#DELETE/artists/:id">DELETE /artists/:id</a></li><li><a href="global.html#DELETE/favorites/:id">DELETE /favorites/:id</a></li><li><a href="global.html#GET/artists">GET /artists</a></li><li><a href="global.html#GET/artists/:id">GET /artists/:id</a></li><li><a href="global.html#GET/favorites">GET /favorites</a></li><li><a href="global.html#PATH">PATH</a></li><li><a href="global.html#POST/artists">POST /artists</a></li><li><a href="global.html#POST/favorites">POST /favorites</a></li><li><a href="global.html#PUT/artists/:id">PUT /artists/:id</a></li><li><a href="global.html#addArtist">addArtist</a></li><li><a href="global.html#addArtistData">addArtistData</a></li><li><a href="global.html#addFavorite">addFavorite</a></li><li><a href="global.html#addFavoriteData">addFavoriteData</a></li><li><a href="global.html#addToFavorites">addToFavorites</a></li><li><a href="global.html#addToolTip">addToolTip</a></li><li><a href="global.html#app">app</a></li><li><a href="global.html#artists">artists</a></li><li><a href="global.html#artistsRouter">artistsRouter</a></li><li><a href="global.html#clearDetailDialog">clearDetailDialog</a></li><li><a href="global.html#deleteArtist">deleteArtist</a></li><li><a href="global.html#deleteArtistData">deleteArtistData</a></li><li><a href="global.html#displayArtist">displayArtist</a></li><li><a href="global.html#displayArtists">displayArtists</a></li><li><a href="global.html#displayFavorites">displayFavorites</a></li><li><a href="global.html#endpoint">endpoint</a></li><li><a href="global.html#errorHandler">errorHandler</a></li><li><a href="global.html#favoriteArtists">favoriteArtists</a></li><li><a href="global.html#favoritesRouter">favoritesRouter</a></li><li><a href="global.html#filterArtists">filterArtists</a></li><li><a href="global.html#filterArtistsChanged">filterArtistsChanged</a></li><li><a href="global.html#filterFavorites">filterFavorites</a></li><li><a href="global.html#findArtistObject">findArtistObject</a></li><li><a href="global.html#formatDate">formatDate</a></li><li><a href="global.html#generateFilterOptions">generateFilterOptions</a></li><li><a href="global.html#generateListFromArray">generateListFromArray</a></li><li><a href="global.html#getArtistDataFromInput">getArtistDataFromInput</a></li><li><a href="global.html#getArtists">getArtists</a></li><li><a href="global.html#getArtistsData">getArtistsData</a></li><li><a href="global.html#getArtistsInFavorites">getArtistsInFavorites</a></li><li><a href="global.html#getFavoriteIdsData">getFavoriteIdsData</a></li><li><a href="global.html#getFavorites">getFavorites</a></li><li><a href="global.html#getFavoritesData">getFavoritesData</a></li><li><a href="global.html#getOneArtistData">getOneArtistData</a></li><li><a href="global.html#getSpecificArtist">getSpecificArtist</a></li><li><a href="global.html#hideFilterMenu">hideFilterMenu</a></li><li><a href="global.html#inputSearchChanged">inputSearchChanged</a></li><li><a href="global.html#main">main</a></li><li><a href="global.html#port">port</a></li><li><a href="global.html#removeFavorite">removeFavorite</a></li><li><a href="global.html#removeFavoriteData">removeFavoriteData</a></li><li><a href="global.html#removeFromFavorites">removeFromFavorites</a></li><li><a href="global.html#removeSubmitEvent">removeSubmitEvent</a></li><li><a href="global.html#selectArtist">selectArtist</a></li><li><a href="global.html#selectedArtist">selectedArtist</a></li><li><a href="global.html#setArtistEventListeners">setArtistEventListeners</a></li><li><a href="global.html#setArtistTooltips">setArtistTooltips</a></li><li><a href="global.html#setDetailDialogEventListeners">setDetailDialogEventListeners</a></li><li><a href="global.html#setDetailDialogTooltips">setDetailDialogTooltips</a></li><li><a href="global.html#setDetailFavoriteButtonIcon">setDetailFavoriteButtonIcon</a></li><li><a href="global.html#setFormEventListeners">setFormEventListeners</a></li><li><a href="global.html#setInitialEventListeners">setInitialEventListeners</a></li><li><a href="global.html#setTooltips">setTooltips</a></li><li><a href="global.html#showCreateDialog">showCreateDialog</a></li><li><a href="global.html#showDeleteDialog">showDeleteDialog</a></li><li><a href="global.html#showDetailDialog">showDetailDialog</a></li><li><a href="global.html#showFilterMenu">showFilterMenu</a></li><li><a href="global.html#showToastMessage">showToastMessage</a></li><li><a href="global.html#showUpdateDialog">showUpdateDialog</a></li><li><a href="global.html#sortAlphabetically">sortAlphabetically</a></li><li><a href="global.html#sortReverseAlphabetically">sortReverseAlphabetically</a></li><li><a href="global.html#submitArtistCreate">submitArtistCreate</a></li><li><a href="global.html#submitArtistDelete">submitArtistDelete</a></li><li><a href="global.html#submitArtistUpdate">submitArtistUpdate</a></li><li><a href="global.html#submitFavoriteArtist">submitFavoriteArtist</a></li><li><a href="global.html#submitRemoveFromFavorites">submitRemoveFromFavorites</a></li><li><a href="global.html#throwIfArtistIdInFavorites">throwIfArtistIdInFavorites</a></li><li><a href="global.html#throwIfArtistIdNotInFavorites">throwIfArtistIdNotInFavorites</a></li><li><a href="global.html#updateArtist">updateArtist</a></li><li><a href="global.html#updateArtistData">updateArtistData</a></li><li><a href="global.html#updateArtistDetails">updateArtistDetails</a></li><li><a href="global.html#validateArr">validateArr</a></li><li><a href="global.html#validateArtist">validateArtist</a></li><li><a href="global.html#validateDate">validateDate</a></li><li><a href="global.html#validateDescription">validateDescription</a></li><li><a href="global.html#validateName">validateName</a></li><li><a href="global.html#validateURL">validateURL</a></li><li><a href="global.html#writeArtistsToFile">writeArtistsToFile</a></li><li><a href="global.html#writeFavoritesToFile">writeFavoritesToFile</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Thu Sep 07 2023 14:06:06 GMT+0200 (Centraleuropæisk sommertid)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

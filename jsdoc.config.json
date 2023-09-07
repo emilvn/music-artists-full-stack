@@ -1,0 +1,9 @@
+{
+  "source": {
+    "include": ["./backend/src", "./backend/server.js", "./frontend"],
+    "exclude": ["./backend/node_modules", "./frontend/styles", "./frontend/icons", "./frontend/index.html"]
+  },
+  "opts": {
+    "destination": "./docs"
+  }
+}

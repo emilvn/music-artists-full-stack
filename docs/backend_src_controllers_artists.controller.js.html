@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: backend/src/controllers/artists.controller.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: backend/src/controllers/artists.controller.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import {
+	addArtistData, deleteArtistData,
+	getArtistsData,
+	getOneArtistData,
+	updateArtistData,
+} from "../models/artist.model.js";
+import {HTTPException} from "../errors/HTTPException.js";
+// noinspection ES6UnusedImports
+import express from "express";
+
+/**
+ *  ========== ROUTE HANDLERS ==========
+ *  Route handlers for GET/POST/PUT/DELETE to /artists
+ */
+
+/**
+ * Route handler for GET
+ * @param {express.Request} req Incoming request object
+ * @param {express.Response} res Response object, for sending response to client
+ * @param {express.NextFunction} next Callback function to pass control to next middleware
+ */
+export async function getArtists(req, res, next){
+	try{
+		const artists = await getArtistsData();
+		if(artists.length === 0){ // error if there are no artists
+			next(new HTTPException("Artists not found", 404));
+		}
+		else{
+			res.status(200).json(artists);
+		}
+	}
+	catch (err){
+		next(err);//forward the error to the error handler
+	}
+}
+
+/**
+ * Route handler for GET /:id
+ * @param {express.Request} req Incoming request object
+ * @param {express.Response} res Response object, for sending response to client
+ * @param {express.NextFunction} next Callback function to pass control to next middleware
+ */
+export async function getSpecificArtist(req, res, next){
+	try{
+		const id = req.params.id;
+		const artist = await getOneArtistData(id);
+		res.status(200).json(artist);
+	}
+	catch (err){
+		next(err);//forward the error to the error handler
+	}
+}
+
+/**
+ * Route handler for POST
+ * @param {express.Request} req Incoming request object
+ * @param {express.Response} res Response object, for sending response to client
+ * @param {express.NextFunction} next Callback function to pass control to next middleware
+ */
+export async function addArtist(req, res, next){
+	try{
+		const newArtist = req.body;
+		const artists = await addArtistData(newArtist);
+		res.status(201).json(artists);
+	}
+	catch(err){
+		next(err);//forward the error to the error handler
+	}
+}
+
+/**
+ * Route handler for PUT /:id
+ * @param {express.Request} req Incoming request object
+ * @param {express.Response} res Response object, for sending response to client
+ * @param {express.NextFunction} next Callback function to pass control to next middleware
+ */
+export async function updateArtist(req, res, next){
+	try{
+		const updatedArtist = req.body;
+		const artists = await updateArtistData(updatedArtist);
+		res.status(200).json(artists);
+	}
+	catch(err){
+		next(err);//forward the error to the error handler
+	}
+}
+
+/**
+ * Route handler for DELETE /:id
+ * @param {express.Request} req Incoming request object
+ * @param {express.Response} res Response object, for sending response to client
+ * @param {express.NextFunction} next Callback function to pass control to next middleware
+ */
+export async function deleteArtist(req, res, next){
+	try{
+		const id = req.params.id;
+		const updatedArtists = await deleteArtistData(id);
+		res.status(200).json(updatedArtists);
+	}
+	catch(err){
+		next(err);//forward the error to the error handler
+	}
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="HTTPException.html">HTTPException</a></li><li><a href="ValidationError.html">ValidationError</a></li></ul><h3>Global</h3><ul><li><a href="global.html#DELETE/artists/:id">DELETE /artists/:id</a></li><li><a href="global.html#DELETE/favorites/:id">DELETE /favorites/:id</a></li><li><a href="global.html#GET/artists">GET /artists</a></li><li><a href="global.html#GET/artists/:id">GET /artists/:id</a></li><li><a href="global.html#GET/favorites">GET /favorites</a></li><li><a href="global.html#PATH">PATH</a></li><li><a href="global.html#POST/artists">POST /artists</a></li><li><a href="global.html#POST/favorites">POST /favorites</a></li><li><a href="global.html#PUT/artists/:id">PUT /artists/:id</a></li><li><a href="global.html#addArtist">addArtist</a></li><li><a href="global.html#addArtistData">addArtistData</a></li><li><a href="global.html#addFavorite">addFavorite</a></li><li><a href="global.html#addFavoriteData">addFavoriteData</a></li><li><a href="global.html#addToFavorites">addToFavorites</a></li><li><a href="global.html#addToolTip">addToolTip</a></li><li><a href="global.html#app">app</a></li><li><a href="global.html#artists">artists</a></li><li><a href="global.html#artistsRouter">artistsRouter</a></li><li><a href="global.html#clearDetailDialog">clearDetailDialog</a></li><li><a href="global.html#deleteArtist">deleteArtist</a></li><li><a href="global.html#deleteArtistData">deleteArtistData</a></li><li><a href="global.html#displayArtist">displayArtist</a></li><li><a href="global.html#displayArtists">displayArtists</a></li><li><a href="global.html#displayFavorites">displayFavorites</a></li><li><a href="global.html#endpoint">endpoint</a></li><li><a href="global.html#errorHandler">errorHandler</a></li><li><a href="global.html#favoriteArtists">favoriteArtists</a></li><li><a href="global.html#favoritesRouter">favoritesRouter</a></li><li><a href="global.html#filterArtists">filterArtists</a></li><li><a href="global.html#filterArtistsChanged">filterArtistsChanged</a></li><li><a href="global.html#filterFavorites">filterFavorites</a></li><li><a href="global.html#findArtistObject">findArtistObject</a></li><li><a href="global.html#formatDate">formatDate</a></li><li><a href="global.html#generateFilterOptions">generateFilterOptions</a></li><li><a href="global.html#generateListFromArray">generateListFromArray</a></li><li><a href="global.html#getArtistDataFromInput">getArtistDataFromInput</a></li><li><a href="global.html#getArtists">getArtists</a></li><li><a href="global.html#getArtistsData">getArtistsData</a></li><li><a href="global.html#getArtistsInFavorites">getArtistsInFavorites</a></li><li><a href="global.html#getFavoriteIdsData">getFavoriteIdsData</a></li><li><a href="global.html#getFavorites">getFavorites</a></li><li><a href="global.html#getFavoritesData">getFavoritesData</a></li><li><a href="global.html#getOneArtistData">getOneArtistData</a></li><li><a href="global.html#getSpecificArtist">getSpecificArtist</a></li><li><a href="global.html#hideFilterMenu">hideFilterMenu</a></li><li><a href="global.html#inputSearchChanged">inputSearchChanged</a></li><li><a href="global.html#main">main</a></li><li><a href="global.html#port">port</a></li><li><a href="global.html#removeFavorite">removeFavorite</a></li><li><a href="global.html#removeFavoriteData">removeFavoriteData</a></li><li><a href="global.html#removeFromFavorites">removeFromFavorites</a></li><li><a href="global.html#removeSubmitEvent">removeSubmitEvent</a></li><li><a href="global.html#selectArtist">selectArtist</a></li><li><a href="global.html#selectedArtist">selectedArtist</a></li><li><a href="global.html#setArtistEventListeners">setArtistEventListeners</a></li><li><a href="global.html#setArtistTooltips">setArtistTooltips</a></li><li><a href="global.html#setDetailDialogEventListeners">setDetailDialogEventListeners</a></li><li><a href="global.html#setDetailDialogTooltips">setDetailDialogTooltips</a></li><li><a href="global.html#setDetailFavoriteButtonIcon">setDetailFavoriteButtonIcon</a></li><li><a href="global.html#setFormEventListeners">setFormEventListeners</a></li><li><a href="global.html#setInitialEventListeners">setInitialEventListeners</a></li><li><a href="global.html#setTooltips">setTooltips</a></li><li><a href="global.html#showCreateDialog">showCreateDialog</a></li><li><a href="global.html#showDeleteDialog">showDeleteDialog</a></li><li><a href="global.html#showDetailDialog">showDetailDialog</a></li><li><a href="global.html#showFilterMenu">showFilterMenu</a></li><li><a href="global.html#showToastMessage">showToastMessage</a></li><li><a href="global.html#showUpdateDialog">showUpdateDialog</a></li><li><a href="global.html#sortAlphabetically">sortAlphabetically</a></li><li><a href="global.html#sortReverseAlphabetically">sortReverseAlphabetically</a></li><li><a href="global.html#submitArtistCreate">submitArtistCreate</a></li><li><a href="global.html#submitArtistDelete">submitArtistDelete</a></li><li><a href="global.html#submitArtistUpdate">submitArtistUpdate</a></li><li><a href="global.html#submitFavoriteArtist">submitFavoriteArtist</a></li><li><a href="global.html#submitRemoveFromFavorites">submitRemoveFromFavorites</a></li><li><a href="global.html#throwIfArtistIdInFavorites">throwIfArtistIdInFavorites</a></li><li><a href="global.html#throwIfArtistIdNotInFavorites">throwIfArtistIdNotInFavorites</a></li><li><a href="global.html#updateArtist">updateArtist</a></li><li><a href="global.html#updateArtistData">updateArtistData</a></li><li><a href="global.html#updateArtistDetails">updateArtistDetails</a></li><li><a href="global.html#validateArr">validateArr</a></li><li><a href="global.html#validateArtist">validateArtist</a></li><li><a href="global.html#validateDate">validateDate</a></li><li><a href="global.html#validateDescription">validateDescription</a></li><li><a href="global.html#validateName">validateName</a></li><li><a href="global.html#validateURL">validateURL</a></li><li><a href="global.html#writeArtistsToFile">writeArtistsToFile</a></li><li><a href="global.html#writeFavoritesToFile">writeFavoritesToFile</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Thu Sep 07 2023 14:06:06 GMT+0200 (Centraleuropæisk sommertid)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

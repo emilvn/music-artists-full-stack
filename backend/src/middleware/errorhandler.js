@@ -1,7 +1,6 @@
 // noinspection ES6UnusedImports
 import express from "express";
 /**
- * errorHandler
  * middleware for handling errors that occur in the route handlers
  * @param {Error|ValidationError|HTTPException} err Error object to be handled
  * @param {express.Request} req Incoming request object

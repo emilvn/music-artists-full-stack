@@ -1,4 +1,3 @@
-import {HTTPException} from "../errors/HTTPException.js";
 // noinspection ES6UnusedImports
 import express from "express";
 import {addFavoriteData, getFavoritesData, removeFavoriteData} from "../models/favorite.model.js";
@@ -7,8 +6,8 @@ import {addFavoriteData, getFavoritesData, removeFavoriteData} from "../models/f
  *  ========== ROUTE HANDLERS ==========
  *  Route handlers for GET/POST/PUT/DELETE to /favorites
  */
+
 /**
- * ----- GET ALL FAVORITES -----
  * Route handler for GET
  * @param {express.Request} req Incoming request object
  * @param {express.Response} res Response object, for sending response to client
@@ -25,7 +24,6 @@ export async function getFavorites(req, res, next){
 }
 
 /**
- * ----- ADD FAVORITE -----
  * Route handler for POST
  * @param {express.Request} req Incoming request object
  * @param {express.Response} res Response object, for sending response to client
@@ -42,7 +40,6 @@ export async function addFavorite(req, res, next){
 	}
 }
 /**
- * ----- REMOVE FROM FAVORITES -----
  * Route handler for DELETE /:id
  * @param {express.Request} req Incoming request object
  * @param {express.Response} res Response object, for sending response to client

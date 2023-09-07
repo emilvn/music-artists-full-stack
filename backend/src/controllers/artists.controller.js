@@ -1,12 +1,9 @@
-import {v4 as uuidv4} from "uuid"; // 'uuid4' for generating unique artist ids
 import {
 	addArtistData, deleteArtistData,
 	getArtistsData,
 	getOneArtistData,
 	updateArtistData,
-	writeArtistsToFile
 } from "../models/artist.model.js";
-import {validateArtist} from "../validation/artist.validation.js";
 import {HTTPException} from "../errors/HTTPException.js";
 // noinspection ES6UnusedImports
 import express from "express";
@@ -15,8 +12,8 @@ import express from "express";
  *  ========== ROUTE HANDLERS ==========
  *  Route handlers for GET/POST/PUT/DELETE to /artists
  */
+
 /**
- * ----- GET ALL ARTISTS -----
  * Route handler for GET
  * @param {express.Request} req Incoming request object
  * @param {express.Response} res Response object, for sending response to client
@@ -38,7 +35,6 @@ export async function getArtists(req, res, next){
 }
 
 /**
- * ----- GET ONE ARTIST -----
  * Route handler for GET /:id
  * @param {express.Request} req Incoming request object
  * @param {express.Response} res Response object, for sending response to client
@@ -56,7 +52,6 @@ export async function getSpecificArtist(req, res, next){
 }
 
 /**
- * ----- ADD ARTIST -----
  * Route handler for POST
  * @param {express.Request} req Incoming request object
  * @param {express.Response} res Response object, for sending response to client
@@ -74,7 +69,6 @@ export async function addArtist(req, res, next){
 }
 
 /**
- * ----- UPDATE ARTIST -----
  * Route handler for PUT /:id
  * @param {express.Request} req Incoming request object
  * @param {express.Response} res Response object, for sending response to client
@@ -92,7 +86,6 @@ export async function updateArtist(req, res, next){
 }
 
 /**
- * ----- DELETE ARTIST -----
  * Route handler for DELETE /:id
  * @param {express.Request} req Incoming request object
  * @param {express.Response} res Response object, for sending response to client

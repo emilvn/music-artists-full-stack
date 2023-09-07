@@ -1,5 +1,4 @@
 /**
- * HTTPException
  * Custom class for handling HTTP errors
  * @class
  * @extends Error

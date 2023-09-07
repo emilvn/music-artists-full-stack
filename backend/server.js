@@ -26,7 +26,7 @@ app.use(express.json());
 // use morgan for request logging
 app.use(morgan("tiny"));
 
-// use CORS to allow all cross origin requests
+// use CORS to allow all cross-origin requests
 app.use(cors());
 
 /**

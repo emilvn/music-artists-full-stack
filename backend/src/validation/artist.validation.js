@@ -1,10 +1,9 @@
 import {ValidationError} from "../errors/ValidationError.js";
 
 /**
- * validateArtist
  * function to validate all properties of Artist object
  * @param {Artist} artist artist object to validate
- * @throws {ValidationError} if a property is invalid
+ * @throws {ValidationError} rethrows if a property is invalid
  */
 export function validateArtist(artist){
 	try{
@@ -23,8 +22,8 @@ export function validateArtist(artist){
 	}
 
 }
+
 /**
- * validateName
  * function to validate artist name
  * @param {string} name artist name
  * @throws {ValidationError} if name not a string, or not between 3 and 30 characters long
@@ -34,8 +33,8 @@ function validateName(name){
 		throw new ValidationError("Invalid artist name");
 	}
 }
+
 /**
- * validateDate
  * function to validate artist name
  * @param {string} date artist birthdate/active since date
  * @throws {ValidationError} if date not a string and not in format YYYY-MM-DD
@@ -45,8 +44,8 @@ function validateDate(date){
 		throw new ValidationError("Invalid date, must be of format YYYY-MM-DD");
 	}
 }
+
 /**
- * validateDate
  * function to validate artist name
  * @param {string[]} arr artist genres/roles/labels
  * @throws {ValidationError} if not an array, or if empty array
@@ -58,7 +57,6 @@ function validateArr(arr){
 }
 
 /**
- * validateDate
  * function to validate artist name
  * @param {string} url artist website/image url
  * @throws {ValidationError} if url is not a string or if url doesn't begin with http:// or https://
@@ -69,7 +67,6 @@ function validateURL(url){
 	}
 }
 /**
- * validateDate
  * function to validate artist name
  * @param {string} description short description of artist
  * @throws {ValidationError} if description is not a string or not between 3 and 100 characters

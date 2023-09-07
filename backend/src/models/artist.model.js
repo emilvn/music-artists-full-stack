@@ -10,7 +10,6 @@ import {v4 as uuidv4} from "uuid";
 const PATH = "data/artists.json";
 
 /**
- * writeArtistsToFile
  * writes array of objects to file
  * @param {Artist[]} artistsArr array of artist objects
  * @throws {HTTPException} if there is an error writing to the file
@@ -25,7 +24,6 @@ export async function writeArtistsToFile(artistsArr){
 }
 
 /**
- * getArtists
  * Reads json data from file and parses it to js
  * @returns {Promise<any>} promise that resolves as parsed json from file
  * @throws {HTTPException} if there is an error reading file or parsing the data
@@ -42,7 +40,6 @@ export async function getArtistsData(){
 }
 
 /**
- * findArtistObject
  * finds an artist by id in an array
  * @param {Artist[]} artists array of artists
  * @param {string} id id of artist to find
@@ -58,7 +55,6 @@ export function findArtistObject(artists, id){
 }
 
 /**
- * updateArtistDetails
  * updates an artist object with the updated details of another artist object
  * @param {Artist} artistToUpdate the artist object to update details of
  * @param {Artist} updatedArtist the artist object to update details from
@@ -72,7 +68,6 @@ function updateArtistDetails(artistToUpdate, updatedArtist){
 }
 
 /**
- * getOneArtistData
  * gets a specific artist object from database by id
  * @param {string} artistId id of artist to get
  * @throws {HTTPException} if artist doesn't exist, or error reading/writing
@@ -90,7 +85,6 @@ export async function getOneArtistData(artistId){
 }
 
 /**
- * addArtistData
  * adds an artist object to file
  * @param {Object} newArtist object containing artist details for artist to be created
  * @throws {ValidationError} if artist details are invalid
@@ -111,7 +105,6 @@ export async function addArtistData(newArtist){
 }
 
 /**
- * updateArtistData
  * updates artist details in file
  * @param {Artist} updatedArtist artist to update with updated details
  * @throws {HTTPException} if artist doesn't exist, or error reading/writing
@@ -133,7 +126,6 @@ export async function updateArtistData(updatedArtist){
 }
 
 /**
- * deleteArtistData
  * deletes artist with id from file
  * @param {string} artistId unique identifier string of artist to delete
  * @throws {HTTPException} if artist doesn't exist, or error reading/writing

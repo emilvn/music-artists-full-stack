@@ -2,8 +2,17 @@ import fs from "fs/promises";
 import {HTTPException} from "../errors/HTTPException.js";
 import {findArtistObject, getArtistsData} from "./artist.model.js";
 
+/**
+ * path to favorites data
+ * @type {string}
+ */
 const PATH = "data/favorites.json";
 
+/**
+ * writes array of artist ids to favorites file
+ * @param {string[]} favoriteIds array of artist ids
+ * @throws {HTTPException} if error writing to file
+ */
 export async function writeFavoritesToFile(favoriteIds){
 	try{
 		await fs.writeFile(PATH, JSON.stringify(favoriteIds, null, 2));
@@ -13,6 +22,11 @@ export async function writeFavoritesToFile(favoriteIds){
 	}
 }
 
+/**
+ * gets an array of artist ids from favorites file
+ * @throws {HTTPException} if error reading file
+ * @returns {Promise<string[]>} promise resolving in array of ids
+ */
 export async function getFavoriteIdsData(){
 	try{
 		const data = await fs.readFile(PATH);
@@ -24,7 +38,6 @@ export async function getFavoriteIdsData(){
 }
 
 /**
- * getFavorites
  * gets array of artists whose ids are in favoriteIds
  * @param {string[]} favoriteIDs array of artist id's
  * @param {Artist[]} artists array of Artist objects
@@ -39,19 +52,35 @@ export function getArtistsInFavorites(favoriteIDs, artists){
 	return favorites;
 }
 
-
+/**
+ * function to check if artist id is already in favorites
+ * @param {string} artistId artist id to check
+ * @param {string[]} favoriteIds array of ids to check
+ * @throws {HTTPException} if artist already in favorites
+ */
 function throwIfArtistIdInFavorites(artistId, favoriteIds){
 	if(favoriteIds.includes(artistId)){
 		throw new HTTPException("Artist already in favorites", 400);
 	}
 }
 
+/**
+ * function to check if artist id is in favorites
+ * @param {string} artistId artist id to check
+ * @param {string[]} favoriteIds array of ids to check
+ * @throws {HTTPException} if artist is not in favorites
+ */
 function throwIfArtistIdNotInFavorites(artistId, favoriteIds){
 	if(!favoriteIds.includes(artistId)){
 		throw new HTTPException("Artist not in favorites", 404);
 	}
 }
 
+/**
+ * function to get artists in favorites
+ * @throws {HTTPException} rethrows exception from getFavoriteIdsData and getArtistsData
+ * @returns {Promise<Artist[]>} array of artists whose ids are in favorites
+ */
 export async function getFavoritesData(){
 	try {
 		const favoriteIds = await getFavoriteIdsData(); // can throw if error reading file
@@ -63,6 +92,11 @@ export async function getFavoritesData(){
 	}
 }
 
+/**
+ * adds an artist id to favorites
+ * @param {string} artistId id to add
+ * @throws {HTTPException} rethrows errors from functions in try block
+ */
 export async function addFavoriteData(artistId){
 	try{
 		const favoriteIds = await getFavoriteIdsData(); // throws if error reading file
@@ -78,7 +112,11 @@ export async function addFavoriteData(artistId){
 	}
 }
 
-
+/**
+ * remove artist id from favorites
+ * @param {string} artistId id to remove
+ * @throws {HTTPException} rethrows errors from functions in try block
+ */
 export async function removeFavoriteData(artistId){
 	try{
 		const artists = await getArtistsData(); // throws if error reading file

@@ -1,5 +1,4 @@
 /**
- * ValidationError
  * Custom class for handling validation errors
  * statusCode 400 for bad request
  * @class

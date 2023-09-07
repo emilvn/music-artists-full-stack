@@ -101,7 +101,7 @@ export async function removeFavorite(req, res, next){
 			next(new HTTPException("Artist not in favorites", 400));
 		}
 		else{
-			const updatedFavoriteIds = favoriteIds.filter(favoriteId => favoriteId !== id); //filter out id to remove
+			const updatedFavoriteIds = favoriteIds.filter(favoriteId => favoriteId !== id); //filter docs id to remove
 			const favorites = getFavorites(updatedFavoriteIds, artists);//get array of favorites from ids
 			await writeArtistsToFile(updatedFavoriteIds, "data/favorites.json");
 			res.status(200).json(favorites);

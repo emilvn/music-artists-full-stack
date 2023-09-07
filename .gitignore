@@ -85,7 +85,7 @@ web_modules/
 
 # Next.js build output
 .next
-out
+docs
 
 # Nuxt.js build / generate output
 .nuxt
@@ -136,7 +136,7 @@ dist
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
 # User-specific stuff
-.idea/**/workspace.xml
+.idea/
 .idea/**/tasks.xml
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
@@ -182,9 +182,6 @@ cmake-build-*/
 
 # File-based project format
 *.iws
-
-# IntelliJ
-out/
 
 # mpeltonen/sbt-idea plugin
 .idea_modules/

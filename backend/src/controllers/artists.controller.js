@@ -124,7 +124,7 @@ export async function deleteArtist(req, res, next){
 			next(new HTTPException("Artist not found", 404));
 		}
 		else{
-			const updatedArtists = artists.filter(artist => artist.id !== id); //filter out artist to delete
+			const updatedArtists = artists.filter(artist => artist.id !== id); //filter docs artist to delete
 			await writeArtistsToFile(updatedArtists, "data/artists.json");
 			res.status(200).json(updatedArtists);
 		}

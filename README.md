@@ -5,4 +5,4 @@ install dependencies:
 "npm install -g nodemon"
 
 run server:
-"npm start" / "nodemon server.js"
+run: "npm start" in backend/

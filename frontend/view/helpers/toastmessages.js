@@ -10,7 +10,7 @@ export function showToastMessage(message, mode = "success") {
 	toast.textContent = message;
 	toast.classList.add("toast", mode);
 	toastContainer.appendChild(toast);
-	toast.classList.add("fade-out");
+	toast.classList.add("fade-docs");
 	setTimeout(() => {
 		toastContainer.removeChild(toast);
 	}, 3000);

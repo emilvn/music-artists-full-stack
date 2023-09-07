@@ -6,3 +6,6 @@ install dependencies:
 
 run server:
 run: "npm start" in backend/
+
+docs:
+[https://www.emilvn.github.io/music-artists-full-stack/]

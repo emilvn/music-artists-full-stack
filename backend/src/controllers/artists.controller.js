@@ -1,5 +1,11 @@
 import {v4 as uuidv4} from "uuid"; // 'uuid4' for generating unique artist ids
-import {getArtists, writeArtistsToFile} from "../models/filesystem.js";
+import {
+	addArtistData, deleteArtistData,
+	getArtistsData,
+	getOneArtistData,
+	updateArtistData,
+	writeArtistsToFile
+} from "../models/artist.model.js";
 import {validateArtist} from "../validation/artist.validation.js";
 import {HTTPException} from "../errors/HTTPException.js";
 // noinspection ES6UnusedImports
@@ -16,9 +22,9 @@ import express from "express";
  * @param {express.Response} res Response object, for sending response to client
  * @param {express.NextFunction} next Callback function to pass control to next middleware
  */
-export async function getArtistsData(req, res, next){
+export async function getArtists(req, res, next){
 	try{
-		const artists = await getArtists("data/artists.json");
+		const artists = await getArtistsData();
 		if(artists.length === 0){ // error if there are no artists
 			next(new HTTPException("Artists not found", 404));
 		}
@@ -41,14 +47,8 @@ export async function getArtistsData(req, res, next){
 export async function getSpecificArtist(req, res, next){
 	try{
 		const id = req.params.id;
-		const artists = await getArtists("data/artists.json");
-		const artist = artists.find(artist => artist.id === id);
-		if(!artist){ // error if artist doesn't exist in file
-			next(new HTTPException("Artist not found", 404));
-		}
-		else{
-			res.status(200).json(artist);
-		}
+		const artist = await getOneArtistData(id);
+		res.status(200).json(artist);
 	}
 	catch (err){
 		next(err);//forward the error to the error handler
@@ -64,12 +64,8 @@ export async function getSpecificArtist(req, res, next){
  */
 export async function addArtist(req, res, next){
 	try{
-		const artists = await getArtists("data/artists.json");
 		const newArtist = req.body;
-		validateArtist(newArtist);//throws ValidationError if invalid properties in newArtist
-		newArtist.id = uuidv4();//give artist unique id
-		artists.push(newArtist);
-		await writeArtistsToFile(artists, `data/artists.json`);
+		const artists = await addArtistData(newArtist);
 		res.status(201).json(artists);
 	}
 	catch(err){
@@ -84,25 +80,11 @@ export async function addArtist(req, res, next){
  * @param {express.Response} res Response object, for sending response to client
  * @param {express.NextFunction} next Callback function to pass control to next middleware
  */
-export async function updateArtistData(req, res, next){
+export async function updateArtist(req, res, next){
 	try{
-		const id = req.params.id;
-		const artists = await getArtists("data/artists.json");
-		const artistToUpdate = artists.find(artist => artist.id === id);
-		const body = req.body;
-		if(!artistToUpdate){//error if artist doesn't exist in file
-			next(new HTTPException("Artist not found", 404));
-		}
-		else{
-			validateArtist(body);//throws ValidationError if invalid properties in body
-			for(const key in artistToUpdate){ //update artist properties
-				if(key !== "id"){
-					artistToUpdate[key] = body[key];
-				}
-			}
-			await writeArtistsToFile(artists, "data/artists.json");
-			res.status(200).json(artists);
-		}
+		const updatedArtist = req.body;
+		const artists = await updateArtistData(updatedArtist);
+		res.status(200).json(artists);
 	}
 	catch(err){
 		next(err);//forward the error to the error handler
@@ -119,15 +101,8 @@ export async function updateArtistData(req, res, next){
 export async function deleteArtist(req, res, next){
 	try{
 		const id = req.params.id;
-		const artists = await getArtists("data/artists.json");
-		if(!artists.find(artist => artist.id === id)){ //error if artist doesn't exist in file
-			next(new HTTPException("Artist not found", 404));
-		}
-		else{
-			const updatedArtists = artists.filter(artist => artist.id !== id); //filter docs artist to delete
-			await writeArtistsToFile(updatedArtists, "data/artists.json");
-			res.status(200).json(updatedArtists);
-		}
+		const updatedArtists = await deleteArtistData(id);
+		res.status(200).json(updatedArtists);
 	}
 	catch(err){
 		next(err);//forward the error to the error handler

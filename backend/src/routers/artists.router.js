@@ -1,9 +1,9 @@
 import {
 	addArtist,
 	deleteArtist,
-	getArtistsData,
+	getArtists,
 	getSpecificArtist,
-	updateArtistData
+	updateArtist
 } from "../controllers/artists.controller.js";
 import express from "express";
 
@@ -17,7 +17,7 @@ export const artistsRouter = express.Router();
  * @name GET /artists
  * @function
  */
-artistsRouter.get("/", getArtistsData);
+artistsRouter.get("/", getArtists);
 
 /**
  * Route to get specific artist by id
@@ -38,7 +38,7 @@ artistsRouter.post("/", addArtist);
  * @name PUT /artists/:id
  * @function
  */
-artistsRouter.put("/:id", updateArtistData);
+artistsRouter.put("/:id", updateArtist);
 
 /**
  * Route to delete a specific artist by id

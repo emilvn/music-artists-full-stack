@@ -1,10 +1,5 @@
 import express from "express";
-import {
-	addFavorite,
-	getFavoritesData,
-	getSpecificFavorite,
-	removeFavorite
-} from "../controllers/favorites.controller.js";
+import {addFavorite, getFavorites, removeFavorite} from "../controllers/favorites.controller.js";
 
 /**
  * Express router for favorites routes
@@ -16,14 +11,7 @@ export const favoritesRouter = express.Router();
  * @name GET /favorites
  * @function
  */
-favoritesRouter.get("/", getFavoritesData);
-
-/**
- * Route to get specific favorite artist by id
- * @name GET /favorites/:id
- * @function
- */
-favoritesRouter.get("/:id", getSpecificFavorite);
+favoritesRouter.get("/", getFavorites);
 
 /**
  * Route to add an artist to favorites

@@ -19,7 +19,7 @@ instead of npm start.
 if you get a log in the CLI saying "Server running on http://localhost:3333", you are good to go
 
 ## Start client
-run index.html with Live Server or equivalent.
+run frontend/index.html with Live Server or equivalent.
 
 ## Documentation
 

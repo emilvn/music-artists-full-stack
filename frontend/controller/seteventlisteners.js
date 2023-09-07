@@ -8,7 +8,6 @@ import {inputSearchChanged} from "./search-filter-sort/search.js";
 import {selectArtist} from "./helpers/selectartist.js";
 
 /**
- * setInitialEventListeners
  * Sets the initial event listeners on page load
  */
 export function setInitialEventListeners(){
@@ -32,7 +31,6 @@ export function setInitialEventListeners(){
 }
 
 /**
- * setArtistEventListeners
  * sets event listeners for click events regarding each artist article
  * @param {HTMLElement} artistArticle article element displaying artist info
  * @param {Artist} artist artist object containing artist details
@@ -79,7 +77,6 @@ export function setArtistEventListeners(artistArticle, artist, containerID){
 }
 
 /**
- * setFormEventListeners
  * sets the relevant submit and close event listeners for forms
  * @param {HTMLFormElement} form form to add event listeners to
  * @param {function} submitFunction callback function for event listeners to add/remove
@@ -93,7 +90,6 @@ export function setFormEventListeners(form, submitFunction){
 }
 
 /**
- * setDetailDialogEventListeners
  * sets the relevant event listeners for the detail dialog buttons and close
  * @param {Artist} artist artist object containing artist details to be displayed
  */
@@ -127,7 +123,7 @@ export function setDetailDialogEventListeners(artist){
 	// using closure to make removable callbacks for event listeners
 	async function submitFavoriteLocal(){
 		if(favoriteArtists.find(favorite => favorite.id === artist.id)){
-			submitRemoveFromFavorites(artist);
+			await submitRemoveFromFavorites(artist);
 		}
 		else await submitFavoriteArtist(artist);
 	}

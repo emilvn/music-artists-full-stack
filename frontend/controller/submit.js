@@ -7,7 +7,6 @@ import {selectedArtist} from "./helpers/selectartist.js";
 import {getArtistDataFromInput} from "./helpers/getdatafrominput.js";
 
 /**
- * removeSubmitEvent
  * function to remove a submit event from a form
  * @param {HTMLFormElement} form form to remove submit event from
  * @param {function} functionToRemove callback function to remove
@@ -18,7 +17,6 @@ export function removeSubmitEvent(form, functionToRemove) {
 }
 
 /**
- * submitArtistCreate
  * function to submit new artist details on form submit, and update the display
  * @param {SubmitEvent} event submit event object from the create artist form
  */
@@ -27,7 +25,7 @@ export async function submitArtistCreate(event) {
 	const form = event.target;
 	const newArtist = getArtistDataFromInput(form);
 	try {
-		const response = await addArtist(newArtist);
+		const response = await addArtist(newArtist);// can throw an error from the api
 		if (response.ok) {
 			displayArtists(artists);
 			showToastMessage("Artist added successfully!", "success");
@@ -41,13 +39,12 @@ export async function submitArtistCreate(event) {
 }
 
 /**
- * submitFavoriteArtist
  * function to add an artist to favorites on favorite button click
  * @param {Artist} artist artist object to add to favorites
  */
 export async function submitFavoriteArtist(artist) {
 	try {
-		const response = await addToFavorites(artist);
+		const response = await addToFavorites(artist);// can throw an error from the api
 		if (response.ok) {
 			displayFavorites(favoriteArtists);
 			showToastMessage(`${artist.name} added to favorites!`, "success");
@@ -61,7 +58,6 @@ export async function submitFavoriteArtist(artist) {
 }
 
 /**
- * submitArtistUpdate
  * function to submit update artist details on form submit, and update the display
  * @param {SubmitEvent} event submit event object from the update artist form
  */
@@ -70,7 +66,7 @@ export async function submitArtistUpdate(event) {
 	const form = event.target;
 	const updatedArtist = getArtistDataFromInput(form);
 	try {
-		const response = await updateArtist(updatedArtist);
+		const response = await updateArtist(updatedArtist);// can throw an error from the api
 		if (response.ok) {
 			await getFavorites();
 			displayArtists(artists);
@@ -87,7 +83,6 @@ export async function submitArtistUpdate(event) {
 }
 
 /**
- * submitArtistDelete
  * function to delete artist on form submit, and update the display
  * @param {SubmitEvent} event submit event object from the delete artist form
  */
@@ -96,7 +91,7 @@ export async function submitArtistDelete(event) {
 	const form = event.target;
 	const artist = artists.find(artist => artist.id === form.dataset.id);
 	try {
-		const response = await deleteArtist(artist);
+		const response = await deleteArtist(artist);// can throw an error from the api
 		if (response.ok) {
 			displayArtists(artists);
 			if (favoriteArtists.find(favorite => favorite.id === artist.id)) { // also remove from favorites
@@ -113,13 +108,12 @@ export async function submitArtistDelete(event) {
 }
 
 /**
- * submitRemoveFromFavorites
  * function to remove artist from favorites, and update the display
  * @param {Artist} artist artist object to remove from favorites
  */
 export async function submitRemoveFromFavorites(artist) {
 	try {
-		const response = await removeFromFavorites(artist);
+		const response = await removeFromFavorites(artist);// can throw an error from the api
 		if (response.ok) {
 			displayFavorites(favoriteArtists);
 			showToastMessage(`${artist.name} removed from favorites`, "success");

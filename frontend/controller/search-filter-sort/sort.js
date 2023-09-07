@@ -3,7 +3,6 @@ import {displayArtists, displayFavorites} from "../../view/view.js";
 import {favoriteArtists} from "../../model/favorites.js";
 
 /**
- * sortAlphabetically
  * sorts the cached arrays of artists and favorites alphabetically and updates the view
  */
 export function sortAlphabetically() {
@@ -19,7 +18,6 @@ export function sortAlphabetically() {
 }
 
 /**
- * sortReverseAlphabetically
  * sorts the cached arrays of artists and favorites in reverse alphabetical order and updates the view
  */
 export function sortReverseAlphabetically() {

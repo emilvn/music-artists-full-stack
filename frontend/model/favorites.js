@@ -8,7 +8,6 @@ export let favoriteArtists = [];
 
 
 /**
- * getFavorites
  * function to fetch favorite artists from the server and cache it in global variable
  * @throws {Object} containing error data from the API errorhandler if request didn't succeed
  */
@@ -21,11 +20,10 @@ export async function getFavorites() {
 }
 
 /**
- * addToFavorites
  * function to add an artist to favorites on the server, and update the cached favorites
  * @param {Artist} artist artist to add to favorites
  * @throws {Object} containing error data from the API errorhandler if request didn't succeed
- * @returns {Response} response object from server
+ * @returns {Promise<Response>} a promise resolving in the response object from the server
  */
 export async function addToFavorites(artist) {
 	const response = await fetch(endpoint + "/favorites", {
@@ -43,11 +41,10 @@ export async function addToFavorites(artist) {
 }
 
 /**
- * removeFromFavorites
  * function to remove an artist from favorites on the server, and update the cached favorites
  * @param {Artist} artistToRemove artist to remove from favorites
  * @throws {Object} containing error data from the API errorhandler if request didn't succeed
- * @returns {Response} response object from server
+ * @returns {Promise<Response>} a promise resolving in the response object from the server
  */
 export async function removeFromFavorites(artistToRemove) {
 	const response = await fetch(endpoint + "/favorites/" + artistToRemove.id, {
@@ -61,7 +58,6 @@ export async function removeFromFavorites(artistToRemove) {
 }
 
 /**
- * filterFavorites
  * function to filter the locally cached array of favorites based on the filter value
  * @param {string} filterValue value of the option selected by the user
  */

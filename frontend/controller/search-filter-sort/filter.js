@@ -3,7 +3,6 @@ import {displayArtists, displayFavorites} from "../../view/view.js";
 import {favoriteArtists, filterFavorites, getFavorites} from "../../model/favorites.js";
 
 /**
- * filterArtistsChanged
  * function to filter the displayed artists from user selected filter options
  */
 export async function filterArtistsChanged() {
@@ -19,7 +18,6 @@ export async function filterArtistsChanged() {
 }
 
 /**
- * generateFilterOptions
  * function to generate options for the filter select, from the artist data
  */
 export function generateFilterOptions() {
@@ -44,7 +42,6 @@ export function generateFilterOptions() {
 }
 
 /**
- * showFilterMenu
  * function to show the filter menu when the filter button is clicked
  */
 export function showFilterMenu() {
@@ -57,7 +54,6 @@ export function showFilterMenu() {
 }
 
 /**
- * showFilterMenu
  * function to hide the filter menu when the filter button is clicked again
  */
 function hideFilterMenu() {

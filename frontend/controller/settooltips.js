@@ -1,7 +1,6 @@
 import {addToolTip} from "../view/helpers/tooltip.js";
 
 /**
- * setToolTips
  * sets initial tooltips on page load
  */
 export function setTooltips() {
@@ -13,7 +12,6 @@ export function setTooltips() {
 }
 
 /**
- * setArtistTooltips
  * sets tooltips for artist article buttons and detail view click
  * @param {HTMLElement} artistArticle artist article element displaying artist details
  * @param {Artist} artist artist object containing artist details
@@ -33,7 +31,6 @@ export function setArtistTooltips(artistArticle, artist, containerID) {
 }
 
 /**
- * setDetailDialogTooltips
  * sets tooltips for buttons in the detail dialog
  */
 export function setDetailDialogTooltips() {

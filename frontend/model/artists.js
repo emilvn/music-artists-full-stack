@@ -8,7 +8,6 @@ import {selectedArtist} from "../controller/helpers/selectartist.js";
 export let artists = [];
 
 /**
- * getArtists
  * function to fetch array of artists from the server and cache it in global variable
  * @throws {Object} containing error data from the API errorhandler if request didn't succeed
  */
@@ -21,11 +20,10 @@ export async function getArtists(){
 }
 
 /**
- *  getSpecificArtist
  *  function to fetch a specific artist from the server
  *  @param {Artist} artist artist to fetch
  *  @throws {Object} containing error data from the API errorhandler if request didn't succeed
- *  @returns {Response} response object from the server
+ *  @returns {Promise<Response>} a promise resolving in the response object from the server
  */
 export async function getSpecificArtist(artist){
 	const response = await fetch(endpoint + "/artists/" + artist.id);
@@ -36,11 +34,10 @@ export async function getSpecificArtist(artist){
 }
 
 /**
- *  addArtist
  *  function to add an artist on the server, and update the cached artists
  *  @param {Object} artist object with artist details to add as an artists
  *  @throws {Object} containing error data from the API errorhandler if request didn't succeed
- *  @returns {Response} response object from the server
+ *  @returns {Promise<Response>} a promise resolving in the response object from the server
  */
 export async function addArtist(artist){
 	const response = await fetch(endpoint + "/artists", {
@@ -58,11 +55,10 @@ export async function addArtist(artist){
 }
 
 /**
- * updateArtist
  * function to update a specific artist on the server, and update the cached artists
  * @param {Object} updatedArtist Artist object without the id
  * @throws {Object} containing error data from the API errorhandler if request didn't succeed
- * @returns {Response} response object from the server
+ * @returns {Promise<Response>} a promise resolving in the response object from the server
  */
 export async function updateArtist(updatedArtist){
 	const artistToUpdate = artists.find(artist => artist.id === selectedArtist.id);
@@ -95,11 +91,10 @@ export async function updateArtist(updatedArtist){
 }
 
 /**
- * deleteArtist
  * function to delete a specific artist on the server, and update the cached artists
  * @param {Artist} artistToDelete Artist to delete from the server
  * @throws {Object} containing error data from the API errorhandler if request didn't succeed
- * @returns {Response} response object from the server
+ * @returns {Promise<Response>} a promise resolving in the response object from the server
  */
 export async function deleteArtist(artistToDelete){
 	const response = await fetch(endpoint + "/artists/" + artistToDelete.id, {

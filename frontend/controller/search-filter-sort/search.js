@@ -3,7 +3,6 @@ import {artists} from "../../model/artists.js";
 import {displayArtists, displayFavorites} from "../../view/view.js";
 
 /**
- * inputSearchChanged
  * function to filter the displayed artists based on the user search
  * @param {InputEvent} event event object of search bar input keyup/search event
  */

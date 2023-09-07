@@ -3,7 +3,6 @@ import {formatDate} from "./helpers/formatting.js";
 import {setArtistTooltips} from "../controller/settooltips.js";
 
 /**
- * displayArtists
  * function to display all artists
  * @param {Artist[]} artists array of artists to display
  */
@@ -15,7 +14,6 @@ export function displayArtists(artists){
 }
 
 /**
- * displayFavorites
  * function to display all favorites
  * @param {Artist[]} favorites array of favorites to display
  */
@@ -27,7 +25,6 @@ export function displayFavorites(favorites){
 }
 
 /**
- * displayArtist
  * function to display a single artist
  * @param {Artist} artist artist to display
  * @param {string} containerID id of html container to put artist into(#favorites/#artists)
@@ -59,7 +56,6 @@ function displayArtist(artist, containerID){
 }
 
 /**
- * generateListFromArray
  * helper function to generate li elements for each item in an array
  * @param {string[]} arr array of roles/genres/labels to display in list
  * @param {HTMLUListElement|HTMLOListElement} container html ul/ol element to put list into

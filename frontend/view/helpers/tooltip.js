@@ -1,5 +1,4 @@
 /**
- * addToolTip
  * function for adding a tooltip when hovering over certain elements
  * @param {HTMLElement} tooltipElement the tooltip div to be used
  * @param {HTMLElement|HTMLButtonElement|HTMLAnchorElement} element the element to show the tooltip for

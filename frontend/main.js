@@ -20,7 +20,6 @@ export const endpoint = "http://localhost:3333";
  * Main function to initialize app
  * gets artists and favorites, sets initial event listeners/tooltips,
  * and sorts the artists alphabetically
- *
  */
 async function main(){
 	// fetch artists

@@ -1,5 +1,4 @@
 /**
- * formatDate
  * helper function for formatting days before displaying
  * @param {string} dateString format YYYY-MM-DD
  * @return {string} formatted string example: 25. "April 1996"

@@ -1,5 +1,4 @@
 /**
- * showToastMessage
  * function for showing toast messages on the page
  * @param {string} message message to be displayed
  * @param {string} mode to determine color, "success" = green, "error" = red, success is default

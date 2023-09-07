@@ -8,7 +8,6 @@ import {submitArtistCreate, submitArtistDelete, submitArtistUpdate} from "../con
 import {setDetailDialogTooltips} from "../controller/settooltips.js";
 
 /**
- * showCreateDialog
  * function for showing the dialog with the create form
  */
 export function showCreateDialog() {
@@ -18,7 +17,6 @@ export function showCreateDialog() {
 }
 
 /**
- * showUpdateDialog
  * function for showing the dialog with the update form
  */
 export function showUpdateDialog() {
@@ -28,7 +26,6 @@ export function showUpdateDialog() {
 }
 
 /**
- * showDeleteDialog
  * function for showing the delete confirmation form
  */
 export function showDeleteDialog() {
@@ -38,7 +35,6 @@ export function showDeleteDialog() {
 }
 
 /**
- * showDetailDialog
  * function for filling in and displaying the detail dialog
  * @param {Artist} artist artist object with details to be displayed
  */
@@ -73,7 +69,6 @@ export function showDetailDialog(artist) {
 }
 
 /**
- * clearDetailDialog
  * function for clearing the details from the detail dialog
  */
 function clearDetailDialog() {
@@ -83,7 +78,6 @@ function clearDetailDialog() {
 }
 
 /**
- * setDetailFavoriteButtonIcon
  * function for setting the icon of the favorite button (add to / remove from favorites icon)
  * @param {Artist} artist artist the button is for
  */

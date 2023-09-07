@@ -1,5 +1,4 @@
 /**
- * getArtistDataFromInput
  * extracts values from form input elements to an object
  * @param {HTMLFormElement} form form to extract values from
  * @returns {Object} an object containing artist information
